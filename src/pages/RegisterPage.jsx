@@ -1,9 +1,9 @@
 import { useContext, useState } from "react"
 import authService from "../services/auth.service";
 import { AuthContext } from "../context/auth.context";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
-function RegisterPage(props) {
+function RegisterPage() {
 
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
@@ -27,6 +27,7 @@ function RegisterPage(props) {
         authService
             .register(reqBody)
             .then(resp => {
+                console.log('token from the authService ===> ',resp.data.authToken)
                 storeToken(resp.data.authToken);
                 authenticateUser();
             })
@@ -116,6 +117,7 @@ function RegisterPage(props) {
             <button>Register</button>
         </form>
         { errorMessage && <p style={{color:'red'}}>{errorMessage}</p>}
+        <p>Already a user: <Link to={"/login"}>Login</Link></p>
     </div>)
 }
 
