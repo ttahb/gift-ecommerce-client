@@ -1,9 +1,9 @@
 import productsService from '../services/products.service';
 import ProductCard from '../components/ProductCard';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import SearchProducts from '../components/SearchProducts';
-// import { useContext } from 'react';
-// import { AuthContext } from '../context/auth.context';
+import { AuthContext } from '../context/auth.context';
+import { Link } from 'react-router-dom';
 
 function ProductsPage() {
 
@@ -11,12 +11,11 @@ function ProductsPage() {
     const [ productsData, setProductsData ] = useState([])
     const [ errorMsg, setErrorMsg ] = useState(undefined);
     const [ isLoading, setIsLoading ] = useState(true);
+    const { user } = useContext(AuthContext)
   
     const handleTags = (str) => {
         const valueS = str;
         let filteredProducts;  
-
-        //console.log('the event => ', e.target.value)  
         setProducts(productsData);
 
         if(valueS === ""){
@@ -25,12 +24,9 @@ function ProductsPage() {
             filteredProducts = [...productsData].filter(product => product.tags === valueS);
             setProducts(filteredProducts);
         }
-    
     }
 
     const handleSearch = (str) => {
-        console.log('str after is sent througth => ', str);
-
         let searchProducts;
         setProducts(productsData);
 
@@ -38,17 +34,17 @@ function ProductsPage() {
             setProducts(productsData);
         } else {
             searchProducts = [...productsData].filter((name) => {
-                return name.productName.toLowerCase().includes(str.toLowerCase())
-            })
-            setProducts(searchProducts)
+                return name.productName.toLowerCase().includes(str.toLowerCase());
+            });
+            setProducts(searchProducts);
         }
     }
 
     useEffect(() => {
         productsService
-            .getProducts()
+            .getAllProducts()
             .then((res) => {
-                // console.log('data from the res ==> ',res.data)
+                console.log('data from the res ==> ',res)
                 setProducts(res.data);
                 setProductsData(res.data);
                 setIsLoading(false);
@@ -59,23 +55,25 @@ function ProductsPage() {
             })
     }, []);
 
-
+    if(isLoading){
+        return(
+            <div>
+                <p>Loading...</p>
+            </div>
+        )
+    }
 
     return(
         <div>
-            { isLoading && <div><p>Loading...</p></div> }
-
+            <br />
+            {user.role === 'admin' && <Link to={'/product/create'}><button>Create new Product</button></Link>}
+            <br /> 
             <SearchProducts handleTags={handleTags} handleSearch={handleSearch}/>
 
-            
-            {products.map((product)=>{
-                return(
-                    <ProductCard key={product._id} {...product}/>
-                )
-            })}
+            {products.map(product => <ProductCard key={product._id} {...product}/> )}
+
             {errorMsg && <p>{errorMsg}</p>}
 
-        
         </div>
     )
 }

@@ -19,11 +19,13 @@ class ProductsService {
         })
     }
 
-    getProducts = () => {
+    getAllProducts = () => {
         return this.api.get('/api/products');
     }
 
-    //rest of the routes 
+    getProduct = id => {
+        return this.api.get(`/api/products/${id}`)
+    }
 
 }
 

@@ -2,21 +2,20 @@ import { useState } from "react";
 
 function SearchProducts({ handleTags, handleSearch }) {
 
-    const [ searchInput , setSearchInput ] = useState('')
+    const [ searchInput , setSearchInput ] = useState('');
 
     const hangleClick = (e) => {
         handleTags(e.target.value);
     }
 
     const handleSearchPass = (e) => {
-        setSearchInput(e.target.value)
-        handleSearch(e.target.value)
+        setSearchInput(e.target.value);
+        handleSearch(e.target.value);
     }
-
-
 
     return(
         <div>
+            <br />
             <div>
                 <button value="wine" onClick={hangleClick}>wine</button>
                 <button value="jams" onClick={hangleClick}>jams</button>
@@ -30,6 +29,7 @@ function SearchProducts({ handleTags, handleSearch }) {
                     <input type="search" name="search" value={searchInput} onChange={handleSearchPass} placeholder="Search..."/>
                 </label>
             </div>
+            <br />
         </div>
     )
 }
