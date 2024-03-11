@@ -2,10 +2,12 @@ function ProductCard( { image, productName, price, hearts } ) {
 
     return(
         <div>
-            <img style={{height: "150px"}} src={image} />
-            <p>{productName}</p>
-            <p>{price}</p>
-            <p>{hearts}</p>
+            <br />
+            <img style={{height: "150px"}} src={image} alt="Image of the product"/>
+            <p>Name: {productName}</p>
+            <p>Price: {price}</p>
+            <p>Likes:{hearts}</p>
+            <br />
         </div>
     )
 }
