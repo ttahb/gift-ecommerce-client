@@ -66,7 +66,7 @@ function ProductsPage() {
     return(
         <div>
             <br />
-            {user.role === 'admin' && <Link to={'/product/create'}><button>Create new Product</button></Link>}
+            {user && user.role.toLowerCase() === 'admin' && <Link to={'/product/create'}><button>Create new Product</button></Link>}
             <br /> 
             <SearchProducts handleTags={handleTags} handleSearch={handleSearch}/>
 

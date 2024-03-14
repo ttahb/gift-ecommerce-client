@@ -27,6 +27,21 @@ class ProductsService {
         return this.api.get(`/api/products/${id}`)
     }
 
+    createProduct = () => {
+        return this.api.post(`/products`)
+    }
+
+    changeProduct = id => {
+        return this.api.put(`/products/${id}`)
+    } 
+
+    deleteProduct = id => {
+        return this.api.delete(`/products/${id}`)
+    }
+
+    oneChangeProduct = id => {
+        return this.api.patch(`/products/${id}`)
+    }
 }
 
 const productsService = new ProductsService();

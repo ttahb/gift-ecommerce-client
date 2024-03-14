@@ -8,6 +8,7 @@ import ProductsPage from './pages/ProductsPage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
 import ProductCreatePage from './pages/ProductCreatePage';
 import OrdersPage from './pages/OrdersPage';
+import UserProfilePage from './pages/UserProfilePage';
 
 function App() {
 
@@ -23,7 +24,8 @@ function App() {
         <Route path='/product/:productId' element={<ProductDetailsPage />} />
         <Route path='/product/create' element={<ProductCreatePage /> } />
         <Route path='/orders' element={<OrdersPage/>} />
-      </Routes>
+        <Route path='/users/:userId' element={<UserProfilePage />}/>
+      </Routes> 
     </>
   )
 }

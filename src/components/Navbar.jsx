@@ -1,13 +1,24 @@
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/auth.context";
+import { useContext } from "react";
+import { useState } from "react";
 
 function Navbar() {
+  const { user } = useContext(AuthContext)
+
+let userId;
+  if(user){
+    userId = user.userId;
+  }
+
+
 
   return (
     <nav>
       <Link to="/">
         <button>Home</button>
       </Link>
-      <Link to="/profile">
+      <Link to={`/users/${userId}`}>
         <button>Profile</button>
       </Link>
       <Link to="/products">
