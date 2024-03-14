@@ -7,25 +7,25 @@ function Navbar() {
       <Link to="/">
         <button>Home</button>
       </Link>
-      <Link to="/">
+      <Link to="/profile">
         <button>Profile</button>
       </Link>
-      <Link to="/">
+      <Link to="/products">
         <button>Products</button>
       </Link>
-      <Link to="/">
+      <Link to="/aboutus">
         <button>About Us</button>
       </Link>
-      <Link to="/">
+      <Link to="/contact">
         <button>Contact Us</button>
       </Link>
-      <Link to="/">
+      <Link to="/login">
         <button>Login</button>
       </Link>
       <Link to="/register">
         <button>Register</button>
       </Link>
-      <Link to="/">
+      <Link to="/logout">
         <button>Logout</button>
       </Link>
 
