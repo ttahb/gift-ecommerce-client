@@ -11,6 +11,8 @@ function ProductDetailsPage(){
     const { productId } = useParams();
     const { user } = useContext(AuthContext);
 
+    console.log('product id ==> ',productId,'user ===> ', user)
+
     const plusItems =() => setBasketItems(basketItems + 1);
     const minusItems = () => {
         if(basketItems === 1 ){
@@ -31,6 +33,7 @@ function ProductDetailsPage(){
     const handleBasket = () => {
         // TODO => ask <= => create pop up basket with items and price accordingly??
         // put - patch the user model basket... service for that? 
+        // patch the user module 
         console.log('add Items to the basket ' + basketItems )
     }
 
@@ -65,7 +68,7 @@ function ProductDetailsPage(){
             </div>
 
             <div>
-                {user.role === 'admin' && <button>Edit Product</button>}
+                {user && user.role.toLowerCase() === 'admin' && <button>Edit Product</button>}
             </div>
         </div>
     )

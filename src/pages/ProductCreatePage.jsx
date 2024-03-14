@@ -48,7 +48,7 @@ function ProductCreatePage() {
                 <br />
                 <label>Description:
                 <br />
-                    <textarea name="description" id="" cols="60" rows="5" value={description} onChange={handleDescription}></textarea>
+                    <textarea name="description" cols="60" rows="5" value={description} onChange={handleDescription}></textarea>
                 </label>
                 <br />
                 <label>Upload URL image: 
