@@ -31,6 +31,10 @@ class UserService {
         return this.api.put(`/api/users/${userId}`, userData);
     };
 
+    updateUserFields = (userId, userData) => {
+        return this.api.patch(`/api/users/${userId}`, userData);
+    };
+
 }
 
 const userService = new UserService();
