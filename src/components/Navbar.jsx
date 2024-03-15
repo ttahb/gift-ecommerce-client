@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { useContext } from "react";
-import { useState } from "react";
+import shopingBasket from "../assets/shopping-basket.png"
 
 function Navbar() {
   const { user } = useContext(AuthContext)
@@ -10,8 +10,6 @@ let userId;
   if(user){
     userId = user.userId;
   }
-
-
 
   return (
     <nav>
@@ -38,6 +36,9 @@ let userId;
       </Link>
       <Link to="/logout">
         <button>Logout</button>
+      </Link>
+      <Link to="/basket">
+        <img src={shopingBasket} style={{height:" 30px", padding:"5px"}} />
       </Link>
 
       {/* {isLoggedIn && (

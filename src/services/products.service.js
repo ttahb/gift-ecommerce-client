@@ -27,12 +27,12 @@ class ProductsService {
         return this.api.get(`/api/products/${id}`)
     }
 
-    createProduct = () => {
-        return this.api.post(`/products`)
+    createProduct = reqBody => {
+        return this.api.post(`/api/products`, reqBody)
     }
 
-    changeProduct = id => {
-        return this.api.put(`/products/${id}`)
+    changeProduct = (id, reqBody ) => {
+        return this.api.put(`/api/products/${id}`, reqBody)
     } 
 
     deleteProduct = id => {
