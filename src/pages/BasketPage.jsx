@@ -22,7 +22,11 @@ function BasketPage() {
         // maybe update the user's quantity accordingly 
         // evold the useEffect to retreave teh user's from the DB
                     // the final price will be update line 14 to 19
-                    // individual product will be updated in the [ map... quy * price ]
+                    // individual product will be updated in the [ map... quy * price ] ????
+
+        // how to take all the info and ceate the order...? 
+        // maybe render the info in a form - update the quantity from the useState
+        // and upon submition create order with the availabel info and clear the user's basket 
     }
 
     const handlePlus = () => {
