@@ -27,12 +27,17 @@ function OrderCard({ _id, orderNumber, createdAt, updatedAt, user, amount, statu
             })
     };
 
+    const formatDate = (date) => {
+        const options = { day: '2-digit', month: 'long', year: 'numeric'};
+        return new Intl.DateTimeFormat('en', options).format(new Date(date));
+    }
+
     return (
         <tr>
             <td><Link to={`/orders/${_id}`}>{orderNumber}</Link></td>
             <td>{user.fullName}</td>
-            <td>{createdAt}</td>
-            <td>{updatedAt}</td>
+            <td>{formatDate(createdAt)}</td>
+            <td>{formatDate(updatedAt)}</td>
             <td>€{amount}</td>
             <td>
                 {!erroroMsg && <select value={selectedStatus} onChange={handleStatusChange}>
