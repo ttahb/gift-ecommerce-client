@@ -36,7 +36,7 @@ class ProductsService {
     } 
 
     deleteProduct = id => {
-        return this.api.delete(`/products/${id}`)
+        return this.api.delete(`/api/products/${id}`)
     }
 
     oneChangeProduct = id => {

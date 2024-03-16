@@ -1,16 +1,18 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import productsService from "../services/products.service";
 import { AuthContext } from "../context/auth.context";
 import userService from "../services/user.service";
 
 function ProductDetailsPage(){
     const [ product, setProduct ] = useState([]);
+    console.log('product from one product ' ,product)
     const [ basketItems, setBasketItems ] = useState(1);
-    const [ isLoading, setIsLoading ] = useState(true);
+    const [ isLoadingBr, setIsLoadingBr ] = useState(true);
     const { productId } = useParams();
-    const { user } = useContext(AuthContext);
+    const { user, isLoading } = useContext(AuthContext);
     const [ errorMsg, setErrorMsg ] = useState(undefined);
+    const navigate = useNavigate();
 
     const plusItems =() => setBasketItems(basketItems + 1);
     const minusItems = () => {
@@ -22,10 +24,6 @@ function ProductDetailsPage(){
     };
 
     const handleBasket = () => {
-        // TODO => ask <= => create pop up basket with items and price accordingly??
-        // put - patch the user model basket... service for that? 
-        // patch the user module 
-
         const userId = user.userId;
 
         const userData = {
@@ -57,7 +55,6 @@ function ProductDetailsPage(){
                 
                 userService
                     .updateUserFields( userId, { basket: resBasket } )
-                    // .then((res) => console.log(res))
                     .catch(err => setErrorMsg(err.response.data.message))
             })
             .catch((err) => {
@@ -77,10 +74,21 @@ function ProductDetailsPage(){
             })
     };
 
+    const handleDeleteProduct = (prodId) => {
+        console.log('hello from the insinarater handler = your Id is ==> ', prodId)
+
+        productsService
+            .deleteProduct(prodId)
+            navigate('/')
+
+    }
+
     useEffect(() => {
-        getOneProduct();
-        setIsLoading(false);
-    } ,[]);
+        if(!isLoading){
+            getOneProduct();
+            setIsLoadingBr(false);
+        }
+    } ,[isLoading]);
 
     if(isLoading) {
         return(
@@ -111,6 +119,7 @@ function ProductDetailsPage(){
 
             <div>
                 {user && user.role.toLowerCase() === 'admin' && <Link to={`/product/edit/${productId}`}><button>Edit Product</button></Link>}
+                {user && user.role.toLowerCase() === 'admin' && <button onClick={ () => handleDeleteProduct(product._id)}>Delete Product</button>}
             </div>
         </div>
     )

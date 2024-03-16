@@ -11,6 +11,8 @@ import OrdersPage from './pages/OrdersPage';
 import UserProfilePage from './pages/UserProfilePage';
 import ProductEditPage from './pages/ProductEditPage';
 import BasketPage from './pages/basketPage';
+import AboutUs from './pages/AboutUs';
+import ContactUs from './pages/ContactUs';
 
 function App() {
 
@@ -20,6 +22,8 @@ function App() {
 
       <Routes>
         <Route path='/' element={<HomePage/>} />
+        <Route path='/aboutus' element={<AboutUs />} />
+        <Route path='/contact' element={<ContactUs />} />
         <Route path="/register" element={<RegisterPage />} /> 
         <Route path='/login' element={<LoginPage />} />
         <Route path='/basket' element={<BasketPage />} />
