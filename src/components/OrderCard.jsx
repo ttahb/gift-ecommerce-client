@@ -2,13 +2,15 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import orderService from "../services/orders.service";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../context/auth.context";
 
-function OrderCard({ _id, orderNumber, createdAt, updatedAt, user, amount, status }) {
-
+function OrderCard(props) {
+    const { _id, orderNumber, createdAt, updatedAt, amount, status } = props;
     const [selectedStatus, setSelectedStatus] = useState(status)
-    const [erroroMsg, setErrorMsg] = useState(undefined);
-
+    const [errorMsg, setErrorMsg] = useState(undefined);
     const handleStatusChange = (e) => setSelectedStatus(e.target.value);
+    const {user} = useContext(AuthContext);
 
     const clearErrorMessage = () => {
         setErrorMsg(undefined);
@@ -20,6 +22,7 @@ function OrderCard({ _id, orderNumber, createdAt, updatedAt, user, amount, statu
             .then(res => {
                 console.log('patched order', res.data);
                 setSelectedStatus(res.data.status);
+                props.getOrders();
             })
             .catch(err => {
                 console.log('err', err);
@@ -35,23 +38,26 @@ function OrderCard({ _id, orderNumber, createdAt, updatedAt, user, amount, statu
     return (
         <tr>
             <td><Link to={`/orders/${_id}`}>{orderNumber}</Link></td>
-            <td>{user.fullName}</td>
+            <td>{props.user.fullName}</td>
             <td>{formatDate(createdAt)}</td>
             <td>{formatDate(updatedAt)}</td>
             <td>€{amount}</td>
-            <td>
-                {!erroroMsg && <select value={selectedStatus} onChange={handleStatusChange}>
-                    <option value="Order Created">Order Created</option>
-                    <option value="Confirmed">Confirmed</option>
-                    <option value="Needs Payment confirmation">Needs Payment confirmation</option>
-                    <option value="Completed">Completed</option>
-                    <option value="Delivered">Delivered</option>
-                    <option value="Cancelled">Cancelled</option>
-                    <option value="Refunded">Refunded</option>
-                </select>} 
-                {!erroroMsg && <button onClick={handleStatusUpdate}>✅</button>}
-                {erroroMsg && <p>⚠️{erroroMsg}</p>}{erroroMsg && <button onClick={clearErrorMessage}>✖</button>}
-            </td>
+            { user.role.toLowerCase() === 'admin' &&
+                <td>
+                    {!errorMsg && <select value={selectedStatus} onChange={handleStatusChange}>
+                        <option value="Order Created">Order Created</option>
+                        <option value="Confirmed">Confirmed</option>
+                        <option value="Needs Payment confirmation">Needs Payment confirmation</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Delivered">Delivered</option>
+                        <option value="Cancelled">Cancelled</option>
+                        <option value="Refunded">Refunded</option>
+                    </select>} 
+                    {!errorMsg && <button onClick={handleStatusUpdate}>✅</button>}
+                    {errorMsg && <p>⚠️{errorMsg}</p>}{errorMsg && <button onClick={clearErrorMessage}>✖</button>}
+                </td>
+            }
+            {  user.role.toLowerCase() !== 'admin' && <td>{status}</td>}
         </tr>
 
     )

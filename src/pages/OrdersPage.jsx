@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import OrderCard from "../components/OrderCard";
 import orderService from "../services/orders.service";
-import { Link } from "react-router-dom";
+
 
 function OrdersPage() {
-
+        
     const [orders, setOrders] = useState([])
     const [ordersData, setOrdersData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -12,26 +12,30 @@ function OrdersPage() {
     const [dateAsc, setDateAsc] = useState(true);
     const [priceDsc, setPriceDsc] = useState(true);
     const [status, setStatus] = useState(undefined);
-    // const [searchQuery, setSearchQuery] = useState('');
-
+    
     const headerStyle = {
         backgroundColor: '#f2f2f2',
         padding: '8px',
         textAlign: 'left'
     };
 
-    useEffect(() => {
+    const getOrders = () => {
         orderService
-            .getOrders()
-            .then(res => {
-                setOrders(res.data)
-                setOrdersData(res.data)
-                setIsLoading(false)
-            })
-            .catch((err) => {
-                setIsLoading(false);
-                setErrorMsg(err.response.data.message);
-            })
+        .getOrders()
+        .then(res => {
+            setOrders(res.data)
+            setOrdersData(res.data)
+            setIsLoading(false)
+        })
+        .catch((err) => {
+            console.log('err',err)
+            setIsLoading(false);
+            setErrorMsg(err.response.data.message);
+        })
+    }
+
+    useEffect(() => {
+        getOrders();
     }, [])
 
     const sortByDate = () => {
@@ -140,10 +144,11 @@ function OrdersPage() {
                     </tr>
                 </thead>
                 <tbody>
-                    {
-                        orders.length === 0 ? <p>No orders found. Try again :(</p> :
+                    {errorMsg && <tr><td><p>{errorMsg}</p></td></tr>}
+                    {!errorMsg &&
+                        orders.length === 0 ? <tr><td><p>No orders found. Try again</p></td></tr> :
                         orders.map(order => {
-                            return (<OrderCard key={order._id} {...order} />)
+                            return (<OrderCard key={order._id} {...order} getOrders={getOrders}/>)
                         })
                     }
                 </tbody>
