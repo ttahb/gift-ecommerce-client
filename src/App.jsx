@@ -9,6 +9,7 @@ import ProductDetailsPage from './pages/ProductDetailsPage';
 import ProductCreatePage from './pages/ProductCreatePage';
 import OrdersPage from './pages/OrdersPage';
 import UserProfilePage from './pages/UserProfilePage';
+import OrderDetailsPage from './pages/OrderDetailsPage';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
         <Route path='/product/create' element={<ProductCreatePage /> } />
         <Route path='/orders' element={<OrdersPage/>} />
         <Route path='/users/:userId' element={<UserProfilePage />}/>
+        <Route path='/orders/:orderId' element={<OrderDetailsPage/>}/>
       </Routes> 
     </>
   )
