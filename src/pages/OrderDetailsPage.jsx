@@ -45,7 +45,7 @@ function OrderDetailsPage(props) {
                 <h5 style={{ textDecoration: 'underline' }}>Contents:</h5>
                 {order.content.map((product, index) => {
                     return (
-                        <div>
+                        <div key={product.productId}>
                             <p style={{ fontStyle: 'strong', color: 'lightgreen' }}>Product - {index + 1}</p>
                             <span>Product Name - </span><span>{product.productName}</span>
                             <br></br>
