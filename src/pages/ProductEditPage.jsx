@@ -49,6 +49,32 @@ function ProductEditPage() {
             })
     }
 
+    // const handleFileUpload = (e) => {
+
+    //     if(e.target.files[0]) {
+    //         //user had uploaded new photo
+    //         // oldImage => image state
+    //         //1. read the cloud id from image and delete it. [ introduce delete service]
+    //         //2.parallely call uploadService and get the new image
+    //     } 
+    //         // store Oldimage 
+
+    //     const uploadData = new FormData();
+
+    //     uploadData.append("img", e.target.files[0]);
+    //     console.log('this is the nploadData NEW FORM ==>', uploadData)
+
+    //     fileUploadService
+    //         .uploadImage(uploadData)
+    //         .then(res => {
+    //             console.log('the is the response from .then ==>', res.image)
+    //             setImage(res.image);
+    //         })
+    //         .catch(err => console.log('error back from the server',err))
+
+     
+    // }
+
     const getOneProduct = () => {
         productsService
             .getProduct(productId)
@@ -94,9 +120,11 @@ function ProductEditPage() {
                     <textarea name="description" id="" cols="70" rows="5" placeholder={description} value={description} onChange={handleDescription}></textarea>
                 </label>
                 <br />
+                <img style={{height: "150px"}} src={image}/>
                 <label>Image:
                 <br />
-                    <input type="text" placeholder={image} value={image} onChange={handleImage} />
+                    <input type="file" />
+                    {/* <input type="text" placeholder={image} value={image} onChange={handleImage} /> */}
                 </label>
                 <br />
                 <label>Tags:
