@@ -2,13 +2,14 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import productsService from "../services/products.service";
 import { useNavigate } from "react-router-dom";
+import fileUploadService from '../services/file-upload.service'
 
 function ProductCreatePage() {
 
     const [ productName, setProductName ] = useState('');
     const [ price, setPrice ] = useState('');
     const [ description, setDescription ] = useState('');
-    const [ image, setImage ] = useState('')
+    const [ image, setImage ] = useState('');
     const [ tag, setTag ] = useState('');
     const [ errorMsg, setErrorMsg ] = useState(undefined);
     const [ priceLetter, setPriceLetter ] = useState(undefined);
@@ -34,7 +35,24 @@ function ProductCreatePage() {
         
     const handleDescription = (e) => setDescription(e.target.value);
     const handleTag = (e) => setTag(e.target.value);
-    const handleImage = (e) => setImage(e.target.value);
+
+    const handleFileUpload = (e) => {
+
+        const uploadData = new FormData();
+
+        uploadData.append("img", e.target.files[0]);
+        console.log('this is the nploadData NEW FORM ==>', uploadData)
+
+        fileUploadService
+            .uploadImage(uploadData)
+            .then(res => {
+                console.log('the is the response from .then ==>', res.image)
+                setImage(res.image);
+            })
+            .catch(err => console.log('error back from the server',err))
+    }
+
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -90,7 +108,7 @@ function ProductCreatePage() {
                 <br />
                 <label>Upload URL image: 
                     <br />
-                    <input type="text" name="image" value={image} onChange={handleImage} />
+                    <input type="file" onChange={handleFileUpload} />
                 </label>
                 <br />
                 <label>Tag:

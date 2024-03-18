@@ -7,7 +7,6 @@ function BasketPage() {
     const [ basket, setBasket ] = useState([]);
     const [ totalPrice, setTotalPrice ] = useState(0);
     const [ isLoadingBr, setIsLoadingBr ] = useState(true);
-    // user in a state
     const { user, isLoading } = useContext(AuthContext);
 
     // console.log('user from the basket',user);
@@ -72,14 +71,14 @@ function BasketPage() {
             })
     }
 
-    const handleOrder = () => {
-        // how to take all the info and create the order...? 
-        // maybe render the info in a form - update the quantity from the useState
-        // and upon submition create order with the availabel info and clear the user's basket 
+    // const handleOrder = () => {
+    //     // how to take all the info and create the order...? 
+    //     // maybe render the info in a form - update the quantity from the useState
+    //     // and upon submition create order with the availabel info and clear the user's basket 
 
-        // then we store the basked contet int he order.context
+    //     // then we store the basked contet int he order.context
 
-    }
+    // }
 
     const getUser = async () => {
 
@@ -115,7 +114,7 @@ function BasketPage() {
 
 
 
-    if(isLoading){
+    if(isLoadingBr){
         return(
             <div>
                 <p>Loading...</p>
@@ -125,12 +124,10 @@ function BasketPage() {
 
     return(
         <div>
-            Basket
-
             {basket.map((prod, index) => {
                 return(
                     <div key={index}>
-                        <p><img src={prod.image} alt="image" /></p>
+                        <img style={{height: "150px"}} src={prod.productImg} alt="image" />
                         <h2>{prod.productName}</h2>
                         <p>price: {prod.price} Euro</p>
                         <p>quantity: {prod.quantity} 

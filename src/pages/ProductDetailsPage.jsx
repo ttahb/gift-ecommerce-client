@@ -68,6 +68,7 @@ function ProductDetailsPage(){
             .getProduct(productId)
             .then((res) => {
                 setProduct(res.data)
+                setIsLoadingBr(false)
             })
             .catch((err) => {
                 setErrorMsg(err.response.data.message)
@@ -90,7 +91,7 @@ function ProductDetailsPage(){
         }
     } ,[isLoading]);
 
-    if(isLoading) {
+    if(isLoadingBr) {
         return(
             <div>
                 <p>Loading...</p>
