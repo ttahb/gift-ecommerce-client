@@ -12,14 +12,20 @@ function AuthProviderWrapper(props){
 
         const storedToken = localStorage.getItem('authToken');
 
+        console.log('stored token', storedToken)
+
         if(storedToken) {
             authService
             .verify()
             .then(response => {
                 const payload = response.data;
+                // console.log('Date log after the response',Date.now())
+                // console.log('payload after the response ==>', payload)
                 setIsLoggedIn(true);
                 setIsLoading(false);
                 setUser(payload);
+                // console.log('Date log after the user',Date.now())
+                // console.log('payload after the user ==>', user)
             })
             .catch(err => {
                 console.log(`error ${err}`)

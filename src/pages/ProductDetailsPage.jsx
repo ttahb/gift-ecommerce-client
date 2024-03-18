@@ -1,17 +1,18 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import productsService from "../services/products.service";
 import { AuthContext } from "../context/auth.context";
-
+import userService from "../services/user.service";
 
 function ProductDetailsPage(){
     const [ product, setProduct ] = useState([]);
+    console.log('product from one product ' ,product)
     const [ basketItems, setBasketItems ] = useState(1);
-    const [ isLoading, setIsLoading ] = useState(true)
+    const [ isLoadingBr, setIsLoadingBr ] = useState(true);
     const { productId } = useParams();
-    const { user } = useContext(AuthContext);
-
-    console.log('product id ==> ',productId,'user ===> ', user)
+    const { user, isLoading } = useContext(AuthContext);
+    const [ errorMsg, setErrorMsg ] = useState(undefined);
+    const navigate = useNavigate();
 
     const plusItems =() => setBasketItems(basketItems + 1);
     const minusItems = () => {
@@ -22,27 +23,75 @@ function ProductDetailsPage(){
         }
     };
 
+    const handleBasket = () => {
+        const userId = user.userId;
+
+        const userData = {
+            productImg: product.image,
+            productId: product._id,
+            productName: product.productName,
+            price: product.price,
+            quantity: basketItems
+        }
+
+        userService
+            .getUser(userId)
+            .then((res) => {
+                return res.data.basket 
+            })
+            .then((resBasket) => {
+                let isExistingProduct = false;
+
+                resBasket.forEach(product => { 
+                    if(product.productId === userData.productId){
+                        product.quantity += userData.quantity;
+                        isExistingProduct = true;
+                    }
+                })
+
+                if(!isExistingProduct){
+                    resBasket.push(userData);
+                }
+                
+                userService
+                    .updateUserFields( userId, { basket: resBasket } )
+                    .catch(err => setErrorMsg(err.response.data.message))
+            })
+            .catch((err) => {
+                console.log(err);
+                setErrorMsg(err.response.data.message)
+            })
+    };
+
     const getOneProduct = () => {
         productsService
             .getProduct(productId)
             .then((res) => {
                 setProduct(res.data)
+                setIsLoadingBr(false)
             })
-    }
+            .catch((err) => {
+                setErrorMsg(err.response.data.message)
+            })
+    };
 
-    const handleBasket = () => {
-        // TODO => ask <= => create pop up basket with items and price accordingly??
-        // put - patch the user model basket... service for that? 
-        // patch the user module 
-        console.log('add Items to the basket ' + basketItems )
+    const handleDeleteProduct = (prodId) => {
+        console.log('hello from the insinarater handler = your Id is ==> ', prodId)
+
+        productsService
+            .deleteProduct(prodId)
+            navigate('/')
+
     }
 
     useEffect(() => {
-        getOneProduct();
-        setIsLoading(false);
-    } ,[])
+        if(!isLoading){
+            getOneProduct();
+            setIsLoadingBr(false);
+        }
+    } ,[isLoading]);
 
-    if(isLoading) {
+    if(isLoadingBr) {
         return(
             <div>
                 <p>Loading...</p>
@@ -52,6 +101,7 @@ function ProductDetailsPage(){
 
     return(
         <div>
+            {errorMsg && <p>{errorMsg}</p>}
             <div>
                 <img style={{height: "150px"}} src={product.image} alt="product image" />
                 <p>{product.productName}</p>
@@ -65,10 +115,12 @@ function ProductDetailsPage(){
                     <span><button onClick={plusItems}>+</button></span>
                 </p>     
                 <button onClick={handleBasket}>Add to Basket</button>
+                <Link to={'/products'} ><button>Continue Shoping</button></Link>
             </div>
 
             <div>
-                {user && user.role.toLowerCase() === 'admin' && <button>Edit Product</button>}
+                {user && user.role.toLowerCase() === 'admin' && <Link to={`/product/edit/${productId}`}><button>Edit Product</button></Link>}
+                {user && user.role.toLowerCase() === 'admin' && <button onClick={ () => handleDeleteProduct(product._id)}>Delete Product</button>}
             </div>
         </div>
     )

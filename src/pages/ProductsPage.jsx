@@ -8,10 +8,12 @@ import { Link } from 'react-router-dom';
 function ProductsPage() {
 
     const [ products, setProducts ] = useState([]);
-    const [ productsData, setProductsData ] = useState([])
+    const [ productsData, setProductsData ] = useState([]);
     const [ errorMsg, setErrorMsg ] = useState(undefined);
     const [ isLoading, setIsLoading ] = useState(true);
-    const { user } = useContext(AuthContext)
+    const { user } = useContext(AuthContext);
+
+    // console.log('this is the products', products)
   
     const handleTags = (str) => {
         const valueS = str;
@@ -44,7 +46,7 @@ function ProductsPage() {
         productsService
             .getAllProducts()
             .then((res) => {
-                console.log('data from the res ==> ',res)
+                // console.log('data from the res ==> ',res)
                 setProducts(res.data);
                 setProductsData(res.data);
                 setIsLoading(false);
