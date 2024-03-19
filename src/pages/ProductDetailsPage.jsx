@@ -3,23 +3,24 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import productsService from "../services/products.service";
 import { AuthContext } from "../context/auth.context";
 import userService from "../services/user.service";
+import fileUploadService from "../services/file-upload.service";
 
 function ProductDetailsPage(){
     const [ product, setProduct ] = useState([]);
     console.log('product from one product ' ,product)
-    const [ basketItems, setBasketItems ] = useState(1);
+    const [ productItems, setProductItems ] = useState(1);
     const [ isLoadingBr, setIsLoadingBr ] = useState(true);
     const { productId } = useParams();
     const { user, isLoading } = useContext(AuthContext);
     const [ errorMsg, setErrorMsg ] = useState(undefined);
     const navigate = useNavigate();
 
-    const plusItems =() => setBasketItems(basketItems + 1);
+    const plusItems =() => setProductItems(productItems + 1);
     const minusItems = () => {
-        if(basketItems === 1 ){
-            setBasketItems(1)
+        if(productItems === 1 ){
+            setProductItems(1)
         } else {
-            setBasketItems(basketItems - 1)
+            setProductItems(productItems - 1)
         }
     };
 
@@ -31,7 +32,7 @@ function ProductDetailsPage(){
             productId: product._id,
             productName: product.productName,
             price: product.price,
-            quantity: basketItems
+            quantity: productItems
         }
 
         userService
@@ -75,12 +76,19 @@ function ProductDetailsPage(){
             })
     };
 
-    const handleDeleteProduct = (prodId) => {
+    const handleDeleteProduct = async (prodId) => {
         console.log('hello from the insinarater handler = your Id is ==> ', prodId)
+        const publicIdOfCloudinary = new FormData();
+        const imageId = product.image.split('/').splice(-2).join('/').split('.')[0];
+        publicIdOfCloudinary.append('publicIdOfCloudinary', imageId)
 
-        productsService
-            .deleteProduct(prodId)
-            navigate('/')
+        try {
+            await fileUploadService.deleteImage(publicIdOfCloudinary);
+            await productsService.deleteProduct(prodId);
+            navigate('/products')
+        } catch(err) {
+            console.log(err)
+        }
 
     }
 
@@ -110,7 +118,7 @@ function ProductDetailsPage(){
                 <p>Price: {product.price} Euro</p>
             </div>
             <div>
-                <p>amount of Items:{basketItems} 
+                <p>amount of Items:{productItems} 
                     <span><button onClick={minusItems}>-</button></span>
                     <span><button onClick={plusItems}>+</button></span>
                 </p>     
