@@ -1,0 +1,84 @@
+nav {
+    position: relative;
+    top: 0;
+    max-width: 100vw;
+    /* overflow: hidden; */
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3rem;
+    background-color: white;
+}
+
+nav > a {
+    color: black;
+}
+  
+#logo img {
+    max-width: 100px;
+}
+  
+.menuppal {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    /* padding: 0 3rem; */
+    align-items: center;
+}
+
+
+  
+.menuppal li {
+    margin-right: 10px;
+}
+  
+.hamburger {
+    display: none;
+}
+
+/* ipad and mobile view starts here */
+@media screen and (max-width: 1024px) {
+    .menuppal {
+      display: none;
+      flex-direction: column;
+    }
+    /* displaying the hamburguer menu */
+    .hamburger{
+        display: block;
+        position:relative;
+        background-color:transparent;
+        left:0;
+        top:0;
+        height:30px;
+        width:30px;
+        padding:20px 20px;
+        left:83%;
+    }
+    /* _layer will print the lines that creates the hamburguer menu itself */
+    ._layer{
+        background:#333333;
+        margin-bottom:4px;
+        border-radius:2px;
+        width:28px;
+        height:4px;
+        opacity:1;
+    }
+    /* .active {
+        background-color: rgba(255, 255, 255, 0.8);
+        color: black;
+        display: block;
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+    } */
+
+    ol, ul {
+        position: absolute;
+        list-style: none;
+        text-align: center;
+        z-index: 10;
+        top: 55%;
+        left: 50%;
+    }
+}
