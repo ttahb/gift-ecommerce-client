@@ -20,8 +20,8 @@ let userId;
       <div>
         <img id="logo" src={Logo} />
       </div>
-      <ul className={`menuppal ${showMenu ? 'active' : ''}`}>
-        
+      <div className={`menuppal ${showMenu ? 'active' : ''}`}>
+      <ul>
         <Link to="/">
           <li className="">Home</li>
         </Link>
@@ -60,6 +60,7 @@ let userId;
           </li>
         </Link>
       </ul>
+      </div>
       <div className={`hamburger ${showMenu ? 'active' : ''}`} onClick={toggleMenu}>
         <div className="_layer -top"></div>
         <div className="_layer -mid"></div>

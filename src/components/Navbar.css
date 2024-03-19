@@ -1,5 +1,5 @@
 nav {
-    position: sticky;
+    position: relative;
     top: 0;
     max-width: 100vw;
     /* overflow: hidden; */
@@ -8,6 +8,11 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 0 3rem;
+    background-color: white;
+}
+
+nav > a {
+    color: black;
 }
   
 #logo img {
@@ -18,24 +23,14 @@ nav {
     list-style: none;
     display: flex;
     flex-direction: row;
-    padding: 0 3rem;
+    /* padding: 0 3rem; */
+    align-items: center;
 }
+
+
   
 .menuppal li {
     margin-right: 10px;
-}
-
-.primary {
-    color: white !important;
-    background-color: #6750A4 !important;
-    border-radius: 2rem !important;
-}
-
-.secondary {
-    color: #6750A4 !important;
-    background-color: white !important;
-    border: solid 1px #6750A4;
-    border-radius: 2rem;
 }
   
 .hamburger {
@@ -58,6 +53,7 @@ nav {
         height:30px;
         width:30px;
         padding:20px 20px;
+        left:83%;
     }
     /* _layer will print the lines that creates the hamburguer menu itself */
     ._layer{
@@ -67,5 +63,22 @@ nav {
         width:28px;
         height:4px;
         opacity:1;
+    }
+    /* .active {
+        background-color: rgba(255, 255, 255, 0.8);
+        color: black;
+        display: block;
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+    } */
+
+    ol, ul {
+        position: absolute;
+        list-style: none;
+        text-align: center;
+        z-index: 10;
+        top: 55%;
+        left: 50%;
     }
 }
