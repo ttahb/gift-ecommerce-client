@@ -4,6 +4,7 @@ import { useEffect, useState, useContext } from 'react';
 import SearchProducts from '../components/SearchProducts';
 import { AuthContext } from '../context/auth.context';
 import { Link } from 'react-router-dom';
+import "../pages/ProductsPage.css"
 
 function ProductsPage() {
 
@@ -59,20 +60,22 @@ function ProductsPage() {
 
     if(isLoading){
         return(
-            <div>
+            <div className='loading-div'>
                 <p>Loading...</p>
             </div>
         )
     }
 
     return(
-        <div>
+        <div className='products-container'>
             
             {user && user.role.toLowerCase() === 'admin' && <Link to={'/product/create'}><button>Create new Product</button></Link>}
-            
+                        
             <SearchProducts handleTags={handleTags} handleSearch={handleSearch}/>
 
-            {products.map(product => <ProductCard key={product._id} {...product}/> )}
+            <div className='products-display'>
+                {products.map(product => <ProductCard key={product._id} {...product}/> )}
+            </div>
 
             {errorMsg && <p>{errorMsg}</p>}
 

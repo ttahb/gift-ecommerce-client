@@ -57,11 +57,21 @@ form > label {
 input[type="text"],
 input[type="email"],
 input[type="password"],
+select,
 textarea {
   font-size: 16px;
   padding: 8px;
   border: 1px solid #ccc; 
   border-radius: 8px;
+}
+
+input[type="search"] {
+  background-color: #ecd1f0;
+  font-size: 16px;
+  padding: 1rem;
+  border: 1px solid #ecd1f0;
+  border-radius: 1.5rem;
+  width: 100%; 
 }
 
 .hero {
@@ -79,4 +89,18 @@ textarea {
   background-color: white !important;
   border: solid 1px #6750A4;
   border-radius: 2rem;
+}
+
+/* loading div */
+
+.loading-div {
+  height: 50vh;
+  width: 100wh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-div p {
+  font-size: xx-large;
 }

@@ -4,13 +4,15 @@ function ProductCard( { image, productName, price, hearts, _id } ) {
 
     return(
         <Link to={`/product/${_id}`}>
-            <div>
-                <br />
-                <img style={{height: "150px"}} src={image} alt="Image of the product"/>
-                <p>Name: {productName}</p>
-                <p>Price: {price}</p>
-                <p>Likes:{hearts}</p>
-                <br />
+            <div className="product-card">
+                <div className="card-image">
+                    <img src={image} alt="Image of the product"/>
+                </div>
+                <div className="product-card-info">
+                    <p>{productName}</p>
+                    <p>{price} Euro</p>
+                </div>
+                {/* <p>Likes:{hearts}</p> */}
             </div>
         </Link>
     )

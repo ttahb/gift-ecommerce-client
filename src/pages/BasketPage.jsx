@@ -83,15 +83,9 @@ function BasketPage() {
     const getUser = async () => {
 
         try {
-            // let response
-            // if(user){
-            //      response = await userService.getUser(user.userId);
-            // } else {
-            //      response = await userService.getUser('current');
-            // }
-            const response = await userService.getUser(user ? user.userId : 'current');
-            //upodate the user in the state
+            const response = await userService.getUser(user ? user.userId : 'current')
             setBasket(response.data.basket);
+            setIsLoadingBr(false);
             
         }catch(err){
             console.log(err);
@@ -103,7 +97,6 @@ function BasketPage() {
     useEffect(() => {
         if(!isLoading){
             getUser()
-            setIsLoadingBr(false)
         }
     }, [isLoading])
 
@@ -116,7 +109,7 @@ function BasketPage() {
 
     if(isLoadingBr){
         return(
-            <div>
+            <div className='loading-div'>
                 <p>Loading...</p>
             </div>
         )

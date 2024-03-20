@@ -106,7 +106,7 @@ function ProductEditPage() {
 
     if(isLoading){
         return(
-            <div>
+            <div className='loading-div'>
                 <p>Loading...</p>
             </div>
         )

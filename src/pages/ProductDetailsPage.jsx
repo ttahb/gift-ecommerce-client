@@ -101,7 +101,7 @@ function ProductDetailsPage(){
 
     if(isLoadingBr) {
         return(
-            <div>
+            <div className='loading-div'>
                 <p>Loading...</p>
             </div>
         )
