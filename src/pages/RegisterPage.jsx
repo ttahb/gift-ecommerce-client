@@ -52,73 +52,75 @@ function RegisterPage() {
     
 
 
-    return (<div>
-        <h1>Register Page</h1>
-        <form onSubmit={handleSubmit}>
-            <label>Full Name:
-                <input 
-                    type="text"
-                    name="fullName"
-                    value={fullName}
-                    onChange={handleFullName} 
-                    placeholder="John Doe"
-                    required   
-                />
-            </label>
-            <label>Email:
-                <input 
-                    type="email"
-                    name="email"
-                    value={email}
-                    onChange={handleEmail}
-                    placeholder="e.g. john@domain.com"
-                    required
-                 />
-            </label>
-            <label>Password:
-                <input 
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={handlePassword}
-                    placeholder="********"
-                    required
-                 />
-            </label>
-            <label>Confirm Password:
-                <input 
-                    type="password"
-                    name="confirmPassword"
-                    value={confirmPassword}
-                    onChange={handleConfirmPassword}
-                    placeholder="********"
-                    required
-                 />
-            </label>
-            { errMsgPwd && <p style={{color:'red'}}>{errMsgPwd}</p>}
-            <label>Company Name:
-                <input 
-                    type="text"
-                    name="companyName"
-                    value={companyName}
-                    onChange={handleCompanyName}
-                    placeholder="XYZ Inc."
-                />
-            </label>
-            <label>Company Size:
-                <select name="companySize" value={companySize} onChange={handleCompanySize}>
-                    <option value="">--Please choose an option--</option>
-                    <option value="0-100">0-100</option>
-                    <option value="101-1000">101-1000</option>
-                    <option value="1001-10000">1001-10000</option>
-                    <option value="10000+">10000+</option>
-                </select>
-            </label>
-            <button>Register</button>
-        </form>
-        { errorMessage && <p style={{color:'red'}}>{errorMessage}</p>}
-        <p>Already a user: <Link to={"/login"}>Login</Link></p>
-    </div>)
+    return (
+        <div>
+            <h1>Register Page</h1>
+            <form onSubmit={handleSubmit}>
+                <label>Full Name:
+                    <input 
+                        type="text"
+                        name="fullName"
+                        value={fullName}
+                        onChange={handleFullName} 
+                        placeholder="John Doe"
+                        required   
+                    />
+                </label>
+                <label>Email:
+                    <input 
+                        type="email"
+                        name="email"
+                        value={email}
+                        onChange={handleEmail}
+                        placeholder="e.g. john@domain.com"
+                        required
+                    />
+                </label>
+                <label>Password:
+                    <input 
+                        type="password"
+                        name="password"
+                        value={password}
+                        onChange={handlePassword}
+                        placeholder="********"
+                        required
+                    />
+                </label>
+                <label>Confirm Password:
+                    <input 
+                        type="password"
+                        name="confirmPassword"
+                        value={confirmPassword}
+                        onChange={handleConfirmPassword}
+                        placeholder="********"
+                        required
+                    />
+                </label>
+                { errMsgPwd && <p style={{color:'red'}}>{errMsgPwd}</p>}
+                <label>Company Name:
+                    <input 
+                        type="text"
+                        name="companyName"
+                        value={companyName}
+                        onChange={handleCompanyName}
+                        placeholder="XYZ Inc."
+                    />
+                </label>
+                <label>Company Size:
+                    <select name="companySize" value={companySize} onChange={handleCompanySize}>
+                        <option value="">--Please choose an option--</option>
+                        <option value="0-100">0-100</option>
+                        <option value="101-1000">101-1000</option>
+                        <option value="1001-10000">1001-10000</option>
+                        <option value="10000+">10000+</option>
+                    </select>
+                </label>
+                <button>Register</button>
+            </form>
+            { errorMessage && <p style={{color:'red'}}>{errorMessage}</p>}
+            <p>Already a user: <Link to={"/login"}>Login</Link></p>
+        </div>
+    )
 }
 
 export default RegisterPage;
