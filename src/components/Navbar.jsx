@@ -25,7 +25,7 @@ function Navbar() {
 
       <div className="menu-container">
 
-        <div className={`hamburger`} onClick={toggleMenu}>
+        <div className={`hamburger ${showMenu ? 'rotate-show' : 'rotate-hide'}`} onClick={toggleMenu}>
           <div className="_layer -top"></div>
           <div className="_layer -mid"></div>
           <div className="_layer -bottom"></div>

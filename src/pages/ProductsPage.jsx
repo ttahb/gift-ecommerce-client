@@ -67,9 +67,9 @@ function ProductsPage() {
 
     return(
         <div>
-            <br />
+            
             {user && user.role.toLowerCase() === 'admin' && <Link to={'/product/create'}><button>Create new Product</button></Link>}
-            <br /> 
+            
             <SearchProducts handleTags={handleTags} handleSearch={handleSearch}/>
 
             {products.map(product => <ProductCard key={product._id} {...product}/> )}
