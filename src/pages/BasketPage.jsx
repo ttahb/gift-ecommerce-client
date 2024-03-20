@@ -83,7 +83,7 @@ function BasketPage() {
     const getUser = async () => {
 
         try {
-            const response = await userService.getUser(user ? user.userId : 'current')
+            const response = await userService.getUser(user.userId)
             setBasket(response.data.basket);
             setIsLoadingBr(false);
             
@@ -143,7 +143,7 @@ function BasketPage() {
                 <p>Final Price: {totalPrice} Euro</p>
             </div>
             <div>
-                <button >Order</button>
+                <button >Complete</button>
             </div>
         </div>
     )
