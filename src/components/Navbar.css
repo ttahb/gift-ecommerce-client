@@ -87,7 +87,7 @@ nav > a {
         display: block;
         position: absolute;
         top: 100%;
-        left: 70%;
+        right: -1%;
         /* Dunno why the transition is not working - could be on the wrong place? */
         transition: 0.3s ease-in-out; 
     }
@@ -99,8 +99,6 @@ nav > a {
         display: flex;
         flex-direction: column;
         justify-content: space-around;
-
-
     }
 
     .active ul li{ 
