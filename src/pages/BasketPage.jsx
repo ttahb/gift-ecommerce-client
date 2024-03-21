@@ -1,14 +1,18 @@
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
+import { CartContext } from "../context/cart.context";
 import userService from "../services/user.service";
+import { useNavigate } from "react-router-dom";
 
 function BasketPage() {
 
-    const [ basket, setBasket ] = useState([]);
+    const {basket, setBasket, clearBasket, setAmount} = useContext(CartContext);
+    // console.log('basket is', basket);
+    // const [ basket, setBasket ] = useState([]);
     const [ totalPrice, setTotalPrice ] = useState(0);
     const [ isLoadingBr, setIsLoadingBr ] = useState(true);
     const { user, isLoading } = useContext(AuthContext);
-
+    const navigate = useNavigate();
     // console.log('user from the basket',user);
     // console.log('TIME', Date.now())
 
@@ -17,6 +21,7 @@ function BasketPage() {
             return acc + (curValue.quantity * curValue.price)
         },0)
         setTotalPrice(finalPrice);
+        setAmount(finalPrice);
     }
 
     const handleQtyUpdate = (prodId, operation) => {
@@ -115,6 +120,10 @@ function BasketPage() {
         )
     }
 
+    const handleComplete = () => {
+        navigate('/address');
+    }
+
     return(
         <div>
             {basket.map((prod, index) => {
@@ -143,7 +152,7 @@ function BasketPage() {
                 <p>Final Price: {totalPrice} Euro</p>
             </div>
             <div>
-                <button >Complete</button>
+                <button onClick={handleComplete} >Complete</button>
             </div>
         </div>
     )
