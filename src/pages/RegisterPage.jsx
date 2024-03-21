@@ -56,6 +56,7 @@ function RegisterPage() {
         <div>
 
             <form onSubmit={handleSubmit}>
+                <div className="flexcontainer">
                 <label>Full Name:
                     <input 
                         type="text"
@@ -76,6 +77,9 @@ function RegisterPage() {
                         required
                     />
                 </label>
+                </div>
+
+                <div className="flexcontainer">
                 <label>Password:
                     <input 
                         type="password"
@@ -97,6 +101,9 @@ function RegisterPage() {
                     />
                 </label>
                 { errMsgPwd && <p style={{color:'red'}}>{errMsgPwd}</p>}
+                </div>
+
+                <div className="flexcontainer">
                 <label>Company Name:
                     <input 
                         type="text"
@@ -115,6 +122,7 @@ function RegisterPage() {
                         <option value="10000+">10000+</option>
                     </select>
                 </label>
+                </div>
                 <button>Register</button>
             </form>
             { errorMessage && <p style={{color:'red'}}>{errorMessage}</p>}

@@ -1,0 +1,25 @@
+.profilecard {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+}
+
+.profilecard h2 {
+    margin-bottom: 20px;
+    color: #333; 
+}
+
+.profilecard div {
+    margin-bottom: 10px; 
+}
+
+.profilecard h4 {
+    margin-bottom: 5px; 
+    color: #666;
+}
+
+.profilecard p {
+    margin: 0;
+}
