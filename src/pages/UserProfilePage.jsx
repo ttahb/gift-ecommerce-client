@@ -37,17 +37,16 @@ function UserProfilePage() {
         return(
             <div>
                 <h1>Welcome to your profile page</h1>
+                <div>
                 <UserCard
                 fullName={user.fullName} 
                 email={user.email}
                 companyName={user.companyName}
                 companySize={user.companySize}
                 />
-
                 <Link to={`/orders`}><button>orders</button></Link>
-            <div>
-                <Link to={`/users/edit/${userId}`}><button>edit Profile</button></Link>            
-            </div>
+                <Link to={`/users/edit/${userId}`}><button>edit Profile</button></Link>         
+                </div>   
             </div>
         )
     //}

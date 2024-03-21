@@ -12,7 +12,7 @@ import UserProfilePage from './pages/UserProfilePage';
 import UserProfileEditPage from './pages/UserProfileEditPage';
 import OrderDetailsPage from './pages/OrderDetailsPage';
 import ProductEditPage from './pages/ProductEditPage';
-import BasketPage from './pages/basketPage';
+import BasketPage from './pages/BasketPage';
 import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
 
