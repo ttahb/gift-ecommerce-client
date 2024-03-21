@@ -4,10 +4,11 @@ import productsService from "../services/products.service";
 import { AuthContext } from "../context/auth.context";
 import userService from "../services/user.service";
 import fileUploadService from "../services/file-upload.service";
+import "./ProductDetailsPage.css"
+import SingleProductCard from "../components/SingleProductCard";
 
 function ProductDetailsPage(){
     const [ product, setProduct ] = useState([]);
-    console.log('product from one product ' ,product)
     const [ productItems, setProductItems ] = useState(1);
     const [ isLoadingBr, setIsLoadingBr ] = useState(true);
     const { productId } = useParams();
@@ -77,7 +78,6 @@ function ProductDetailsPage(){
     };
 
     const handleDeleteProduct = async (prodId) => {
-        console.log('hello from the insinarater handler = your Id is ==> ', prodId)
         const publicIdOfCloudinary = new FormData();
         const imageId = product.image.split('/').splice(-2).join('/').split('.')[0];
         publicIdOfCloudinary.append('publicIdOfCloudinary', imageId)
@@ -101,34 +101,31 @@ function ProductDetailsPage(){
 
     if(isLoadingBr) {
         return(
-            <div>
+            <div className='loading-div'>
                 <p>Loading...</p>
             </div>
         )
     }
 
     return(
-        <div>
-            {errorMsg && <p>{errorMsg}</p>}
-            <div>
-                <img style={{height: "150px"}} src={product.image} alt="product image" />
-                <p>{product.productName}</p>
-                <p>Description: {product.description}</p>
-                <p>Likes: {product.hearts}</p>
-                <p>Price: {product.price} Euro</p>
-            </div>
-            <div>
-                <p>amount of Items:{productItems} 
-                    <span><button onClick={minusItems}>-</button></span>
-                    <span><button onClick={plusItems}>+</button></span>
-                </p>     
-                <button onClick={handleBasket}>Add to Basket</button>
-                <Link to={'/products'} ><button>Continue Shoping</button></Link>
-            </div>
-
+        <div className='single-product-display'>
             <div>
                 {user && user.role.toLowerCase() === 'admin' && <Link to={`/product/edit/${productId}`}><button>Edit Product</button></Link>}
                 {user && user.role.toLowerCase() === 'admin' && <button onClick={ () => handleDeleteProduct(product._id)}>Delete Product</button>}
+            </div>
+            {errorMsg && <p>{errorMsg}</p>}
+            
+            <SingleProductCard product={product} />
+
+            <div className='single-product-display btn-container-single-product'>
+                <p>Add items in basket: {productItems} 
+                    <span><button className="secondary" onClick={minusItems}>-</button></span>
+                    <span><button className="secondary" onClick={plusItems}>+</button></span>
+                </p>     
+                <div className="basket-shoping-btn">
+                    <button onClick={handleBasket}>Add to Basket</button>
+                    <Link to={'/products'} ><button>Continue Shoping</button></Link>
+                </div>
             </div>
         </div>
     )

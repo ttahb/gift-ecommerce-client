@@ -106,7 +106,7 @@ function OrdersPage() {
 
     if (isLoading) {
         return (
-            <div>
+            <div className='loading-div'>
                 <p>Loading...</p>
             </div>
         )

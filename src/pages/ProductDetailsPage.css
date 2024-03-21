@@ -1,0 +1,26 @@
+.single-product-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info-single-product p:first-of-type {
+    margin: 2rem 0;
+    font-size: xx-large;
+}
+
+.description-single-product {
+    margin: 0.5rem 0 1rem 0;
+    font-size: x-large;
+}
+
+.btn-container-single-product {
+    margin-top: 2rem;
+}
+
+.btn-container-single-product > p > span:first-of-type {
+    margin: 0 0.5rem 0 1rem;
+}
+.basket-shoping-btn button {
+    margin-top: 0;
+}

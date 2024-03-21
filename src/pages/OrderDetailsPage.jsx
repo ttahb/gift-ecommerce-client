@@ -28,7 +28,7 @@ function OrderDetailsPage(props) {
 
     if(isOrderDetailsLoading){
         return (
-            <div>
+            <div className='loading-div'>
                 <p>Loading...</p>
             </div>
         )
