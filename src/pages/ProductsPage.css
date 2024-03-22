@@ -26,8 +26,6 @@
 /*  card items from grid */
 
 .product-card {
-    height: 20rem;
-    width: 15rem;
     overflow: hidden;
     border: 0.1rem solid rgb(184, 175, 175);
     border-radius: 1.3rem;
@@ -35,6 +33,11 @@
     display: flex;
     flex-direction: column;
     transition: 0.3s ease-in-out;
+}
+
+.product-card-measurments {
+    height: 20rem;
+    width: 15rem;
 }
 
 .product-card:hover {
@@ -85,6 +88,10 @@
     .option-btn-search {
         margin: 0.2rem 0.2rem;
         transition: 0.3s ease-in-out;
+    }
+
+    .search-btns {
+        margin-top: 1rem;
     }
 
 }

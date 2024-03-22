@@ -2,10 +2,15 @@ body {
   font-family: Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5; 
+  text-align: center;
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 5rem; 
+  font-weight: bold; 
+  color: #333;
+  margin-bottom: 1rem; 
+  line-height: 1.2; 
 }
 
 a {
@@ -36,7 +41,7 @@ button:hover {
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+outline: 4px auto -webkit-focus-ring-color;
 }
 
 form {
@@ -47,11 +52,10 @@ form {
   flex-direction: column;
 }
 
-form > label {
+label {
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 1rem;
 }
 
 input[type="text"],
@@ -75,13 +79,29 @@ input[type="search"] {
 }
 
 .hero {
-  background-image: url('../public/bk-christmas.jpg');
+  background-image: url(/public/bk-christmas.jpg);
   background-size: cover;
   height: 1000px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* padding: 50% 0; */
+  /* display: flex; */
+  /* justify-content: center; */
 }
 
 .primary {
   
+}
+
+.flexcontainer {
+  width: 70%;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1rem;
 }
 
 .secondary {
