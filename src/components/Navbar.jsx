@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { useContext } from "react";
 import { useState } from "react";
@@ -9,14 +9,19 @@ import shopingBasket from "../assets/shopping-basket.png"
 function Navbar() {
   const { user, logOutUser, isLoggedIn } = useContext(AuthContext);
   const [showMenu, setShowMenu] = useState(false);
-  const toggleMenu = () => {
-    setShowMenu(!showMenu);
-  };
+  const toggleMenu = () => setShowMenu(!showMenu);
+  const navigate = useNavigate();
 
   let userId;
   if(user){
     userId = user.userId;
   }
+
+  const handleLogOut = () => {
+    logOutUser();
+    navigate('/');
+  }
+
   return (
     <nav>
       <div>
@@ -39,11 +44,11 @@ function Navbar() {
               <li className="">Home</li>
             </Link>
             
-          {isLoggedIn && (
+            {isLoggedIn && (
               <Link to={`/users/${userId}`}>
-              <li>Profile</li>
-            </Link>
-          )}
+                <li>Profile</li>
+              </Link>
+            )}
             
             <Link to="/products">
               <li>Products</li>
@@ -58,28 +63,26 @@ function Navbar() {
             </Link>
             
             { !isLoggedIn && (
-            <>
-            <Link to="/register">
-              <li>
-                <button className="primary">Register</button>
-              </li>
-            </Link>
+              <>
+              <Link to="/register">
+                <li>
+                  <button className="primary">Register</button>
+                </li>
+              </Link>
 
-            <Link to="/login">
-              <li>
-                <button className="secondary">Login</button>
-              </li> 
-            </Link>
-            </>
-          )}
+              <Link to="/login">
+                <li>
+                  <button className="secondary">Login</button>
+                </li> 
+              </Link>
+              </>
+            )}
             
-          { isLoggedIn && (
-              <Link to="/logout">
-              <li>
-                <button onClick={logOutUser} className="linkbutton">Logout</button>
-              </li>
-            </Link>
-          )}
+            { isLoggedIn && (
+                <li>
+                  <button onClick={handleLogOut} className="linkbutton">Logout</button>
+                </li> 
+            )}
           </ul>
         </div>
 
