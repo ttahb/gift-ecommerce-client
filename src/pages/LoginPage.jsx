@@ -24,7 +24,7 @@ function LoginPage() {
             .then((res) => {
                 storeToken(res.data.authToken);
                 authenticateUser();
-                navigate("/"); // TODO - this should go to the product page
+                navigate("/products");
             })
             .catch((err) => {
                 setErrorMsg(err.response.data.message);
