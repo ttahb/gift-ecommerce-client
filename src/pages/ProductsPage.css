@@ -80,14 +80,19 @@
     }
 }
 
-@media screen and (max-width: 550px) {
-    .product-card {
-        width: 10rem;
+
+@media screen and (max-width: 600px) {
+    .products-container {
+        margin: 0 2rem;
     }
 
-    .option-btn-search {
-        margin: 0.2rem 0.2rem;
-        transition: 0.3s ease-in-out;
+    .search-btns {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .products-display {
+        grid-template-columns: 1fr;
     }
 
     .search-btns {
