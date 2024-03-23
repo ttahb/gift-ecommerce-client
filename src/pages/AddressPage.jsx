@@ -3,10 +3,13 @@ import AddressCard from "../components/AddressCard";
 import orderService from "../services/orders.service";
 import { CartContext } from "../context/cart.context";
 import { useNavigate } from "react-router-dom";
+import './AddressPage.css'
 
 function AddressPage(props){
 
-    const [amount, basket, clearBasket] = useContext(CartContext);
+    const {amount, basket, clearBasket} = useContext(CartContext);
+
+    console.log('amount', amount, 'basket', basket);
     const [ billingAddressEnabled, setBillingAddressEnabled] = useState(false);
     const [billingAddress, setBillingAddress] = useState(null);
     const [shippingAddress, setShippingAddress] = useState(null);
@@ -38,10 +41,8 @@ function AddressPage(props){
     }
 
     const handleCreateOrder = async() => {
-
-       
        const orderReqBody = getOrderRequest();
-    
+
        if(!orderReqBody){
             console.log('Requested order: ',orderReqBody);
             setErrorMessage('Something went wrong, please contact administrator.')
@@ -70,19 +71,21 @@ function AddressPage(props){
 
     }
     
-
+    // Please style this in a way such that when check box is clicked billing address comes one side of the screen, no scroll
+    // for mobile view we can have a scroll.
     return (
         <div>
-            <label>Shipping Address:</label>
-            <AddressCard/>
+            <p style={{ fontSize: '1.2em', fontWeight: 'bold' }}>Shipping Address</p><br /><br />
+
+            <AddressCard setAddress={(address) => setShippingAddress(address)}/>
             <fieldset>
-                <legend>Keep billing address same as shipping address ?</legend>
-                <input type="checkbox" checked onChange={handleBillingAddress}/>
+                <legend style={{ color: '#808080' }}>Keep the billing address same as shipping address ?</legend>
+                <input className="custom-checkbox"  type="checkbox" checked={!billingAddressEnabled} onChange={handleBillingAddress}/>
             </fieldset>
-            
             { billingAddressEnabled &&  <>
-                <label>Billing Address:</label>
-            <AddressCard/>| </>}
+                <br /><br />
+                <p style={{ fontSize: '1.2em', fontWeight: 'bold' }} >Billing Address</p ><br></br>
+            <AddressCard setAddress={(address) => setBillingAddress(address)}/> </>}
 
             <button onClick={handleCreateOrder}>Create Order</button>
         </div>
