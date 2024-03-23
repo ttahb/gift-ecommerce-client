@@ -13,6 +13,14 @@ h1 {
   line-height: 1.2; 
 }
 
+h1.title {
+  font-size: 3rem;
+  font-weight: 500;
+  color: white;
+  background-color: #000 9%;
+  text-wrap: wrap;
+}
+
 a {
   color: #1a0dab;
   text-decoration: none;

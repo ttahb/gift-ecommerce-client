@@ -15,6 +15,7 @@ import ProductEditPage from './pages/ProductEditPage';
 import BasketPage from './pages/BasketPage';
 import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -38,6 +39,8 @@ function App() {
         <Route path='/users/edit/:userId' element={<UserProfileEditPage />}/>
         <Route path='/orders/:orderId' element={<OrderDetailsPage/>}/>
       </Routes> 
+
+      <Footer/>
     </>
   )
 }
