@@ -16,6 +16,7 @@ import BasketPage from './pages/BasketPage';
 import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
 import AddressPage from './pages/AddressPage';
+import PaymentsPage from './pages/PaymentsPage';
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
         <Route path='/users/edit/:userId' element={<UserProfileEditPage />}/>
         <Route path='/orders/:orderId' element={<OrderDetailsPage/>}/>
         <Route path='/address' element={<AddressPage/>}/>
+        <Route path='/payments' element={<PaymentsPage/>} />
       </Routes> 
     </>
   )

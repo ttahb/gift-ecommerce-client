@@ -16,7 +16,7 @@ function AddressPage(props){
     const [errorMessage, setErrorMessage] = useState(undefined);
     const navigate = useNavigate();
 
-    const handleBillingAddress = () => {
+    const handleBillingAddressEnabled = () => {
         setBillingAddressEnabled(!billingAddressEnabled);
     }
 
@@ -27,6 +27,16 @@ function AddressPage(props){
         // amount will be taken from cartContext
         // content will be taken from cartContext - need to fit the model in order 
 
+        if(!shippingAddress){
+            setErrorMessage('Please enter a shipping address.');
+            return null;
+        }
+
+        if(billingAddressEnabled && !billingAddress){
+            setErrorMessage('Please enter a billing address.')
+            return null;
+        }
+
         if(amount && amount > 0 && basket && basket.length > 0 && shippingAddress){
             return {
                 "shippingAddress": shippingAddress,
@@ -35,7 +45,7 @@ function AddressPage(props){
                 "content": basket
             }
         } 
-
+       
         return null;
 
     }
@@ -45,7 +55,7 @@ function AddressPage(props){
 
        if(!orderReqBody){
             console.log('Requested order: ',orderReqBody);
-            setErrorMessage('Something went wrong, please contact administrator.')
+            setErrorMessage(errorMessage? errorMessage:'Something went wrong, please contact the administrator.')
             return;
        }
 
@@ -71,23 +81,33 @@ function AddressPage(props){
 
     }
     
+    const handleShippingAddress = (address) => {
+        setShippingAddress(address)
+    }
+
+    const handleBillingAddress = (address) => {
+        setBillingAddress(address)
+    }
     // Please style this in a way such that when check box is clicked billing address comes one side of the screen, no scroll
     // for mobile view we can have a scroll.
     return (
         <div>
             <p style={{ fontSize: '1.2em', fontWeight: 'bold' }}>Shipping Address</p><br /><br />
 
-            <AddressCard setAddress={(address) => setShippingAddress(address)}/>
+            <AddressCard setAddress={(address) => handleShippingAddress(address)}/>
             <fieldset>
                 <legend style={{ color: '#808080' }}>Keep the billing address same as shipping address ?</legend>
-                <input className="custom-checkbox"  type="checkbox" checked={!billingAddressEnabled} onChange={handleBillingAddress}/>
+                <input className="custom-checkbox"  type="checkbox" checked={!billingAddressEnabled} onChange={handleBillingAddressEnabled}/>
             </fieldset>
             { billingAddressEnabled &&  <>
                 <br /><br />
                 <p style={{ fontSize: '1.2em', fontWeight: 'bold' }} >Billing Address</p ><br></br>
-            <AddressCard setAddress={(address) => setBillingAddress(address)}/> </>}
+            <AddressCard setAddress={(address) => handleBillingAddress(address)}/> </>}
 
             <button onClick={handleCreateOrder}>Create Order</button>
+            {errorMessage && <>
+                    <p style={{ color: 'red' }}>{errorMessage}</p>
+                </>}
         </div>
     )
 }

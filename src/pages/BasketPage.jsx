@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 function BasketPage() {
 
     const {basket, setBasket, clearBasket, setAmount} = useContext(CartContext);
+    const [errorMessage, setErrorMessage] = useState(undefined);
     // console.log('basket is', basket);
     // const [ basket, setBasket ] = useState([]);
     const [ totalPrice, setTotalPrice ] = useState(0);
@@ -121,7 +122,12 @@ function BasketPage() {
     }
 
     const handleComplete = () => {
-        navigate('/address');
+        if(basket && basket.length === 0 || totalPrice === 0){
+            setErrorMessage('Your basket is empty.')
+        } else {
+            navigate('/address');
+        }
+   
     }
 
     return(
@@ -153,6 +159,7 @@ function BasketPage() {
             </div>
             <div>
                 <button onClick={handleComplete} >Complete</button>
+                {errorMessage && <div><p style={{ color: 'red' }}>{errorMessage}</p></div>}
             </div>
         </div>
     )
