@@ -124,7 +124,7 @@ function OrderDetailsPage(props) {
                     <button>Pay</button>
                 </div>
 
-                <div className={cancelOrder ? 'active' : 'inactive' }>
+                <div className={cancelOrder ? 'activate' : 'inactivate' }>
                     <h1>Order Cancelled</h1>
                 </div>
             </div>

@@ -8,7 +8,7 @@
     display: none;
 }
 
-.active {
+.inactivate {
     position: absolute;
     top: 0;
     left: 0;
@@ -20,7 +20,7 @@
     align-items: start;
 }
 
-.active h1 {
+.activate h1 {
     font-size: 10rem;
     transform: rotate(-30deg);
     margin-top: 20rem;

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { useContext } from "react";
 import { useState } from "react";
@@ -9,21 +9,16 @@ import shopingBasket from "../assets/shopping-basket.png"
 function Navbar() {
   const { user, logOutUser, isLoggedIn } = useContext(AuthContext);
   const [showMenu, setShowMenu] = useState(false);
-  const toggleMenu = () => setShowMenu(!showMenu);
-  const navigate = useNavigate();
+  const toggleMenu = () => {
+    setShowMenu(!showMenu);
+  };
 
   let userId;
   if(user){
     userId = user.userId;
   }
-
-  const handleLogOut = () => {
-    logOutUser();
-    navigate('/');
-  }
-
   return (
-    <nav>
+    <nav onClick={toggleMenu}>
       <div>
         <img id="logo" src={Logo} />
       </div>
@@ -40,49 +35,51 @@ function Navbar() {
 
         <div className={`menuppal ${showMenu ? 'active' : ''}`}>
           <ul>
-            <Link to="/">
+            <Link to="/" onClick={toggleMenu}>
               <li className="">Home</li>
             </Link>
             
-            {isLoggedIn && (
-              <Link to={`/users/${userId}`}>
-                <li>Profile</li>
-              </Link>
-            )}
+          {isLoggedIn && (
+              <Link to={`/users/${userId}`} onClick={toggleMenu}>
+              <li>Profile</li>
+            </Link>
+          )}
             
-            <Link to="/products">
+            <Link to="/products" onClick={toggleMenu}>
               <li>Products</li>
             </Link>
             
-            <Link to="/aboutus">
+            <Link to="/aboutus" onClick={toggleMenu}>
               <li>About Us</li>
             </Link>
             
-            <Link to="/contact">
+            <Link to="/contact" onClick={toggleMenu}>
               <li>Contact Us</li>
             </Link>
             
             { !isLoggedIn && (
-              <>
-              <Link to="/register">
-                <li>
-                  <button className="primary">Register</button>
-                </li>
-              </Link>
+            <>
+            <Link to="/register" onClick={toggleMenu}>
+              <li>
+                <button className="primary">Register</button>
+              </li>
+            </Link>
 
-              <Link to="/login">
-                <li>
-                  <button className="secondary">Login</button>
-                </li> 
-              </Link>
-              </>
-            )}
+            <Link to="/login" onClick={toggleMenu}>
+              <li>
+                <button className="secondary">Login</button>
+              </li> 
+            </Link>
+            </>
+          )}
             
-            { isLoggedIn && (
-                <li>
-                  <button onClick={handleLogOut} className="linkbutton">Logout</button>
-                </li> 
-            )}
+          { isLoggedIn && (
+              <Link to="/logout" onClick={toggleMenu}>
+              <li>
+                <button onClick={logOutUser} className="linkbutton">Logout</button>
+              </li>
+            </Link>
+          )}
           </ul>
         </div>
 
