@@ -38,13 +38,13 @@ function OrderDetailsPage(props) {
     const handleCancel = () => {
 
         if(order.status.toLowerCase() === 'cancelled'){
-            setCancelOrder(!cancelOrder);
+            setCancelOrder(true);
         }
 
         orderService
             .patch(order._id, {status: "Cancelled"})
             .then((res) => {
-                setCancelOrder(!cancelOrder);
+                setCancelOrder(true);
                 console.log(res.data)
             })
     }
