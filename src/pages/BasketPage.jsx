@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 function BasketPage() {
 
-    const {basket, setBasket, clearBasket, setAmount} = useContext(CartContext);
+    const {basket, setBasket, clearBasket, setAmount, currentOrderId} = useContext(CartContext);
     const [errorMessage, setErrorMessage] = useState(undefined);
     // console.log('basket is', basket);
     // const [ basket, setBasket ] = useState([]);
@@ -101,6 +101,7 @@ function BasketPage() {
     }
 
     useEffect(() => {
+        console.log('testing currentOder Id', currentOrderId);
         if(!isLoading){
             getUser()
         }
