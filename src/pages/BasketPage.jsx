@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 function BasketPage() {
 
-    const {basket, setBasket, clearBasket, setAmount} = useContext(CartContext);
+    const {basket, setBasket, clearBasket, setAmount, currentAmount} = useContext(CartContext);
     const [errorMessage, setErrorMessage] = useState(undefined);
     // console.log('basket is', basket);
     // const [ basket, setBasket ] = useState([]);
@@ -72,19 +72,11 @@ function BasketPage() {
                 userService 
                     .updateUserFields(user.userId, { basket: updateBasket})
                     .then((response) => {
+                        currentAmount(user.userId)
                         setBasket(response.data.basket)
                     })
             })
     }
-
-    // const handleOrder = () => {
-    //     // how to take all the info and create the order...? 
-    //     // maybe render the info in a form - update the quantity from the useState
-    //     // and upon submition create order with the availabel info and clear the user's basket 
-
-    //     // then we store the basked contet int he order.context
-
-    // }
 
     const getUser = async () => {
 
@@ -100,6 +92,15 @@ function BasketPage() {
         } 
     }
 
+    const handleComplete = () => {
+        if(basket && basket.length === 0 || totalPrice === 0){
+            setErrorMessage('Your basket is empty.')
+        } else {
+            navigate('/address');
+        }
+   
+    }
+
     useEffect(() => {
         if(!isLoading){
             getUser()
@@ -111,23 +112,12 @@ function BasketPage() {
     } , [basket])
 
 
-
-
     if(isLoadingBr){
         return(
             <div className='loading-div'>
                 <p>Loading...</p>
             </div>
         )
-    }
-
-    const handleComplete = () => {
-        if(basket && basket.length === 0 || totalPrice === 0){
-            setErrorMessage('Your basket is empty.')
-        } else {
-            navigate('/address');
-        }
-   
     }
 
     return(

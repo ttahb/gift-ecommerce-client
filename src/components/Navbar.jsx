@@ -1,22 +1,32 @@
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
-import { useContext } from "react";
-import { useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import "./Navbar.css";
 import Logo from "../../public/imalogotipo-pirineos-gourmet-negro.png"
 import shopingBasket from "../assets/shopping-basket.png"
+import { CartContext } from "../context/cart.context";
 
 function Navbar() {
   const { user, logOutUser, isLoggedIn } = useContext(AuthContext);
   const [showMenu, setShowMenu] = useState(false);
+  const [ userId, setUserId ] = useState(null);
+  const { basketLength, currentAmount } = useContext(CartContext);
+  console.log('basket from the cartContext',basketLength);
+
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
 
-  let userId;
-  if(user){
-    userId = user.userId;
-  }
+  useEffect(() => {
+    if(user){
+      setUserId(user.userId)
+    }
+  }, [user])
+
+  useEffect(() => {
+    currentAmount(userId);
+  },[userId])
+
   return (
     <nav onClick={toggleMenu}>
       <div>
@@ -86,6 +96,9 @@ function Navbar() {
 
         <Link to="/basket">
           <div className="basket">
+          <div>
+            <p>{basketLength}</p>
+          </div>
             <img className="basket" src={shopingBasket} />
           </div>        
         </Link>
