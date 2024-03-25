@@ -14,7 +14,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.308);
+    background-color: rgba(0, 0, 0, 0.191);
     display: flex;
     justify-content: center;
     align-items: start;
@@ -24,7 +24,7 @@
     font-size: 5rem;
     transform: rotate(-30deg);
     margin-top: 8rem;
-    opacity: 0.5;
+    opacity: 0.2;
 }
 
 .order-info-container {
@@ -55,18 +55,19 @@
 .address-container {
     margin-top: 3rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
 .billing-address-container {
-    margin-right: 2rem;
+    margin-bottom: 1rem;
 }
 
 .products-container {
     margin: 0 5rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    grid-template-columns: 20rem, 1fr;
     grid-gap: 1rem;
 }
 

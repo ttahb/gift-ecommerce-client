@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import orderService from "../services/orders.service";
 import "./OrderDetailsPage.css"
 
-function OrderDetailsPage(props) {
+function OrderDetailsPage() {
 
     const [order, setOrder] = useState(null);
     const {orderId} = useParams();
@@ -66,7 +66,7 @@ function OrderDetailsPage(props) {
     }
     
     return (
-        <div>
+        <div className="de-hele-container">
             <div>
                 <button className="back-button" onClick={handleClick}>Back to your Orders</button>
             </div> 
@@ -75,13 +75,13 @@ function OrderDetailsPage(props) {
             <div className="single-order-container">
                 
                 <div className="order-info-container">
-                    <h2>Order Details</h2>
+                    <h2>Order Details:</h2>
                     <h4><span >Order ID - </span><span >{order.orderNumber}</span></h4>
                     <h4><span >Status - </span><span >{order.status}</span></h4>
                     <h5><span >Order Total Amount (EUR) - </span><span >€{order.amount}</span></h5>
                 </div>
                 
-              <div className="product-address-container">
+            <div className="product-address-container">
                 <h1>Contents:</h1>
                 
                 <div className="products-container">
@@ -118,6 +118,7 @@ function OrderDetailsPage(props) {
                 </div>
                 
                 <div className="address-container">
+                    <h1>Address:</h1>
                     <div className="billing-address-container">
                         <h5>Billing Address</h5>
                         <p>{order.billingAddress.contactPerson}</p>
@@ -140,7 +141,7 @@ function OrderDetailsPage(props) {
                         <p>{order.shippingAddress.contactNumber}</p>
                     </div>
                 </div>
-              </div>
+            </div>
 
                 <div>
                     <button className="space-between-btns" onClick={handleCancel}>Cancel order</button>
