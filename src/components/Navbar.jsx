@@ -11,7 +11,6 @@ function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
   const [ userId, setUserId ] = useState(null);
   const { basketLength, currentAmount } = useContext(CartContext);
-  console.log('basket from the cartContext',basketLength);
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -96,9 +95,9 @@ function Navbar() {
 
         <Link to="/basket">
           <div className="basket">
-          <div>
-            <p>{basketLength}</p>
-          </div>
+            <div className="basket-amounth">
+              <p>{basketLength}</p>
+            </div>
             <img className="basket" src={shopingBasket} />
           </div>        
         </Link>

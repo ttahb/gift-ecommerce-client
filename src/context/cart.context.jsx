@@ -7,7 +7,7 @@ function CartProviderWrapper(props){
     const [basket, setBasket] = useState([]);
     const [amount, setAmount] = useState(0);
     const [basketLength, setBasketLength] = useState(0);
-    console.log('from the cart.context ',basketLength);
+    // console.log('from the cart.context ',basketLength);
 
     const itemsInBasket = (amount) => {
         // console.log('amoount from the context',amount);
