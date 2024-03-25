@@ -26,3 +26,87 @@
     margin-top: 8rem;
     opacity: 0.5;
 }
+
+.order-info-container {
+    margin-top: 2rem;
+}
+
+.order-info-container h2 {
+    font-size: x-large;
+    margin-bottom: 0.5rem;
+}
+
+.order-info-container span {
+    color: gray;
+}
+
+.product-address-container {
+    margin: 2rem 3rem 3rem 3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-address-container h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    font-weight: bold;
+}
+
+.address-container {
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.billing-address-container {
+    margin-right: 2rem;
+}
+
+.products-container {
+    margin: 0 5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    grid-gap: 1rem;
+}
+
+.content-cell-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.content-cells {
+    display: flex;
+    justify-content: center;
+}
+
+.content-cells div:first-child {
+    margin-right: 1rem;
+}
+
+.content-cells > a > div > img {
+    height: 5rem;
+}
+
+.cells-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.cells-info p {
+    text-align-last: left;
+    margin-top: 0.2rem;
+}
+
+.address-container > div > h5 {
+    margin-bottom: 0.5rem;
+    font-size: large;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 600px) {
+    .products-container {
+        margin: 0;
+    }
+    
+}
