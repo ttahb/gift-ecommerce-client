@@ -115,7 +115,7 @@ function OrdersPage() {
     return (
         <div>
             <span>SortBy:</span>
-            <button onClick={sortByDate}>Date</button>
+            <button className="chip" onClick={sortByDate}>Date</button>
             <button onClick={sortByPrice}>Price</button>
             <span>Filter By:</span>
             <select value={status} onChange={filterByStatus}>
