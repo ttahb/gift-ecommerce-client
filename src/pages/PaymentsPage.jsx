@@ -84,7 +84,7 @@ function PaymentsPage(){
              <p style={{ color: '#6750A4' }}>Congratulations! <br></br><br />Order with number - <Link to={`/orders/${currentOrder._id}`}>{currentOrder.orderNumber}</Link> successfully created for you.<br></br> <br>
             </br>Kindly proceed with the payment. Large Order? Skip payment and contact our sales team.</p>
             <br>
-            </br>
+            </br><br />
             <span style={{ fontWeight: 'bold', color: 'white', backgroundColor: '#6750A4', padding: '10px' }}>  Amount: {currentOrder.amount} € </span>
 <br /><br />
             {clientSecret && (
