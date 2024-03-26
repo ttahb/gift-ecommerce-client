@@ -1,0 +1,28 @@
+.single-order-container {
+    position: relative;
+}
+
+/* cancelled order div */
+
+.inactivate {
+    display: none;
+}
+
+.activate {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.308);
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+
+.activate h1 {
+    font-size: 5rem;
+    transform: rotate(-30deg);
+    margin-top: 8rem;
+    opacity: 0.5;
+}

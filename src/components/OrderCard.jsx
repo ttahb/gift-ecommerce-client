@@ -38,23 +38,25 @@ function OrderCard(props) {
     return (
         <tr>
             <td><Link to={`/orders/${_id}`}>{orderNumber}</Link></td>
-            <td>{props.user.fullName}</td>
-            <td>{formatDate(createdAt)}</td>
-            <td>{formatDate(updatedAt)}</td>
-            <td>€{amount}</td>
+            <td className="hide-column">{props.user.fullName}</td>
+            <td className="hide-column-second-stage">{formatDate(createdAt)}</td>
+            <td className="hide-column-second-stage">{formatDate(updatedAt)}</td>
+            <td className="hide-column-stage-three">€{amount}</td>
             { user.role.toLowerCase() === 'admin' &&
                 <td>
                     {!errorMsg && <select value={selectedStatus} onChange={handleStatusChange}>
                         <option value="Order Created">Order Created</option>
                         <option value="Confirmed">Confirmed</option>
                         <option value="Needs Payment confirmation">Needs Payment confirmation</option>
+                        <option value="Paid">Paid</option>
                         <option value="Completed">Completed</option>
                         <option value="Delivered">Delivered</option>
+                        <option value="Shipped">Shipped</option>
                         <option value="Cancelled">Cancelled</option>
                         <option value="Refunded">Refunded</option>
                     </select>} 
-                    {!errorMsg && <button onClick={handleStatusUpdate}>✅</button>}
-                    {errorMsg && <p>⚠️{errorMsg}</p>}{errorMsg && <button onClick={clearErrorMessage}>✖</button>}
+                    {!errorMsg && <button className="secondary" onClick={handleStatusUpdate}>✅</button>}
+                    {errorMsg && <p>⚠️{errorMsg}</p>}{errorMsg && <button className="secondary" onClick={clearErrorMessage}>✖</button>}
                 </td>
             }
             {  user.role.toLowerCase() !== 'admin' && <td>{status}</td>}

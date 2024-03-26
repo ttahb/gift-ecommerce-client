@@ -18,7 +18,7 @@ function Navbar() {
     userId = user.userId;
   }
   return (
-    <nav>
+    <nav onClick={toggleMenu}>
       <div>
         <img id="logo" src={Logo} />
       </div>
@@ -35,37 +35,37 @@ function Navbar() {
 
         <div className={`menuppal ${showMenu ? 'active' : ''}`}>
           <ul>
-            <Link to="/">
+            <Link to="/" onClick={toggleMenu}>
               <li className="">Home</li>
             </Link>
             
           {isLoggedIn && (
-              <Link to={`/users/${userId}`}>
+              <Link to={`/users/${userId}`} onClick={toggleMenu}>
               <li>Profile</li>
             </Link>
           )}
             
-            <Link to="/products">
+            <Link to="/products" onClick={toggleMenu}>
               <li>Products</li>
             </Link>
             
-            <Link to="/aboutus">
+            <Link to="/aboutus" onClick={toggleMenu}>
               <li>About Us</li>
             </Link>
             
-            <Link to="/contact">
+            <Link to="/contact" onClick={toggleMenu}>
               <li>Contact Us</li>
             </Link>
             
             { !isLoggedIn && (
             <>
-            <Link to="/register">
+            <Link to="/register" onClick={toggleMenu}>
               <li>
                 <button className="primary">Register</button>
               </li>
             </Link>
 
-            <Link to="/login">
+            <Link to="/login" onClick={toggleMenu}>
               <li>
                 <button className="secondary">Login</button>
               </li> 
@@ -74,7 +74,7 @@ function Navbar() {
           )}
             
           { isLoggedIn && (
-              <Link to="/logout">
+              <Link to="/logout" onClick={toggleMenu}>
               <li>
                 <button onClick={logOutUser} className="linkbutton">Logout</button>
               </li>

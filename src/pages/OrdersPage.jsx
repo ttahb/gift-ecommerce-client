@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import OrderCard from "../components/OrderCard";
 import orderService from "../services/orders.service";
+import "./OrdersPage.css"
 
 
 function OrdersPage() {
@@ -13,11 +14,11 @@ function OrdersPage() {
     const [priceDsc, setPriceDsc] = useState(true);
     const [status, setStatus] = useState(undefined);
     
-    const headerStyle = {
-        backgroundColor: '#f2f2f2',
-        padding: '8px',
-        textAlign: 'left'
-    };
+    // const headerStyle = {
+    //     backgroundColor: '#f2f2f2',
+    //     padding: '8px',
+    //     textAlign: 'left'
+    // };
 
     const getOrders = () => {
         orderService
@@ -113,46 +114,65 @@ function OrdersPage() {
     }
 
     return (
-        <div>
-            <span>SortBy:</span>
-            <button className="chip" onClick={sortByDate}>Date</button>
-            <button onClick={sortByPrice}>Price</button>
-            <span>Filter By:</span>
-            <select value={status} onChange={filterByStatus}>
-                    <option value= {undefined}>{status === undefined ? '--status--':'--status--'}</option>
-                    <option value="Order Created">Order Created</option>
-                    <option value="Confirmed">Confirmed</option>
-                    <option value="Needs Payment confirmation">Needs Payment confirmation</option>
-                    <option value="Completed">Completed</option>
-                    <option value="Delivered">Delivered</option>
-                    <option value="Cancelled">Cancelled</option>
-                    <option value="Refunded">Refunded</option>
-            </select>
-            {status && <button onClick={clearStatusFilter}>✖</button>}
-            <br />
-            <input type="text" placeholder="Search your order here" onChange={handleOrderSearch} />
-            <hr />
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                <thead>
-                    <tr>
-                        <th scope="col" style={headerStyle}>Order ID</th>
-                        <th scope="col" style={headerStyle}>User</th>
-                        <th scope="col" style={headerStyle}>Order Date</th>
-                        <th scope="col" style={headerStyle}>Last Updated</th>
-                        <th scope="col" style={headerStyle}>Price</th>
-                        <th scope="col" style={headerStyle}>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {errorMsg && <tr><td><p>{errorMsg}</p></td></tr>}
-                    {!errorMsg &&
-                        orders.length === 0 ? <tr><td><p>No orders found. Try again</p></td></tr> :
-                        orders.map(order => {
-                            return (<OrderCard key={order._id} {...order} getOrders={getOrders}/>)
-                        })
-                    }
-                </tbody>
-            </table>
+        <div className="orders-container">
+
+            <div className="search-bar-orders">
+                <input 
+                    // className="search-order-bar"
+                    type="search" 
+                    placeholder="Search your order here...                                                                       &#128270;"
+                    onChange={handleOrderSearch} 
+                />
+            </div>
+            <div className="sort-filter-bar-orders">
+                <div className="sort-by-container">
+                    <span>SortBy:</span>
+                    <button className="secondary" onClick={sortByDate}>Date</button>
+                    <button className="secondary" onClick={sortByPrice}>Price</button>
+                </div>
+
+                <div>
+                    <span>Filter By:</span>
+                    <select value={status} onChange={filterByStatus}>
+                            <option value= {undefined}>{status === undefined ? '--status--':'--status--'}</option>
+                            <option value="Order Created">Order Created</option>
+                            <option value="Confirmed">Confirmed</option>
+                            <option value="Needs Payment confirmation">Needs Payment confirmation</option>
+                            <option value="Paid">Paid</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Delivered">Delivered</option>
+                            <option value="Shipped">Shipped</option>
+                            <option value="Cancelled">Cancelled</option>
+                            <option value="Refunded">Refunded</option>
+                    </select>
+                    {status && <button className="secondary" onClick={clearStatusFilter}>✖</button>}
+                </div>
+            </div>
+            
+            <div className="table-container">
+        
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th scope="col" className="table-header">Order ID</th>
+                            <th scope="col" className="hide-column table-header">User</th>
+                            <th scope="col" className="hide-column-second-stage table-header">Order Date</th>
+                            <th scope="col" className="hide-column-second-stage table-header">Last Updated</th>
+                            <th scope="col" className="hide-column-stage-three table-header">Price</th>
+                            <th scope="col" className="table-header">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {errorMsg && <tr><td><p>{errorMsg}</p></td></tr>}
+                        {!errorMsg &&
+                            orders.length === 0 ? <tr><td><p>No orders found. Try again</p></td></tr> :
+                            orders.map(order => {
+                                return (<OrderCard key={order._id} {...order} getOrders={getOrders}/>)
+                            })
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     )
 }

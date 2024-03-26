@@ -1,14 +1,19 @@
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
+import { CartContext } from "../context/cart.context";
 import userService from "../services/user.service";
+import { useNavigate } from "react-router-dom";
 
 function BasketPage() {
 
-    const [ basket, setBasket ] = useState([]);
+    const {basket, setBasket, clearBasket, setAmount} = useContext(CartContext);
+    const [errorMessage, setErrorMessage] = useState(undefined);
+    // console.log('basket is', basket);
+    // const [ basket, setBasket ] = useState([]);
     const [ totalPrice, setTotalPrice ] = useState(0);
     const [ isLoadingBr, setIsLoadingBr ] = useState(true);
     const { user, isLoading } = useContext(AuthContext);
-
+    const navigate = useNavigate();
     // console.log('user from the basket',user);
     // console.log('TIME', Date.now())
 
@@ -17,6 +22,7 @@ function BasketPage() {
             return acc + (curValue.quantity * curValue.price)
         },0)
         setTotalPrice(finalPrice);
+        setAmount(finalPrice);
     }
 
     const handleQtyUpdate = (prodId, operation) => {
@@ -83,7 +89,7 @@ function BasketPage() {
     const getUser = async () => {
 
         try {
-            const response = await userService.getUser(user ? user.userId : 'current')
+            const response = await userService.getUser(user.userId)
             setBasket(response.data.basket);
             setIsLoadingBr(false);
             
@@ -115,6 +121,15 @@ function BasketPage() {
         )
     }
 
+    const handleComplete = () => {
+        if(basket && basket.length === 0 || totalPrice === 0){
+            setErrorMessage('Your basket is empty.')
+        } else {
+            navigate('/address');
+        }
+   
+    }
+
     return(
         <div>
             {basket.map((prod, index) => {
@@ -143,7 +158,8 @@ function BasketPage() {
                 <p>Final Price: {totalPrice} Euro</p>
             </div>
             <div>
-                <button >Order</button>
+                <button onClick={handleComplete} >Complete</button>
+                {errorMessage && <div><p style={{ color: 'red' }}>{errorMessage}</p></div>}
             </div>
         </div>
     )

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'http://localhost:5005/api'
+    baseURL: import.meta.env.VITE_SERVER_URL || 'http://localhost:5005'
 });
 
 const errorHandler = (err) => {
@@ -10,7 +10,7 @@ const errorHandler = (err) => {
 
 const uploadImage = (file) => {
                     // console.log('that form the cliet file-upload - file ==>', file);
-    return api.post("/upload", file)
+    return api.post("/api/upload", file)
       .then(res => {
                     // console.log('that is from the cliet file-upload - res',res);
         return res.data
@@ -20,7 +20,7 @@ const uploadImage = (file) => {
 
 const deleteImage = (file) => {
                     // console.log('this is from the delte path',file)
-    return api.post("/delete", file)
+    return api.post("/api/delete", file)
         .then( res => {
                     // console.log('this is the response fromt he delete ====> res.data', res.data)
             return res.data
