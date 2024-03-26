@@ -128,7 +128,7 @@ function ProductDetailsPage(){
                     <span><button className="secondary" onClick={plusItems}>+</button></span>
                 </p>     
                 <div className="basket-shoping-btn">
-                    <button onClick={handleBasket}>Add to Basket</button>
+                    <button onClick={handleBasket}>Add to Basket</button><span> </span>
                     <Link to={'/products'} ><button>Continue Shoping</button></Link>
                 </div>
             </div>

@@ -90,7 +90,7 @@ function BasketPage() {
 
     const handleComplete = () => {
         if(basket && basket.length === 0 || totalPrice === 0){
-            setErrorMessage('Your basket is empty.')
+            setErrorMessage('Your basket is empty. ˙◠˙')
         } else {
             navigate('/address');
         }
@@ -124,16 +124,16 @@ function BasketPage() {
                     <div key={index}>
                         <img style={{height: "150px"}} src={prod.productImg} alt="image" />
                         <h2>{prod.productName}</h2>
-                        <p>price: {prod.price} Euro</p>
-                        <p>quantity: {prod.quantity} 
+                        <p>Price: {prod.price} €</p>
+                        <p>Quantity: {prod.quantity} <span></span>
                             <span>
                                 <button onClick={ () => handleQtyUpdate( prod._id, 0 ) }>-</button> 
                                 <button onClick={ () => handleQtyUpdate( prod._id, 1 ) }>+</button>
                             </span>
                         </p>
-                        <button onClick={() => handleDelete(prod._id)}>remove from Basket</button>
+                        <button onClick={() => handleDelete(prod._id)}>Remove from basket</button>
                         <br />
-                        <p>Total: {prod.price * prod.quantity}</p>                    
+                        <p>Total: {prod.price * prod.quantity} €</p>                    
                         <br />
                         <br />
                     </div>
@@ -142,11 +142,12 @@ function BasketPage() {
             })}
 
             <div>
-                <p>Final Price: {totalPrice} Euro</p>
+                <p>Final Price: {totalPrice} €</p>
             </div>
             <div>
                 <button onClick={handleComplete} >Complete</button>
-                {errorMessage && <div><p style={{ color: 'red' }}>{errorMessage}</p></div>}
+                {errorMessage && <div><span style={{ color: 'black', padding: '8px' }}>{errorMessage}</span>
+</div>}
             </div>
         </div>
     )
