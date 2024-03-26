@@ -86,7 +86,7 @@ function PaymentsPage(){
             <br>
             </br><br />
             <span style={{ fontWeight: 'bold', color: 'white', backgroundColor: '#6750A4', padding: '10px' }}>  Amount: {currentOrder.amount} € </span>
-<br /><br />
+            <br /><br />
             {clientSecret && (
                 <Elements options={options} stripe={stripePromise}>
                      <CheckoutForm />
