@@ -53,11 +53,10 @@ function RegisterPage() {
 
 
     return (
-        <div>
-
+        <div className="auth-form">
             <form onSubmit={handleSubmit}>
-                <div className="flexcontainer">
-                <label>Full Name:
+                <label>
+                    <span>Full Name:</span>
                     <input 
                         type="text"
                         name="fullName"
@@ -67,7 +66,8 @@ function RegisterPage() {
                         required   
                     />
                 </label>
-                <label>Email:
+                <label>
+                    <span>Email:</span>
                     <input 
                         type="email"
                         name="email"
@@ -77,10 +77,10 @@ function RegisterPage() {
                         required
                     />
                 </label>
-                </div>
 
-                <div className="flexcontainer">
-                <label>Password:
+                
+                <label>
+                    <span>Password:</span>
                     <input 
                         type="password"
                         name="password"
@@ -90,7 +90,8 @@ function RegisterPage() {
                         required
                     />
                 </label>
-                <label>Confirm Password:
+                <label>
+                    <span>Confirm Password:</span>
                     <input 
                         type="password"
                         name="confirmPassword"
@@ -101,10 +102,10 @@ function RegisterPage() {
                     />
                 </label>
                 { errMsgPwd && <p style={{color:'red'}}>{errMsgPwd}</p>}
-                </div>
 
-                <div className="flexcontainer">
-                <label>Company Name:
+                
+                <label>
+                    <span>Company Name:</span>
                     <input 
                         type="text"
                         name="companyName"
@@ -113,7 +114,8 @@ function RegisterPage() {
                         placeholder="XYZ Inc."
                     />
                 </label>
-                <label>Company Size:
+                <label>
+                    <span>Company Size:</span>
                     <select name="companySize" value={companySize} onChange={handleCompanySize}>
                         <option value="">--Please choose an option--</option>
                         <option value="0-100">0-100</option>
@@ -122,7 +124,6 @@ function RegisterPage() {
                         <option value="10000+">10000+</option>
                     </select>
                 </label>
-                </div>
                 <button>Register</button>
             </form>
             { errorMessage && <p style={{color:'red'}}>{errorMessage}</p>}

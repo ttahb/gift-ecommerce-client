@@ -113,7 +113,7 @@ function ProductEditPage() {
     }
 
     return(
-        <div>
+        <div className="auth-form">
             { errorMsg && <p>{errorMsg}</p>}
             <form onSubmit={handleEditProduct}>
                 <label> Name:

@@ -32,7 +32,7 @@ function LoginPage() {
     }
 
     return(
-        <div>
+        <div className="auth-form">
             <form onSubmit={handleSubmit}>
                 <label>Email:
                     <input type="text" name="email" value={email} onChange={handleEmail} />

@@ -15,6 +15,7 @@ import ProductEditPage from './pages/ProductEditPage';
 import BasketPage from './pages/BasketPage';
 import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
+import Footer from './components/Footer';
 import AddressPage from './pages/AddressPage';
 import PaymentsPage from './pages/PaymentsPage';
 
@@ -42,6 +43,8 @@ function App() {
         <Route path='/address' element={<AddressPage/>}/>
         <Route path='/payments' element={<PaymentsPage/>} />
       </Routes> 
+
+      <Footer/>
     </>
   )
 }
