@@ -6,6 +6,7 @@ import userService from "../services/user.service";
 import fileUploadService from "../services/file-upload.service";
 import "./ProductDetailsPage.css"
 import SingleProductCard from "../components/SingleProductCard";
+import { CartContext } from "../context/cart.context";
 
 function ProductDetailsPage(){
     const [ product, setProduct ] = useState([]);
@@ -15,6 +16,7 @@ function ProductDetailsPage(){
     const { user, isLoading } = useContext(AuthContext);
     const [ errorMsg, setErrorMsg ] = useState(undefined);
     const navigate = useNavigate();
+    const { itemsInBasket } = useContext(CartContext);
 
     const plusItems =() => setProductItems(productItems + 1);
     const minusItems = () => {
@@ -43,6 +45,7 @@ function ProductDetailsPage(){
             })
             .then((resBasket) => {
                 let isExistingProduct = false;
+                console.log('this is from the basket adding ==> ',resBasket)
 
                 resBasket.forEach(product => { 
                     if(product.productId === userData.productId){
@@ -52,6 +55,8 @@ function ProductDetailsPage(){
                 })
 
                 if(!isExistingProduct){
+                    let amount = resBasket.length;
+                    itemsInBasket(amount);
                     resBasket.push(userData);
                 }
                 

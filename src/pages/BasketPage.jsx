@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 function BasketPage() {
     
-    const {basket, setBasket, clearBasket, setAmount, currentOrderId} = useContext(CartContext);
+    const {basket, setBasket, clearBasket, setAmount, currentOrderId, currentAmount} = useContext(CartContext);
     const [errorMessage, setErrorMessage] = useState(undefined);
     const [ totalPrice, setTotalPrice ] = useState(0);
     const [ isLoadingBr, setIsLoadingBr ] = useState(true);
@@ -68,6 +68,7 @@ function BasketPage() {
                 userService 
                     .updateUserFields(user.userId, { basket: updateBasket})
                     .then((response) => {
+                        currentAmount(user.userId)
                         setBasket(response.data.basket)
                     })
             })
@@ -87,6 +88,15 @@ function BasketPage() {
         } 
     }
 
+    const handleComplete = () => {
+        if(basket && basket.length === 0 || totalPrice === 0){
+            setErrorMessage('Your basket is empty.')
+        } else {
+            navigate('/address');
+        }
+   
+    }
+
     useEffect(() => {
         console.log('testing currentOder Id', currentOrderId);
         if(!isLoading){
@@ -99,23 +109,12 @@ function BasketPage() {
     } , [basket])
 
 
-
-
     if(isLoadingBr){
         return(
             <div className='loading-div'>
                 <p>Loading...</p>
             </div>
         )
-    }
-
-    const handleComplete = () => {
-        if(basket && basket.length === 0 || totalPrice === 0){
-            setErrorMessage('Your basket is empty.')
-        } else {
-            navigate('/address');
-        }
-   
     }
 
     return(
