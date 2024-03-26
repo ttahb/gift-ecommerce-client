@@ -87,7 +87,7 @@ function ProductCreatePage() {
     }
 
     return(
-        <div>
+        <div className="auth-form">
             { errorMsg && <p>error: {errorMsg}</p>}
             <form onSubmit={handleSubmit}>
                 <label> Name:

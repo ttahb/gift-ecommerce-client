@@ -20,6 +20,11 @@
     color: #666;
 }
 
-.profilecard p {
-    margin: 0;
+/* .paragraph-left {
+    text-align: left !important;
+} */
+
+p.paragraph-left {
+    text-align: left;
 }
+

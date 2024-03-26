@@ -27,7 +27,7 @@ function ContactUs() {
     }
 
     return(
-        <div>
+        <div className="auth-form">
             <h1 style={{fontSize: "2rem", margin: "2rem"}}>Contact Us</h1>
 
             <form>

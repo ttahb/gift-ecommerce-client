@@ -1,12 +1,15 @@
 nav {
-    position: relative;
+    /* position: fixed; */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
+    background-color: rgb(255, 255, 255, 0.9);
+    top: 0;
+    width: 100vw;
+    margin:2rem;
 }
 
-nav > a {
+li {
     color: black;
 }
 
