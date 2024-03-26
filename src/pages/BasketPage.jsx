@@ -5,17 +5,13 @@ import userService from "../services/user.service";
 import { useNavigate } from "react-router-dom";
 
 function BasketPage() {
-
-    const {basket, setBasket, clearBasket, setAmount} = useContext(CartContext);
+    
+    const {basket, setBasket, clearBasket, setAmount, currentOrderId, currentAmount} = useContext(CartContext);
     const [errorMessage, setErrorMessage] = useState(undefined);
-    // console.log('basket is', basket);
-    // const [ basket, setBasket ] = useState([]);
     const [ totalPrice, setTotalPrice ] = useState(0);
     const [ isLoadingBr, setIsLoadingBr ] = useState(true);
     const { user, isLoading } = useContext(AuthContext);
     const navigate = useNavigate();
-    // console.log('user from the basket',user);
-    // console.log('TIME', Date.now())
 
     const finalPrice = () => {
         let finalPrice = basket.reduce((acc, curValue)=>{
@@ -72,19 +68,11 @@ function BasketPage() {
                 userService 
                     .updateUserFields(user.userId, { basket: updateBasket})
                     .then((response) => {
+                        currentAmount(user.userId)
                         setBasket(response.data.basket)
                     })
             })
     }
-
-    // const handleOrder = () => {
-    //     // how to take all the info and create the order...? 
-    //     // maybe render the info in a form - update the quantity from the useState
-    //     // and upon submition create order with the availabel info and clear the user's basket 
-
-    //     // then we store the basked contet int he order.context
-
-    // }
 
     const getUser = async () => {
 
@@ -100,7 +88,17 @@ function BasketPage() {
         } 
     }
 
+    const handleComplete = () => {
+        if(basket && basket.length === 0 || totalPrice === 0){
+            setErrorMessage('Your basket is empty. ˙◠˙')
+        } else {
+            navigate('/address');
+        }
+   
+    }
+
     useEffect(() => {
+        console.log('testing currentOder Id', currentOrderId);
         if(!isLoading){
             getUser()
         }
@@ -111,23 +109,12 @@ function BasketPage() {
     } , [basket])
 
 
-
-
     if(isLoadingBr){
         return(
             <div className='loading-div'>
                 <p>Loading...</p>
             </div>
         )
-    }
-
-    const handleComplete = () => {
-        if(basket && basket.length === 0 || totalPrice === 0){
-            setErrorMessage('Your basket is empty.')
-        } else {
-            navigate('/address');
-        }
-   
     }
 
     return(
@@ -137,16 +124,16 @@ function BasketPage() {
                     <div key={index}>
                         <img style={{height: "150px"}} src={prod.productImg} alt="image" />
                         <h2>{prod.productName}</h2>
-                        <p>price: {prod.price} Euro</p>
-                        <p>quantity: {prod.quantity} 
+                        <p>Price: {prod.price} €</p>
+                        <p>Quantity: {prod.quantity} <span></span>
                             <span>
                                 <button onClick={ () => handleQtyUpdate( prod._id, 0 ) }>-</button> 
                                 <button onClick={ () => handleQtyUpdate( prod._id, 1 ) }>+</button>
                             </span>
                         </p>
-                        <button onClick={() => handleDelete(prod._id)}>remove from Basket</button>
+                        <button onClick={() => handleDelete(prod._id)}>Remove from basket</button>
                         <br />
-                        <p>Total: {prod.price * prod.quantity}</p>                    
+                        <p>Total: {prod.price * prod.quantity} €</p>                    
                         <br />
                         <br />
                     </div>
@@ -155,11 +142,12 @@ function BasketPage() {
             })}
 
             <div>
-                <p>Final Price: {totalPrice} Euro</p>
+                <p>Final Price: {totalPrice} €</p>
             </div>
             <div>
                 <button onClick={handleComplete} >Complete</button>
-                {errorMessage && <div><p style={{ color: 'red' }}>{errorMessage}</p></div>}
+                {errorMessage && <div><span style={{ color: 'black', padding: '8px' }}>{errorMessage}</span>
+</div>}
             </div>
         </div>
     )

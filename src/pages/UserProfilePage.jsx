@@ -48,8 +48,8 @@ function UserProfilePage() {
                 companyName={user.companyName}
                 companySize={user.companySize}
                 />
-                <Link to={`/orders`}><button>orders</button></Link>
-                <Link to={`/users/edit/${userId}`}><button>edit Profile</button></Link>         
+                <Link to={`/orders`}><button>Orders</button></Link>
+                <Link to={`/users/edit/${userId}`}><button>Edit Profile</button></Link>         
                 </div>   
             </div>
         )

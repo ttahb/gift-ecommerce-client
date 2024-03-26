@@ -41,9 +41,27 @@ li {
 }
 
 .basket {
+    position: relative;
     height: 2.3rem;
 }
 
+.basket-amounth {
+    position: absolute;
+    top: 0.3rem;
+    right: 1.3rem;
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(212, 105, 105);
+    z-index: 10;
+}
+
+.basket-amounth p {
+    color: black;
+}
 
 
 
@@ -79,8 +97,16 @@ li {
     }
 
     .basket {
+        position: relative;
         height: 1.8rem;
         margin-right:0.8rem;
+    }
+
+    .basket-amounth {
+        top: 0.3rem;
+        right: 2rem;
+        height: 1.2rem;
+        width: 1.2rem;
     }
 
     .menu-container { 
@@ -115,5 +141,6 @@ li {
 
     .active ul li{ 
         font-size: x-large;
+        color: black;
     }
 }

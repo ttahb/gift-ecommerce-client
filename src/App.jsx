@@ -18,6 +18,7 @@ import ContactUs from './pages/ContactUs';
 import Footer from './components/Footer';
 import AddressPage from './pages/AddressPage';
 import PaymentsPage from './pages/PaymentsPage';
+import PaymentSuccessPage from './pages/PaymentSuccessPage';
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
         <Route path='/orders/:orderId' element={<OrderDetailsPage/>}/>
         <Route path='/address' element={<AddressPage/>}/>
         <Route path='/payments' element={<PaymentsPage/>} />
+        <Route path='/payments/:currentOrderId/success' element={<PaymentSuccessPage/>} />
       </Routes> 
 
       <Footer/>

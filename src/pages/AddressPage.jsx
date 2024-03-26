@@ -7,7 +7,7 @@ import './AddressPage.css'
 
 function AddressPage(props){
 
-    const {amount, basket, clearBasket} = useContext(CartContext);
+    const {amount, basket, clearBasket, setCurrentOrderDetails} = useContext(CartContext);
 
     console.log('amount', amount, 'basket', basket);
     const [ billingAddressEnabled, setBillingAddressEnabled] = useState(false);
@@ -60,23 +60,26 @@ function AddressPage(props){
        }
 
        try {
-        const newOrder = await orderService.create(orderReqBody)
-        if(newOrder){
-            console.log('Order is created.')
+        const resp = await orderService.create(orderReqBody)
+        if(resp.data){
+            console.log('Order is created.', resp.data)
             //clearBasket
+            // console.log('order is', order)
+            
+            setCurrentOrderDetails(resp.data._id);
             clearBasket();
             //Now navigate to payments page, with order details taken from the newly created order
             navigate('/payments');
         } else {
             //Navigate to error page or set error message?
-            console.log('Order not created due to some error', newOrder);
+            console.log('Order not created due to some error', resp.data);
             setErrorMessage('Something went wrong. Please contact administrator.')
             // navigate('/error')
         }
 
        } catch(error){
-            console.log('err',error? error.response: 'Something went wrong.');
-            setErrorMessage(error.response.data.message)
+            console.log('err',error? error: 'Something went wrong.');
+            setErrorMessage('Something went wrong.')
        }
 
     }
