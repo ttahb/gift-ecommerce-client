@@ -46,7 +46,7 @@ function PaymentsPage(){
         theme: 'stripe',
         variables: {
             colorPrimary: '#0570de',
-            colorBackground: '#6750A4',
+            colorBackground: 'black',
             colorText: 'white',
           }
     };

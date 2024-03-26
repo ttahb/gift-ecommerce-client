@@ -12,9 +12,6 @@ function PaymentSuccessPage() {
 
   const {currentOrder, clearCurrentOrder} = useContext(CartContext);
 
-  //Based on query params in
-  // http://localhost:5173/payments/success?payment_intent=pi_3OyDOYSE5p4wzLw806I6HTNU&payment_intent_client_secret=pi_3OyDOYSE5p4wzLw806I6HTNU_secret_cOozydSRPhGViRQ3srL5HP0Ej&redirect_status=succeeded
-  
   const orderNumber = searchParams.get("orderNumber");
 
   const updateCurrentOrder = async() => {

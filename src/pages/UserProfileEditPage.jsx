@@ -91,7 +91,7 @@ function UserProfileEditPage() {
 
                 <br />
             
-                <button>update</button>
+                <button>Update</button>
             </form>
         </div>
     )
