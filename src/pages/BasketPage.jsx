@@ -5,17 +5,13 @@ import userService from "../services/user.service";
 import { useNavigate } from "react-router-dom";
 
 function BasketPage() {
-
+    
     const {basket, setBasket, clearBasket, setAmount, currentOrderId} = useContext(CartContext);
     const [errorMessage, setErrorMessage] = useState(undefined);
-    // console.log('basket is', basket);
-    // const [ basket, setBasket ] = useState([]);
     const [ totalPrice, setTotalPrice ] = useState(0);
     const [ isLoadingBr, setIsLoadingBr ] = useState(true);
     const { user, isLoading } = useContext(AuthContext);
     const navigate = useNavigate();
-    // console.log('user from the basket',user);
-    // console.log('TIME', Date.now())
 
     const finalPrice = () => {
         let finalPrice = basket.reduce((acc, curValue)=>{
@@ -76,15 +72,6 @@ function BasketPage() {
                     })
             })
     }
-
-    // const handleOrder = () => {
-    //     // how to take all the info and create the order...? 
-    //     // maybe render the info in a form - update the quantity from the useState
-    //     // and upon submition create order with the availabel info and clear the user's basket 
-
-    //     // then we store the basked contet int he order.context
-
-    // }
 
     const getUser = async () => {
 

@@ -7,7 +7,7 @@ import './AddressPage.css'
 
 function AddressPage(props){
 
-    const {amount, basket, clearBasket, setCurrentOrderId} = useContext(CartContext);
+    const {amount, basket, clearBasket, setCurrentOrderDetails} = useContext(CartContext);
 
     console.log('amount', amount, 'basket', basket);
     const [ billingAddressEnabled, setBillingAddressEnabled] = useState(false);
@@ -65,7 +65,8 @@ function AddressPage(props){
             console.log('Order is created.', resp.data)
             //clearBasket
             // console.log('order is', order)
-            setCurrentOrderId(resp.data._id);
+            
+            setCurrentOrderDetails(resp.data._id);
             clearBasket();
             //Now navigate to payments page, with order details taken from the newly created order
             navigate('/payments');
@@ -77,8 +78,8 @@ function AddressPage(props){
         }
 
        } catch(error){
-            console.log('err',error? error.response: 'Something went wrong.');
-            setErrorMessage(error.response.data.message)
+            console.log('err',error? error: 'Something went wrong.');
+            setErrorMessage('Something went wrong.')
        }
 
     }

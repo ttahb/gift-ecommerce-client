@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom";
 import orderService from "../services/orders.service";
 import "./OrderDetailsPage.css"
+import { CartContext } from "../context/cart.context";
 
 function OrderDetailsPage(props) {
 
@@ -11,13 +12,15 @@ function OrderDetailsPage(props) {
     const [errorMessage, setErrorMessage] = useState(undefined);
     const [ cancelOrder, setCancelOrder ] = useState(false);
     const navigate = useNavigate();
-
+    const { setCurrentOrderDetails } = useContext(CartContext);
+    
     const getOrder = async () => {
         try {
            const resp =  await orderService.getDetails(orderId)
            console.log('order', resp.data);
            setOrder(resp.data);
            setIsOrderDetailsLoading(false);
+           setCurrentOrderDetails(orderId);
         } catch(err){
             console.log(err)
             setIsOrderDetailsLoading(false)
@@ -47,6 +50,7 @@ function OrderDetailsPage(props) {
                 setCancelOrder(true);
                 console.log(res.data)
             })
+            .catch(err => console.log(err));
     }
 
     useEffect( () => {
@@ -63,6 +67,10 @@ function OrderDetailsPage(props) {
                 <p>Loading...</p>
             </div>
         )
+    }
+
+    const handlePay = () => {
+        navigate('/payments');
     }
     
     return (
@@ -120,8 +128,25 @@ function OrderDetailsPage(props) {
                 </div>
 
                 <div>
-                    <button onClick={handleCancel}>Cancel order</button>
-                    <button>Pay</button>
+                    {order && 
+                        order.status !== 'Cancelled' &&
+                        order.status !== 'Delivered' &&
+                        order.status !== 'Refunded'  &&
+                        order.status !== 'Shipped' &&
+                        order.status !== 'Completed' &&
+                        <button onClick={handleCancel}>Cancel order</button>
+                    }
+                    
+                    {order &&
+                        order.status !== 'Paid' &&
+                        order.status !== 'Cancelled' &&
+                        order.status !== 'Delivered' &&
+                        order.status !== 'Refunded' &&
+                        order.status !== 'Shipped' &&
+                        order.status !== 'Completed' &&
+                        <button onClick={handlePay}>Pay</button>
+                    }
+                    
                 </div>
 
                 <div className={cancelOrder ? 'activate' : 'inactivate' }>
