@@ -138,5 +138,6 @@ nav > a {
 
     .active ul li{ 
         font-size: x-large;
+        color: black;
     }
 }

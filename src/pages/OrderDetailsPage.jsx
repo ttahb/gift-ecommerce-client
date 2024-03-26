@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import orderService from "../services/orders.service";
 import "./OrderDetailsPage.css"
 import { CartContext } from "../context/cart.context";
 
-function OrderDetailsPage(props) {
+function OrderDetailsPage() {
 
     const [order, setOrder] = useState(null);
     const {orderId} = useParams();
@@ -74,58 +74,82 @@ function OrderDetailsPage(props) {
     }
     
     return (
-        <div>
+        <div className="de-hele-container">
             <div>
-                <button onClick={handleClick}>Back to your Orders</button>
-            </div>
+                <button className="back-button" onClick={handleClick}>Back to your Orders</button>
+            </div> 
             {!errorMessage && 
 
             <div className="single-order-container">
                 
                 <div className="order-info-container">
-                    <h4><span style={{ color: 'grey' }}>Order ID - </span><span style={{ color: 'grey' }}>{order.orderNumber}</span></h4>
-                    <h4><span style={{ color: 'grey' }}>Status - </span><span style={{ color: 'grey' }}>{order.status}</span></h4>
-                    <h5><span style={{ color: 'grey' }}>Order Total Amount (EUR) - </span><span style={{ color: 'grey' }}>€{order.amount}</span></h5>
+                    <h2>Order Details:</h2>
+                    <h4><span >Order ID - </span><span >{order.orderNumber}</span></h4>
+                    <h4><span >Status - </span><span >{order.status}</span></h4>
+                    <h5><span >Order Total Amount (EUR) - </span><span >€{order.amount}</span></h5>
                 </div>
                 
-               <div className="products-container">
-                <h5>Contents:</h5>
-                    {order.content.map((product, index) => {
-                        console.log(product)
-                        return (
-                            <div key={product.productId}>
-                                <p>Product - {index + 1}</p>
-                                <img src={product.productImg} alt="product image" />
-                                <span>Product Name - </span><span>{product.productName}</span>
-                                <span>Quantity - </span><span>{product.quantity}</span>
-                                <span>Unit Price - </span><span>{product.price}</span>
-                                <span>Total (EUR) - </span><span>€{product.price * product.quantity}</span>
-                            </div>
-                        )
-                    })}
-               </div>
+            <div className="product-address-container">
+                <h1>Contents:</h1>
                 
-                <div className="billing-address-container">
-                    <h5>Billing Address</h5>
-                    <p>{order.billingAddress.contactPerson}</p>
-                    <span>{order.billingAddress.buildingNumber}, </span>
-                    <span>{order.billingAddress.street}</span>
-                    <span>{order.billingAddress.postalCode}, </span>
-                    <span>{order.billingAddress.city}</span>
-                    <p>{order.billingAddress.country}</p>
-                    <p>{order.billingAddress.contactNumber}</p>
+                <div className="products-container">
+                    
+                        {order.content.map((product, index) => {
+                            console.log(product)
+                            return (
+                                <div key={product.productId} >
+                                    <h3 className="content-cell-title">Product - {index + 1}</h3>
+                                    <div className="content-cells">
+                                        <Link to={`/product/${product._id}`}>
+                                            <div>
+                                                <img src={product.productImg} alt="product image" />
+                                            </div>
+                                        </Link>
+                                        <div className="cells-info">
+                                            <p>
+                                                <span>Product Name - </span><span>{product.productName}</span>
+                                            </p>
+                                            <p>
+                                                <span>Quantity - </span><span>{product.quantity}</span>
+                                            </p>
+                                            <p>
+                                                <span>Unit Price - </span><span>€ {product.price}</span>
+                                            </p>
+                                            <p>
+                                                <span>Total (EUR) - </span><span>€ {product.price * product.quantity}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        })}
                 </div>
+                
+                <div className="address-container">
+                    <h1>Address:</h1>
+                    <div className="billing-address-container">
+                        <h5>Billing Address</h5>
+                        <p>{order.billingAddress.contactPerson}</p>
+                        <span>{order.billingAddress.buildingNumber}, </span>
+                        <span>{order.billingAddress.street}</span>
+                        <span>{order.billingAddress.postalCode}, </span>
+                        <span>{order.billingAddress.city}</span>
+                        <p>{order.billingAddress.country}</p>
+                        <p>{order.billingAddress.contactNumber}</p>
+                    </div>
 
-                <div className="shipping-address-container">
-                    <h5>Shipping Address</h5>
-                    <p>{order.shippingAddress.contactPerson}</p>
-                    <span>{order.shippingAddress.buildingNumber}, </span>
-                    <span>{order.shippingAddress.street}</span>
-                    <span>{order.shippingAddress.postalCode}, </span>
-                    <span>{order.shippingAddress.city}</span>
-                    <p>{order.shippingAddress.country}</p>
-                    <p>{order.shippingAddress.contactNumber}</p>
+                    <div className="shipping-address-container">
+                        <h5>Shipping Address</h5>
+                        <p>{order.shippingAddress.contactPerson}</p>
+                        <span>{order.shippingAddress.buildingNumber}, </span>
+                        <span>{order.shippingAddress.street}</span>
+                        <span>{order.shippingAddress.postalCode}, </span>
+                        <span>{order.shippingAddress.city}</span>
+                        <p>{order.shippingAddress.country}</p>
+                        <p>{order.shippingAddress.contactNumber}</p>
+                    </div>
                 </div>
+            </div>
 
                 <div>
                     {order && 
@@ -134,7 +158,7 @@ function OrderDetailsPage(props) {
                         order.status !== 'Refunded'  &&
                         order.status !== 'Shipped' &&
                         order.status !== 'Completed' &&
-                        <button onClick={handleCancel}>Cancel order</button>
+                        <button className="space-between-btns" onClick={handleCancel}>Cancel order</button>
                     }
                     
                     {order &&

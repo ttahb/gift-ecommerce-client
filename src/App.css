@@ -27,6 +27,7 @@ button {
   color: white !important;
   background-color: #6750A4 !important;
   border-radius: 2rem !important;
+  padding: 0.5rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
   padding: 12px 24px;
@@ -42,6 +43,10 @@ button:hover {
 button:focus,
 button:focus-visible {
 outline: 4px auto -webkit-focus-ring-color;
+}
+
+.space-between-btns {
+  margin-right: 1rem;
 }
 
 form {
