@@ -20,8 +20,8 @@ function SearchProducts({ handleTags, handleSearch }) {
 
     return(
         <div>
-            <div>
-                <label>
+            <div className="label-div">
+                <label className="search-label-container">
                     <input 
                         type="search" 
                         name="search" 

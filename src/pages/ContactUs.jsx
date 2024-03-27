@@ -31,16 +31,16 @@ function ContactUs() {
             <h1 style={{fontSize: "2rem", margin: "2rem"}}>Contact Us</h1>
 
             <form>
-                <label>Name:
-                    <input type="text" value={name} onChange={handleName} />
+                <label style={{margin: "0"}}>Name:
+                    <input style={{margin: "0.5rem 0 0 0 "}} type="text" value={name} onChange={handleName} />
                 </label>
                 <br />
-                <label>Email:
-                    <input type="email" value={email} onChange={handleEmail} />
+                <label style={{margin: "0"}}>Email:
+                    <input style={{margin: "0.5rem 0 0 0 "}} type="email" value={email} onChange={handleEmail} />
                 </label>
                 <br />
-                <label>Message:
-                    <textarea cols="60" rows="6" value={message} onChange={handleMessage} ></textarea>
+                <label style={{margin: "0"}}>Message:
+                    <textarea style={{margin: "0.5rem 0 0 0 "}} cols="60" rows="6" value={message} onChange={handleMessage} ></textarea>
                 </label>
                 <br />
                 <button onClick={handleSubmit}>Submit</button>

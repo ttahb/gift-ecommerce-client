@@ -31,7 +31,7 @@ function RegisterPage() {
                 storeToken(resp.data.authToken);
                 authenticateUser();
             })
-            .then(()=> navigate('/'))
+            .then(()=> navigate('/products'))
             .catch(err => setErrorMessage(err.response.data.message));        
     }
 

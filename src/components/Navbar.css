@@ -60,6 +60,8 @@ li {
 }
 
 .basket-amounth p {
+    margin-top: 1.4rem;
+    margin-right: 1.5rem;
     color: black;
 }
 
@@ -124,7 +126,7 @@ li {
         background-color: rgba(255, 255, 255, 0.8);
         display: block;
         position: absolute;
-        top: 100%;
+        top: 18%;
         right: -1%;
         /* Dunno why the transition is not working - could be on the wrong place? */
         transition: 0.3s ease-in-out; 

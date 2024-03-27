@@ -115,7 +115,7 @@ function ProductDetailsPage(){
     return(
         <div className='single-product-display'>
             <div>
-                {user && user.role.toLowerCase() === 'admin' && <Link to={`/product/edit/${productId}`}><button>Edit Product</button></Link>}
+                {user && user.role.toLowerCase() === 'admin' && <Link to={`/product/edit/${productId}`}><button className="space-between-btns ">Edit Product</button></Link>}
                 {user && user.role.toLowerCase() === 'admin' && <button onClick={ () => handleDeleteProduct(product._id)}>Delete Product</button>}
             </div>
             {errorMsg && <p>{errorMsg}</p>}
@@ -128,7 +128,7 @@ function ProductDetailsPage(){
                     <span><button className="secondary" onClick={plusItems}>+</button></span>
                 </p>     
                 <div className="basket-shoping-btn">
-                    <button onClick={handleBasket}>Add to Basket</button><span> </span>
+                    <button className="space-between-btns " onClick={handleBasket}>Add to Basket</button>
                     <Link to={'/products'} ><button>Continue Shoping</button></Link>
                 </div>
             </div>
