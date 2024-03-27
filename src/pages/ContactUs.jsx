@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./ContactUs.css"
 
 function ContactUs() {
 
@@ -30,7 +31,7 @@ function ContactUs() {
         <div className="auth-form">
             <h1 style={{fontSize: "2rem", margin: "2rem"}}>Contact Us</h1>
 
-            <form>
+            <form className="form-contact-us">
                 <label style={{margin: "0"}}>Name:
                     <input style={{margin: "0.5rem 0 0 0 "}} type="text" value={name} onChange={handleName} />
                 </label>

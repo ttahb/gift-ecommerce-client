@@ -27,7 +27,7 @@ function Navbar() {
   },[userId])
 
   return (
-    <nav onClick={toggleMenu}>
+    <nav>
       <div>
         <img id="logo" src={Logo} />
       </div>
