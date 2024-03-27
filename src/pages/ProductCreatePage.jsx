@@ -116,7 +116,7 @@ function ProductCreatePage() {
                     <select name="tags" onChange={handleTag}>
                         <option value=""></option>
                         <option value="wine">Wine</option>
-                        <option value="jams">James</option>
+                        <option value="jams">Jams</option>
                         <option value="chocolates">Chocolates</option>
                         <option value="cookies">Cookies</option>
                         <option value="cakes">Cakes</option>
