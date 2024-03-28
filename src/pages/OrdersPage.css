@@ -43,6 +43,14 @@
     height: 2.5rem;
 }
 
+.table tbody tr {
+    height: 2.5rem;
+}
+
+.table tbody tr td {
+    vertical-align: middle!important;
+}
+
 tbody tr td a {
     margin: 0.5rem;
 }

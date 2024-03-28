@@ -64,7 +64,7 @@
     margin-bottom: 1rem;
 }
 
-.products-container {
+.product-order-container {
     margin: 0 5rem;
     display: grid;
     grid-template-columns: 20rem, 1fr;

@@ -92,7 +92,7 @@ function OrderDetailsPage() {
             <div className="product-address-container">
                 <h1>Contents:</h1>
                 
-                <div className="products-container">
+                <div className="product-order-container">
                     
                         {order.content.map((product, index) => {
                             console.log(product)
