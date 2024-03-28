@@ -10,7 +10,7 @@ function Navbar() {
   const { user, logOutUser, isLoggedIn } = useContext(AuthContext);
   const [showMenu, setShowMenu] = useState(false);
   const [ userId, setUserId ] = useState(null);
-  const { basketLength, currentAmount } = useContext(CartContext);
+  const { basketLength, setBasketContentLength } = useContext(CartContext);
   const navigate = useNavigate()
   
 
@@ -30,7 +30,7 @@ function Navbar() {
   }, [user])
 
   useEffect(() => {
-    currentAmount(userId);
+    setBasketContentLength(userId);
   },[userId])
 
   return (
