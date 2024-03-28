@@ -94,7 +94,7 @@ function AddressPage(props){
     // Please style this in a way such that when check box is clicked billing address comes one side of the screen, no scroll
     // for mobile view we can have a scroll.
     return (
-        <div>
+        <div className="auth-form">
             <p style={{ fontSize: '1.2em', fontWeight: 'bold' }}>Shipping Address</p><br /><br />
 
             <AddressCard setAddress={(address) => handleShippingAddress(address)}/>

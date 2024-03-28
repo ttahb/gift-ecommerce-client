@@ -1,9 +1,12 @@
 .profilecard {
+    /* display: flex; */
+    /* align-self: center; */
+    width: 90vw;
     background-color: #f8f9fa;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin: 20px;
+    padding: 2rem;
+    margin: 0 auto;
 }
 
 .profilecard h2 {
@@ -26,5 +29,17 @@
 
 p.paragraph-left {
     text-align: left;
+}
+
+.left-align {
+    text-align: start;
+}
+
+.profile-pic {
+    width: 13rem;
+    /* height: 100%; */
+    position: absolute;
+    top: 12rem;
+    right: 11rem;
 }
 
