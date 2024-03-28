@@ -3,8 +3,6 @@ import UserCard from '../components/UserCard';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import Profile from '/profile.png'
-
 // import { AuthContext } from '../context/auth.context';
 // import { isAuthenticated } from '../../../gift-ecommerce-server/middleware/jwt.middleware';
 
@@ -37,9 +35,6 @@ function UserProfilePage() {
     } //else if (user.role === isAuthenticated) {
         return(
             <div>
-                <div className='profile-pic'>
-                <image src={Profile}/>
-                </div>
                 <h1>Welcome to your profile page</h1>
                 <div>
                 <UserCard
@@ -48,7 +43,7 @@ function UserProfilePage() {
                 companyName={user.companyName}
                 companySize={user.companySize}
                 />
-                <Link to={`/orders`}><button>Orders</button></Link>
+                <Link className='space-between-btns' to={`/orders`}><button>Orders</button></Link>
                 <Link to={`/users/edit/${userId}`}><button>Edit Profile</button></Link>         
                 </div>   
             </div>

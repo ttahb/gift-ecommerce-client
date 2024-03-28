@@ -21,7 +21,7 @@ function SearchProducts({ handleTags, handleSearch }) {
     return(
         <div>
             <div>
-                <label>
+                <label id="search">
                     <input 
                         type="search" 
                         name="search" 
