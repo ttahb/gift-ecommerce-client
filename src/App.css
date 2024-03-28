@@ -77,10 +77,10 @@ textarea {
 }
 
 input[type="search"] {
-  background-color: #ecd1f0;
+  background-color: white;
   font-size: 16px;
   padding: 1rem;
-  border: 1px solid #ecd1f0;
+  border: 1px solid rgb(103, 80, 164);
   border-radius: 1.5rem;
   width: 100%; 
 }
