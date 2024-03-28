@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { useContext, useState, useEffect } from "react";
 import "./Navbar.css";
@@ -11,10 +11,17 @@ function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
   const [ userId, setUserId ] = useState(null);
   const { basketLength, currentAmount } = useContext(CartContext);
+  const navigate = useNavigate()
+  
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
+
+  const handleLogOut = () => {
+    logOutUser();
+    navigate('/');
+  }
 
   useEffect(() => {
     if(user){
@@ -83,11 +90,9 @@ function Navbar() {
           )}
             
           { isLoggedIn && (
-              <Link to="/logout" onClick={toggleMenu}>
               <li>
-                <button onClick={logOutUser} className="linkbutton">Logout</button>
+                <button onClick={handleLogOut} className="linkbutton">Logout</button>
               </li>
-            </Link>
           )}
           </ul>
         </div>
