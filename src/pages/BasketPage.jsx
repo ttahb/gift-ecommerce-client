@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 function BasketPage() {
     
-    const {basket, setBasket, clearBasket, setAmount, currentOrderId, currentAmount} = useContext(CartContext);
+    const {basket, setBasket, clearBasket, setAmount, currentOrderId, setBasketContentLength} = useContext(CartContext);
     const [errorMessage, setErrorMessage] = useState(undefined);
     const [ totalPrice, setTotalPrice ] = useState(0);
     const [ isLoadingBr, setIsLoadingBr ] = useState(true);
@@ -68,7 +68,7 @@ function BasketPage() {
                 userService 
                     .updateUserFields(user.userId, { basket: updateBasket})
                     .then((response) => {
-                        currentAmount(user.userId)
+                        setBasketContentLength(user.userId)
                         setBasket(response.data.basket)
                     })
             })

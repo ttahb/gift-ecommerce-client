@@ -19,7 +19,7 @@ function CartProviderWrapper(props){
         setBasketLength(prodAmount)      
     }
 
-    const currentAmount = (userId) => {
+    const setBasketContentLength = (userId) => {
         userService
             .getUser(userId)
             .then((res) => {
@@ -32,6 +32,7 @@ function CartProviderWrapper(props){
     const clearBasket = (basket) => {
         setBasket([]);
         setAmount(0);
+        setBasketLength(0);
     }
 
     const setCurrentOrderDetails = (orderId)=> {
@@ -51,7 +52,7 @@ function CartProviderWrapper(props){
     // const getBasket= () => basket;
 
     return (
-        <CartContext.Provider value= {{basket, setBasket, clearBasket, amount, setAmount, currentOrder, setCurrentOrderDetails, clearCurrentOrder, currentAmount, itemsInBasket, basketLength}}>
+        <CartContext.Provider value= {{basket, setBasket, clearBasket, amount, setAmount, currentOrder, setCurrentOrderDetails, clearCurrentOrder, setBasketContentLength, itemsInBasket, basketLength}}>
             {props.children}
         </CartContext.Provider>
     )
