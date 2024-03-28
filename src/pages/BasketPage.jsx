@@ -3,6 +3,8 @@ import { AuthContext } from "../context/auth.context";
 import { CartContext } from "../context/cart.context";
 import userService from "../services/user.service";
 import { useNavigate } from "react-router-dom";
+import emptyImage from "../assets/emptycart.jpg";
+import "./BasketPage.css"
 
 function BasketPage() {
     
@@ -145,9 +147,11 @@ function BasketPage() {
                 <p>Final Price: {totalPrice} €</p>
             </div>
             <div>
+                {errorMessage && <div className="error-basket-messImg">
+                                    <img src={emptyImage} alt="" />
+                                    <span style={{ color: 'black', padding: '8px' }}>{errorMessage}</span>
+                                </div>}
                 <button onClick={handleComplete} >Complete</button>
-                {errorMessage && <div><span style={{ color: 'black', padding: '8px' }}>{errorMessage}</span>
-</div>}
             </div>
         </div>
     )
