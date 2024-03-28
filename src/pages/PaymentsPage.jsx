@@ -15,7 +15,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_API_KEY
 
 function PaymentsPage(){
 
-    const {currentOrder} = useContext(CartContext);    
+    const {currentOrder, clearBasket} = useContext(CartContext);    
     const [clientSecret, setClientSecret] = useState("");
     const navigate = useNavigate();
 
@@ -65,14 +65,6 @@ function PaymentsPage(){
         navigate(`/orders/${currentOrder._id}`);
     }
 
-    // return (
-    //     <>
-    //         {!currentOrder &&
-    //             <p>Loading payments page...</p>
-    //         }
-    //     </>
-    // )
-
     return (
         
         <>
@@ -81,7 +73,7 @@ function PaymentsPage(){
             }
         {currentOrder && 
         <>
-             <p style={{ color: '#6750A4' }}>Congratulations! <br></br><br />Order with number - <Link to={`/orders/${currentOrder._id}`}>{currentOrder.orderNumber}</Link> successfully created for you.<br></br> <br>
+             <p style={{ color: '#6750A4' }}>Congratulations! <br></br><br/>Order with number - <Link to={`/orders/${currentOrder._id}`}>{currentOrder.orderNumber}</Link> successfully created for you.<br></br> <br>
             </br>Kindly proceed with the payment. Large Order? Skip payment and contact our sales team.</p>
             <br>
             </br><br />
