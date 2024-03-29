@@ -4,3 +4,7 @@
     align-items: center;
     justify-content: center;
 }
+
+.error-basket-messImg > img {
+    height: 15rem;
+}
