@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import productsService from "../services/products.service";
 import { AuthContext } from "../context/auth.context";
 import fileUploadService from "../services/file-upload.service";
+import Utils from '../utils/utils'
 
 function ProductEditPage() {
 
@@ -123,7 +124,7 @@ function ProductEditPage() {
                 <br />
                 <label>Price:
                 <br />
-                    <input type="text" placeholder={price} value={price} onChange={handlePrice}/>
+                    <input type="text" placeholder={price} value={Utils.formatCentsToEuros(price)} onChange={handlePrice}/>
                 </label>
                 <br />
                 <label>Description: 
@@ -143,7 +144,7 @@ function ProductEditPage() {
                 <br />
                     <select name="tags" onChange={handleTags} value={tags}>
                         <option value=""></option>
-                        <option value="wine">Wien</option>
+                        <option value="wine">Wine</option>
                         <option value="jams">Jams</option>
                         <option value="chocolates">Chocolates</option>
                         <option value="cookies">Cookies</option>
@@ -151,7 +152,7 @@ function ProductEditPage() {
                     </select>
                 </label>
                 <br />
-                <button>Edit</button>
+                <button>Save</button>
             </form>
         </div>
     )

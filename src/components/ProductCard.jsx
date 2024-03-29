@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Utils from '../utils/utils'
 
 function ProductCard( { image, productName, price, hearts, _id } ) {
 
@@ -10,7 +11,7 @@ function ProductCard( { image, productName, price, hearts, _id } ) {
                 </div>
                 <div className="product-card-info">
                     <p>{productName}</p>
-                    <p>{price} Euro</p>
+                    <p>{Utils.formatCentsToEuros(price)}€</p>
                 </div>
                 {/* <p>Likes:{hearts}</p> */}
             </div>

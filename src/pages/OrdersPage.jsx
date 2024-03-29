@@ -132,7 +132,7 @@ function OrdersPage() {
                     <button className="secondary" onClick={sortByPrice}>Price</button>
                 </div>
 
-                <div>
+                <div className="filter-container">
                     <span>Filter By:</span>
                     <select value={status} onChange={filterByStatus}>
                             <option value= {undefined}>{status === undefined ? '--status--':'--status--'}</option>

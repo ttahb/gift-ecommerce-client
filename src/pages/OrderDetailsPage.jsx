@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import orderService from "../services/orders.service";
 import "./OrderDetailsPage.css"
 import { CartContext } from "../context/cart.context";
+import Utils from '../utils/utils'
 
 function OrderDetailsPage() {
 
@@ -89,7 +90,7 @@ function OrderDetailsPage() {
                         <h4 id="order-title"><span >Order ID - </span><span>{order.orderNumber}</span></h4>
                         <h4 id="order-status"><span >Status - </span><span >{order.status}</span></h4>
                     </div>
-                    <h5 id="order-price"><span >Order Total Amount (EUR) - </span><span >€{order.amount}</span></h5>
+                    <h5 id="order-price"><span >Order Total Amount - </span><span >{Utils.formatCentsToEuros(order.amount)}€</span></h5>
                 </div>
                 
             <div className="product-address-container">
@@ -116,10 +117,10 @@ function OrderDetailsPage() {
                                                 <span>Quantity - </span><span>{product.quantity}</span>
                                             </p>
                                             <p>
-                                                <span>Unit Price - </span><span>€ {product.price}</span>
+                                                <span>Unit Price - </span><span>{Utils.formatCentsToEuros(product.price)}€</span>
                                             </p>
                                             <p>
-                                                <span>Total (EUR) - </span><span>€ {product.price * product.quantity}</span>
+                                                <span>Total - </span><span>{Utils.formatCentsToEuros(product.price * product.quantity)}€</span>
                                             </p>
                                         </div>
                                     </div>

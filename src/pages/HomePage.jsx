@@ -3,7 +3,13 @@ import Worker from "/public/smart-people.png"
 import Benefits from "/stack-of-money.png"
 import Top from "/pie-and-charts.png"
 import Lamin from "/Lamin.png"
+import { AuthContext } from "../context/auth.context";
+import { useContext } from "react";
+
 function HomePage() {
+
+    const { user } = useContext(AuthContext);
+
     return (
       <div>
         <div className="hero">
@@ -11,9 +17,12 @@ function HomePage() {
           <h1 className="title">
           Elevate your corporate giffting experiences
           </h1>
-          <Link to="/register">
+          { !user && 
+            <Link to="/register">
           <button className="primary">Register Now</button>
           </Link>
+          }
+          
           </div> 
         </div>
         <article>

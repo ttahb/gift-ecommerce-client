@@ -121,16 +121,17 @@ li {
         display: none;
         width: 20rem;
         height: 28rem;
+        transition: 0.3s ease-in-out; 
     }
     
     .active {
         background-color: rgba(255, 255, 255, 0.8);
         display: block;
         position: absolute;
-        top: 9%;
-        right: -1%;
-        /* Dunno why the transition is not working - could be on the wrong place? */
+        top: 5rem;
+        right: -0.5rem;
         transition: 0.3s ease-in-out; 
+        border-radius: 0.5rem;
     }
 
     .active ul{

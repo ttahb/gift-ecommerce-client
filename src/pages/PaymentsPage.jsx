@@ -8,6 +8,7 @@ import { CartContext } from "../context/cart.context";
 import { useNavigate } from "react-router-dom";
 import orderService from "../services/orders.service";
 import { Link } from "react-router-dom";
+import Utils from '../utils/utils'
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
 // This is your test publishable API key.
@@ -83,7 +84,7 @@ function PaymentsPage(){
             <br/>
             </div>
             <div>
-                <span style={{ fontWeight: 'bold', color: 'white', backgroundColor: '#6750A4', padding: '10px' }}>  Amount: {currentOrder.amount} € </span>
+                <span style={{ fontWeight: 'bold', color: 'white', backgroundColor: '#6750A4', padding: '10px' }}>  Amount: {Utils.formatCentsToEuros(currentOrder.amount)}€</span>
                 <br /><br />
                 {clientSecret && (
                     <Elements options={options} stripe={stripePromise}>
