@@ -4,6 +4,8 @@ import { CartContext } from "../context/cart.context";
 import userService from "../services/user.service";
 import { useNavigate } from "react-router-dom";
 import Utils from '../utils/utils'
+import emptyImage from "../assets/emptycart.jpg";
+import "./BasketPage.css"
 
 function BasketPage() {
     
@@ -142,13 +144,18 @@ function BasketPage() {
                 )
             })}
 
+            {basket.length === 0 ?
+                            <div className="error-basket-messImg">
+                                <img src={emptyImage} alt="" />
+                            </div> : <div></div> }
             <div>
                 <p>Final Price: {Utils.formatCentsToEuros(totalPrice)}€</p>
             </div>
             <div>
+                {errorMessage && <div>
+                                    <span style={{ color: 'black', padding: '8px' }}>{errorMessage}</span>
+                                </div>}
                 <button onClick={handleComplete} >Complete</button>
-                {errorMessage && <div><span style={{ color: 'black', padding: '8px' }}>{errorMessage}</span>
-</div>}
             </div>
         </div>
     )
