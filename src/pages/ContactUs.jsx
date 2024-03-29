@@ -29,7 +29,7 @@ function ContactUs() {
 
     return(
         <div className="auth-form">
-            <h1 style={{fontSize: "2rem", margin: "2rem"}}>Contact Us</h1>
+            <h2 className="order-title">Do you have doubts? Contact Us! :D</h2>
 
             <form className="form-contact-us">
                 <label style={{margin: "0"}}>Name:

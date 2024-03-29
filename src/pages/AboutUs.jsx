@@ -1,32 +1,29 @@
 import "./AboutUs.css"
+import Members from '../../public/about-us.jpg'
 
 function AboutUs() {
 
     return(
         <div>
-            <h2 className="aboutus-title">About Us:</h2>
+            <h2 className="order-title aboutus-title">About Us:</h2>
 
             <div className="aboutus-text">
+                <img src={Members} className="aboutUs-img"/>
                 <p>Welcome to Pirineos Gourmet – Your Premier Destination for Exquisite Corporate Gifts!
 
-                        At Pirineos Gourmet, we understand the significance of expressing gratitude to your employees, especially during the festive season. Our meticulously curated selection of wine, cheese, jams, and gourmet delights offers an unparalleled opportunity to convey your appreciation in the most delightful and memorable manner.
-
-                        Why Choose Us? 
+                        At Pirineos Gourmet, we understand the significance of expressing gratitude to your employees, especially during the festive season. Our meticulously curated selection of wine, cheese, jams, and gourmet delights offers an unparalleled opportunity to convey your appreciation in the most delightful and memorable manner. 
                 </p>
 
-                <p>Unrivaled Quality: We take pride in sourcing only the finest products from trusted artisans and producers. From artisanal cheeses to handcrafted jams and premium wines, each item in our collection is chosen with utmost care to ensure an unforgettable sensory experience.
+                <h4>Why would you Choose Us?</h4>
+                <br/>
+                <ul className="list">
+                    <li><p>Unrivaled Quality</p></li>
+                    <li><p>Customization Options</p></li>
+                    <li><p>Seamless Ordering Process</p></li>
+                    <li><p>Personalized Touch</p></li>    
+                </ul>
 
-                        Customization Options: Whether you prefer to craft a bespoke gift basket tailored to individual preferences or opt for our pre-designed arrangements, we offer flexible customization options to suit your needs. Mix and match from our extensive range of products to create the perfect gift that reflects your company's ethos and appreciation.
-                </p>
-
-                <p> Seamless Ordering Process: Our user-friendly website streamlines the ordering process, making it effortless for you to select, customize, and place your order with just a few clicks. With secure payment options and efficient delivery services, we ensure a hassle-free experience from start to finish.
-
-                        Personalized Touch: Elevate your corporate gifting experience with our personalized messaging and branding options. Add a heartfelt note or incorporate your company logo to leave a lasting impression and reinforce your message of gratitude.
-
-                        Exceptional Service: At Pirineos Gourmet, customer satisfaction is our top priority. Our dedicated team is committed to providing prompt assistance and personalized recommendations to ensure that every aspect of your order exceeds expectations.
-
-                        Spread Joy and Appreciation this Holiday Season!
-                </p>
+                <br/>
 
                 <p> This Christmas, show your employees how much you value their hard work and dedication with a thoughtful gift from Pirineos Gourmet. Our exquisite selection of gourmet delights promises to delight the senses and foster a sense of warmth and appreciation among your team.
 
@@ -34,6 +31,7 @@ function AboutUs() {
 
                         Browse our collection today and discover the perfect gifts to express your gratitude!
                 </p>
+                <br></br>
             </div>
 
         </div>

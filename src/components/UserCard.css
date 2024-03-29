@@ -43,3 +43,12 @@ p.paragraph-left {
     right: 11rem;
 }
 
+@media screen and (max-width: 600px) {
+    .profile-pic{
+        position: absolute;
+        top: 12rem;
+        right: 1rem;
+    }
+    
+}
+

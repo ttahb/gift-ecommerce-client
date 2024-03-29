@@ -125,20 +125,19 @@ function BasketPage() {
             {basket.map((prod, index) => {
                 return(
                     <div key={index}>
+                        <br/>
                         <img style={{height: "150px"}} src={prod.productImg} alt="image" />
                         <h2>{prod.productName}</h2>
                         <p>Price: {Utils.formatCentsToEuros(prod.price)}€</p>
                         <p>Quantity: {prod.quantity} <span></span>
                             <span>
-                                <button onClick={ () => handleQtyUpdate( prod._id, 0 ) }>-</button> 
+                                <button className="space-between-btns" onClick={ () => handleQtyUpdate( prod._id, 0 ) }>-</button> 
                                 <button onClick={ () => handleQtyUpdate( prod._id, 1 ) }>+</button>
                             </span>
                         </p>
                         <button onClick={() => handleDelete(prod._id)}>Remove from basket</button>
                         <br />
                         <p>Total: {Utils.formatCentsToEuros(prod.price * prod.quantity)}€</p>                    
-                        <br />
-                        <br />
                     </div>
                     
                 )
