@@ -63,6 +63,17 @@ button:disabled {
     cursor: default;
 }
 
+.success-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.success-img > img {
+    height: 15rem;
+}
+
 /* spinner/processing state, errors */
 .spinner,
 .spinner:before,
@@ -130,7 +141,7 @@ button:disabled {
 
 @media only screen and (max-width: 600px) {
     form {
-        width: 80vw;
+        /* width: 80vw; */
         min-width: initial;
     }
 }

@@ -53,7 +53,7 @@ function RegisterPage() {
 
 
     return (
-        <div className="auth-form">
+        <div className="auth-form large-field">
             <form onSubmit={handleSubmit}>
                 <label>
                     <span>Full Name:</span>

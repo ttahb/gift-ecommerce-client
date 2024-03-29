@@ -107,9 +107,10 @@ function OrdersPage() {
 
     if (isLoading) {
         return (
-            <div className='loading-div'>
-                <p>Loading...</p>
-            </div>
+        <div>
+            <span className="loader"></span>
+            <p>loading...</p>
+        </div>
         )
     }
 
@@ -127,7 +128,7 @@ function OrdersPage() {
             <div className="sort-filter-bar-orders">
                 <div className="sort-by-container">
                     <span>SortBy:</span>
-                    <button className="secondary" onClick={sortByDate}>Date</button>
+                    <button className="secondary space-between-btns" onClick={sortByDate}>Date</button>
                     <button className="secondary" onClick={sortByPrice}>Price</button>
                 </div>
 

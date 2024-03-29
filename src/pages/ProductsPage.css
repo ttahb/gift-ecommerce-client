@@ -64,8 +64,8 @@
 
 .product-card-info p:last-of-type {
     margin-top: 0.6rem;
-    color: rgb(92, 92, 92);
-    font-weight: 100;
+    color: rgb(34, 34, 34);
+    font-weight: 300;
     font-size: 1rem;
 }
 

@@ -7,6 +7,7 @@ nav {
     top: 0;
     width: 100vw;
     margin:2rem;
+    box-shadow: 2px 2px 8px 0px rgba(227, 228, 230, 0.5);
 }
 
 li {

@@ -70,23 +70,30 @@ function PaymentsPage(){
         
         <>
         {!currentOrder &&
-                <p>Loading payments page...</p>
-            }
+            <div>
+                <span className="loader"></span>
+                <p>loading payment page...</p>
+            </div>
+           
+        }
         {currentOrder && 
         <>
-             <p style={{ color: '#6750A4' }}>Congratulations! <br></br><br/>Order with number - <Link to={`/orders/${currentOrder._id}`}>{currentOrder.orderNumber}</Link> successfully created for you.<br></br> <br>
-            </br>Kindly proceed with the payment. Large Order? Skip payment and contact our sales team.</p>
-            <br>
-            </br><br />
-            <span style={{ fontWeight: 'bold', color: 'white', backgroundColor: '#6750A4', padding: '10px' }}>  Amount: {Utils.formatCentsToEuros(currentOrder.amount)}€</span>
-            <br /><br />
-            {clientSecret && (
-                <Elements options={options} stripe={stripePromise}>
-                     <CheckoutForm />
-                </Elements>
-            )}
-            {!clientSecret && <p>Page refreshed. Reload payment from Orders</p>}
-            <button onClick={handleSkipPayment}>Skip Payment</button>
+            <div>
+            <p style={{ color: '#6750A4' }}>Congratulations! <br></br><br/>Order with number - <Link to={`/orders/${currentOrder._id}`}>{currentOrder.orderNumber}</Link> successfully created for you.<br></br> <br>
+            </br>Kindly proceed with the payment. Large Order? Skip payment and our sales team will contact you.</p>
+            <br/>
+            </div>
+            <div>
+                <span style={{ fontWeight: 'bold', color: 'white', backgroundColor: '#6750A4', padding: '10px' }}>  Amount: {Utils.formatCentsToEuros(currentOrder.amount)}€</span>
+                <br /><br />
+                {clientSecret && (
+                    <Elements options={options} stripe={stripePromise}>
+                        <CheckoutForm className="stripe-form" />
+                    </Elements>
+                )}
+                {!clientSecret && <p>Page refreshed. Reload payment from Orders</p>}
+                <button onClick={handleSkipPayment}>Skip Payment</button>
+            </div>
         </>
         }   
         </>

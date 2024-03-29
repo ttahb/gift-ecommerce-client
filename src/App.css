@@ -1,5 +1,15 @@
 
 body {
+  /* position: relative; */
+  /* min-height: 100vh; */
+}
+
+#root {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   font-family: 'Lato', sans-serif;
   font-size: 16px;
   line-height: 1.5; 
@@ -163,6 +173,13 @@ article {
   border-radius: 8px;
 }
 
+.Adr-flex-container {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  text-align: left;
+  flex-wrap: wrap;
+}
 /* loading div */
 
 .loading-div {
@@ -171,6 +188,11 @@ article {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.pict-home {
+  border-radius: 100%;
+  background-color: aliceblue;
 }
 
 .loading-div p {
@@ -209,6 +231,13 @@ article {
   border: solid 2px #e0dfdf;
 }
 
+.back-button-arrow {
+  background-color: white !important;
+  color: black !important;
+  border-radius: 0% !important;
+  border-bottom: solid 1px;
+}
+
 .auth-form {
   width: 60vw;
   margin: 0 auto;
@@ -220,7 +249,53 @@ article {
   padding: 2rem;
 }
 
+.billing-address-container, .shipping-address-container {
+  padding: 2%;
+  margin: 0 3rem;
+  border: solid 2px #f0ebeb;
+  border-radius: 8px;
+  box-shadow: 2px 2px 8px 0px rgba(227, 228, 230, 0.5);
+}
+
 .chip {
   background-color: white;
   border-color: #6750A4;
 }
+
+.back-button {
+  text-align: left;
+  padding-left: 2rem;
+}
+
+/* loader code */
+
+.loader {
+  display: flex;
+  justify-content: center;
+  margin: 1rem auto;
+  /* display: block; */
+  /* text-align: center; */
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 50%;
+  background-color: #6750A4;
+  box-shadow: 32px 0 #6750A4, -32px 0 #6750A4;
+  position: relative;
+  animation: flash 0.5s ease-out infinite alternate;
+}
+
+@keyframes flash {
+  0% {
+    background-color: #FFF2;
+    box-shadow: 32px 0 #FFF2, -32px 0 #6750A4;
+  }
+  50% {
+    background-color: #6750A4;
+    box-shadow: 32px 0 #FFF2, -32px 0 #FFF2;
+  }
+  100% {
+    background-color: #6750A4;
+    box-shadow: 32px 0 #FFF2, -32px 0 #FFF2;
+  }
+}
+      
