@@ -152,7 +152,7 @@ function ProductEditPage() {
                     </select>
                 </label>
                 <br />
-                <button>Edit</button>
+                <button>Save</button>
             </form>
         </div>
     )

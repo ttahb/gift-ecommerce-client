@@ -19,6 +19,9 @@ import Footer from './components/Footer';
 import AddressPage from './pages/AddressPage';
 import PaymentsPage from './pages/PaymentsPage';
 import PaymentSuccessPage from './pages/PaymentSuccessPage';
+import IsAnon from './components/IsAnon';
+import IsPrivate from './components/IsPrivate';
+import ErrorPage from './pages/ErrorPage';
 
 function App() {
 
@@ -30,20 +33,22 @@ function App() {
         <Route path='/' element={<HomePage/>} />
         <Route path='/aboutus' element={<AboutUs />} />
         <Route path='/contact' element={<ContactUs />} />
-        <Route path="/register" element={<RegisterPage />} /> 
-        <Route path='/login' element={<LoginPage />} />
-        <Route path='/basket' element={<BasketPage />} />
+        <Route path="/register" element={<IsAnon><RegisterPage /></IsAnon>} /> 
+        <Route path='/login' element={<IsAnon><LoginPage /></IsAnon>} />
+        <Route path='/basket' element={<IsPrivate><BasketPage /></IsPrivate>} />
         <Route path='/products' element={<ProductsPage />} />
         <Route path='/product/:productId' element={<ProductDetailsPage />} />
-        <Route path='/product/create' element={<ProductCreatePage /> } />
-        <Route path='/product/edit/:productId' element={<ProductEditPage />} />
-        <Route path='/orders' element={<OrdersPage/>} />
-        <Route path='/users/:userId' element={<UserProfilePage />}/>
-        <Route path='/users/edit/:userId' element={<UserProfileEditPage />}/>
-        <Route path='/orders/:orderId' element={<OrderDetailsPage/>}/>
-        <Route path='/address' element={<AddressPage/>}/>
-        <Route path='/payments' element={<PaymentsPage/>} />
-        <Route path='/payments/:currentOrderId/success' element={<PaymentSuccessPage/>} />
+        <Route path='/product/create' element={<IsPrivate><ProductCreatePage /></IsPrivate> } />
+        <Route path='/product/edit/:productId' element={<IsPrivate><ProductEditPage /></IsPrivate>} />
+        <Route path='/orders' element={<IsPrivate><OrdersPage/></IsPrivate>} />
+        <Route path='/users/:userId' element={<IsPrivate><UserProfilePage /></IsPrivate>}/>
+        <Route path='/users/edit/:userId' element={<IsPrivate><UserProfileEditPage /></IsPrivate>}/>
+        <Route path='/orders/:orderId' element={<IsPrivate><OrderDetailsPage/></IsPrivate>}/>
+        <Route path='/address' element={<IsPrivate><AddressPage/></IsPrivate>}/>
+        <Route path='/payments' element={<IsPrivate><PaymentsPage/></IsPrivate>} />
+        <Route path='/payments/:currentOrderId/success' element={<IsPrivate><PaymentSuccessPage/></IsPrivate>} />
+
+        <Route path="*" element={ <ErrorPage /> } />
       </Routes> 
 
       <Footer/>
