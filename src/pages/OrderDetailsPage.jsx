@@ -63,9 +63,10 @@ function OrderDetailsPage() {
 
     if(isOrderDetailsLoading){
         return (
-            <div className='loading-div'>
-                <p>Loading...</p>
-            </div>
+        <div>
+            <span className="loader"></span>
+            <p>loading...</p>
+        </div>
         )
     }
 
@@ -75,8 +76,8 @@ function OrderDetailsPage() {
     
     return (
         <div className="de-hele-container">
-            <div>
-                <button className="back-button" onClick={handleClick}>Back to your Orders</button>
+            <div className="back-button">
+                <button className="back-button-arrow" onClick={handleClick}> Back to your Orders</button>
             </div> 
             {!errorMessage && 
 
@@ -84,9 +85,11 @@ function OrderDetailsPage() {
                 
                 <div className="order-info-container">
                     <h2>Order Details:</h2>
-                    <h4><span >Order ID - </span><span >{order.orderNumber}</span></h4>
-                    <h4><span >Status - </span><span >{order.status}</span></h4>
-                    <h5><span >Order Total Amount (EUR) - </span><span >€{order.amount}</span></h5>
+                    <div>
+                        <h4 id="order-title"><span >Order ID - </span><span>{order.orderNumber}</span></h4>
+                        <h4 id="order-status"><span >Status - </span><span >{order.status}</span></h4>
+                    </div>
+                    <h5 id="order-price"><span >Order Total Amount (EUR) - </span><span >€{order.amount}</span></h5>
                 </div>
                 
             <div className="product-address-container">
@@ -127,6 +130,7 @@ function OrderDetailsPage() {
                 
                 <div className="address-container">
                     <h1>Address:</h1>
+                    <div className="Adr-flex-container">
                     <div className="billing-address-container">
                         <h5>Billing Address</h5>
                         <p>{order.billingAddress.contactPerson}</p>
@@ -147,6 +151,7 @@ function OrderDetailsPage() {
                         <span>{order.shippingAddress.city}</span>
                         <p>{order.shippingAddress.country}</p>
                         <p>{order.shippingAddress.contactNumber}</p>
+                    </div>
                     </div>
                 </div>
             </div>

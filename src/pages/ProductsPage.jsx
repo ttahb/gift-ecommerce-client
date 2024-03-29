@@ -60,9 +60,10 @@ function ProductsPage() {
 
     if(isLoading){
         return(
-            <div className='loading-div'>
-                <p>Loading...</p>
-            </div>
+        <div>
+            <span className="loader"></span>
+            <p>loading...</p>
+        </div>
         )
     }
 

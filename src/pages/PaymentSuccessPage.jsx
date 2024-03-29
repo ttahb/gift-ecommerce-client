@@ -4,6 +4,7 @@ import orderService from '../services/orders.service';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
+import Success from '/Payment-succes.jpg'
 
 function PaymentSuccessPage() {
 
@@ -33,7 +34,11 @@ function PaymentSuccessPage() {
   return (
     <>
       {
-        !orderNumber && <p>Loading ...</p>
+        !orderNumber && 
+        <div>
+          <span className="loader"></span>
+          <p>loading...</p>
+        </div>
       }
       {
 
@@ -43,6 +48,9 @@ function PaymentSuccessPage() {
       <p style={{ color: 'green' }}>
         Congratulations! Your payment was successful for the order number - <Link to={`/orders/${currentOrderId}`}>{orderNumber}</Link>.
       </p>
+      <div className='success-img' >
+      <img src={Success}/>
+      </div>
       <p>
         Thank you for your order. Your transaction has been completed
         successfully.

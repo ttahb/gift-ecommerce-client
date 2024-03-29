@@ -29,17 +29,17 @@ function HomePage() {
             <article className="bullet-cards">
               <h4>Increases your workers serotonine</h4>
               <p> and the higher the serotonine is, the better the performance is, dont forget to also give them a fair salary, and optimal perks, a gift is never a salary subtitute</p>
-              <div><img src={Worker} alt="not available" /></div>
+              <div className="pict-home"><img src={Worker} alt="not available" /></div>
             </article>
             <article className="bullet-cards">
               <h4>Save taxes, save money</h4>
               <p> Washing money is not allowed, but getting money back when making your taxes is definitely payed off</p>
-              <div><img src={Benefits} alt="not available" /></div>
+              <div className="pict-home"><img src={Benefits} alt="not available" /></div>
             </article>
             <article className="bullet-cards">
               <h4>Get positionated as top</h4>
               <p> 97% of top places to work, make great gifts to their employees, the other 3% is working from a natural paradise</p>
-              <div><img src={Top} alt="not available" /></div>
+              <div className="pict-home"><img src={Top} alt="not available" /></div>
             </article>
           </div>
           
