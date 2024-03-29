@@ -3,7 +3,7 @@ import { AuthContext } from "../context/auth.context";
 import { CartContext } from "../context/cart.context";
 import userService from "../services/user.service";
 import { useNavigate } from "react-router-dom";
-// import emptyImage from "../assets/emptycart.jpg";
+import emptyImage from "../assets/emptycart.jpg";
 import "./BasketPage.css"
 
 function BasketPage() {
@@ -13,7 +13,6 @@ function BasketPage() {
     const [ totalPrice, setTotalPrice ] = useState(0);
     const [ isLoadingBr, setIsLoadingBr ] = useState(true);
     const { user, isLoading } = useContext(AuthContext);
-    // const [ emptyBasket, setEmptyBasket ] = useState(true);
     const navigate = useNavigate();
 
     const finalPrice = () => {
@@ -52,7 +51,6 @@ function BasketPage() {
                 .updateUserFields( user.userId, { basket: updateProduct } )
                 .then((res) => {
                     setBasket(res.data.basket)
-                    // setEmptyBasket(false)
                 })
             })
 
@@ -83,7 +81,6 @@ function BasketPage() {
         try {
             const response = await userService.getUser(user.userId)
             setBasket(response.data.basket);
-            // setEmptyBasket(false);
             setIsLoadingBr(false);
             
         }catch(err){
@@ -146,10 +143,10 @@ function BasketPage() {
                 )
             })}
 
-            {/* {!emptyBasket && 
+            {basket.length === 0 ?
                             <div className="error-basket-messImg">
                                 <img src={emptyImage} alt="" />
-                            </div> } */}
+                            </div> : <div></div> }
             <div>
                 <p>Final Price: {totalPrice} €</p>
             </div>
