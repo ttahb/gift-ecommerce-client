@@ -4,6 +4,7 @@ import orderService from "../services/orders.service";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
+import Utils from '../utils/utils'
 
 function OrderCard(props) {
     const { _id, orderNumber, createdAt, updatedAt, amount, status } = props;
@@ -41,7 +42,7 @@ function OrderCard(props) {
             <td className="hide-column">{props.user.fullName}</td>
             <td className="hide-column-second-stage">{formatDate(createdAt)}</td>
             <td className="hide-column-second-stage">{formatDate(updatedAt)}</td>
-            <td className="hide-column-stage-three">€{amount}</td>
+            <td className="hide-column-stage-three">{Utils.formatCentsToEuros(amount)}€</td>
             { user.role.toLowerCase() === 'admin' &&
                 <td>
                     {!errorMsg && <select value={selectedStatus} onChange={handleStatusChange}>

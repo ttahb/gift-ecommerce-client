@@ -3,6 +3,9 @@ import { AuthContext } from "../context/auth.context";
 import { CartContext } from "../context/cart.context";
 import userService from "../services/user.service";
 import { useNavigate } from "react-router-dom";
+import Utils from '../utils/utils'
+import emptyImage from "../assets/emptycart.jpg";
+import "./BasketPage.css"
 
 function BasketPage() {
     
@@ -124,7 +127,7 @@ function BasketPage() {
                     <div key={index}>
                         <img style={{height: "150px"}} src={prod.productImg} alt="image" />
                         <h2>{prod.productName}</h2>
-                        <p>Price: {prod.price} €</p>
+                        <p>Price: {Utils.formatCentsToEuros(prod.price)}€</p>
                         <p>Quantity: {prod.quantity} <span></span>
                             <span>
                                 <button onClick={ () => handleQtyUpdate( prod._id, 0 ) }>-</button> 
@@ -133,7 +136,7 @@ function BasketPage() {
                         </p>
                         <button onClick={() => handleDelete(prod._id)}>Remove from basket</button>
                         <br />
-                        <p>Total: {prod.price * prod.quantity} €</p>                    
+                        <p>Total: {Utils.formatCentsToEuros(prod.price * prod.quantity)}€</p>                    
                         <br />
                         <br />
                     </div>
@@ -141,13 +144,18 @@ function BasketPage() {
                 )
             })}
 
+            {basket.length === 0 ?
+                            <div className="error-basket-messImg">
+                                <img src={emptyImage} alt="" />
+                            </div> : <div></div> }
             <div>
-                <p>Final Price: {totalPrice} €</p>
+                <p>Final Price: {Utils.formatCentsToEuros(totalPrice)}€</p>
             </div>
             <div>
+                {errorMessage && <div>
+                                    <span style={{ color: 'black', padding: '8px' }}>{errorMessage}</span>
+                                </div>}
                 <button onClick={handleComplete} >Complete</button>
-                {errorMessage && <div><span style={{ color: 'black', padding: '8px' }}>{errorMessage}</span>
-</div>}
             </div>
         </div>
     )

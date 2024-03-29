@@ -1,3 +1,5 @@
+import Utils from '../utils/utils'
+
 function SingleProductCard({product}) {
 
     return(
@@ -10,7 +12,7 @@ function SingleProductCard({product}) {
                     <p>Description:</p>
                     <p className="description-single-product">{product.description}</p>
                     {/* <p>Likes: {product.hearts}</p> */}
-                    <p>Price: {product.price} Euro</p>
+                    <p>Price: {Utils.formatCentsToEuros(product.price)}€</p>
                 </div>
             </div>
     )

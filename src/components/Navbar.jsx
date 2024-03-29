@@ -36,7 +36,7 @@ function Navbar() {
   return (
     <nav>
       <div>
-        <img id="logo" src={Logo} />
+        <Link to="/"> <img id="logo" src={Logo} /> </Link>
       </div>
 
       <div className="menu-container">
@@ -56,7 +56,7 @@ function Navbar() {
             </Link>
             
           {isLoggedIn && (
-              <Link to={`/users/${userId}`} onClick={toggleMenu}>
+            <Link to={`/users/${userId}`} onClick={toggleMenu}>
               <li>Profile</li>
             </Link>
           )}
