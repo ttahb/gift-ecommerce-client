@@ -1,8 +1,5 @@
-# React + Vite
+# PIRINEOS GOURMET
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Click here to see it live](https://pirineosgourmet.netlify.app/).
+Welcome to Pirineos Gourmet – Your Premier Destination for Exquisite Corporate Gifts! At Pirineos Gourmet, we understand the significance of expressing gratitude to your employees, especially during the festive season. Our meticulously curated selection of wine, cheese, jams, and gourmet delights offers an unparalleled opportunity to convey your appreciation in the most delightful and memorable manner.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
