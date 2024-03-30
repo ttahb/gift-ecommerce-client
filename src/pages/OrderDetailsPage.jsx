@@ -85,16 +85,17 @@ function OrderDetailsPage() {
             <div className="single-order-container">
                 
                 <div className="order-info-container">
-                    <h2>Order Details:</h2>
-                    <div>
-                        <h4 id="order-title"><span >Order ID - </span><span>{order.orderNumber}</span></h4>
-                        <h4 id="order-status"><span >Status - </span><span >{order.status}</span></h4>
+                    <h2 className="order-title">Order Details:</h2>
+                    <div className="another-flexcontainer">
+                        <h5 id="order-title">Order ID - <span>{order.orderNumber}</span></h5>
+                        <h5 id="order-status">Status - <span >{order.status}</span></h5>
+                        <h5 id="order-price">Order Total Amount - <span >{Utils.formatCentsToEuros(order.amount)}€</span></h5>
                     </div>
-                    <h5 id="order-price"><span >Order Total Amount - </span><span >{Utils.formatCentsToEuros(order.amount)}€</span></h5>
+                    
                 </div>
                 
             <div className="product-address-container">
-                <h1>Contents:</h1>
+                <h2 className="order-title">Contents:</h2>
                 
                 <div className="product-order-container">
                     
@@ -130,7 +131,7 @@ function OrderDetailsPage() {
                 </div>
                 
                 <div className="address-container">
-                    <h1>Address:</h1>
+                    <h2 className="order-title">Address:</h2>
                     <div className="Adr-flex-container">
                     <div className="billing-address-container">
                         <h5>Billing Address</h5>

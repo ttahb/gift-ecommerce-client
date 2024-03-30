@@ -65,6 +65,22 @@ tbody tr:nth-child(even) {
     align-items: center;
 }
 
+.order-title {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #d9cfcf;
+    box-shadow: 2px 2px 8px 0px rgba(227, 228, 230, 0.5);
+    width: fit-content;
+    text-align: center;
+    margin: 1rem auto;
+}
+
+.another-flexcontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 @media screen and (max-width: 900px) {
     .hide-column {
         display: none;

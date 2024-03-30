@@ -117,7 +117,7 @@ function ProductDetailsPage(){
         <div className='single-product-display'>
             <div>
                 {user && user.role.toLowerCase() === 'admin' && <Link to={`/product/edit/${productId}`}><button className="secondary space-between-btns ">Edit Product</button></Link>}
-                {user && user.role.toLowerCase() === 'admin' && <button className="secondary" onClick={ () => handleDeleteProduct(product._id)}>Delete Product</button>}
+                {user && user.role.toLowerCase() === 'admin' && <button className="delete" onClick={ () => handleDeleteProduct(product._id)}>Delete Product</button>}
             </div>
             {errorMsg && <p>{errorMsg}</p>}
             
