@@ -60,7 +60,7 @@ function PaymentSuccessPage() {
         customer support team.
       </p>
       <div className='btns-flexcontainer'>
-        <Link to={`/orders/${currentOrderId}`}><button className='space-between-btns'>Still hungry? Continue shopping!</button></Link>
+        <Link to={`/products`}><button className='space-between-btns'>Still hungry? Continue shopping!</button></Link>
         <Link to={`/orders/${currentOrderId}`}><button className='secondary'>Check your orders details!</button></Link>
       </div>
  
