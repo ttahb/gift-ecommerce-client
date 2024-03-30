@@ -31,7 +31,7 @@ before setting up the frontend.
 
 ## Tech Stack
 
-React.js, Vite, HTML5, CSS3, JavaScript
+React.js, Vite, HTML5, CSS3, JavaScript, Cloudinary, Stripe
 
 ## How to install and deploy?
 
