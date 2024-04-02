@@ -1,5 +1,5 @@
 .aboutus-text {
-    margin: 4rem 10rem ;
+    margin: 0rem 10rem ;
   }
 
   .aboutus-text p {
@@ -8,7 +8,12 @@
 
   .aboutus-title {
     font-size: xx-large;
-    margin-top: 2rem;
+  }
+
+  .aboutUs-img {
+    padding: 0;
+    margin: 0;
+    height:;
   }
 
   @media screen and (max-width: 700px) {

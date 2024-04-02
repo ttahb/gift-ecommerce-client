@@ -4,7 +4,7 @@ const imgURL =
 function ErrorPage() {
   return (
     <div>
-      <h1>404</h1>
+      <h1 className="order-title">404</h1>
       <img src={imgURL} alt="404 error gif" className="page-img" />
     </div>
   );

@@ -26,14 +26,17 @@ function HomePage() {
           </div> 
         </div>
         <article>
-          <h2>Dont know what to gift?</h2>
+          <br></br>
+          <h2 className="order-title">Dont know what to gift?</h2>
+          <br></br>
           <div className="card">
           <p>Keep your employees and asociates happy, let them know you care about them withouth wasting effort or energy.</p>
           <img className="out-bg" src={Lamin} alt="not available"></img>
           </div>
         </article>
         <article>
-          <h2>Do you know the benefits of empresarial giffting?</h2>
+          <br></br>
+          <h2 className="order-title">Do you know the benefits of empresarial giffting?</h2>
           <div className="container-article">
             <article className="bullet-cards">
               <h4>Increases your workers serotonine</h4>

@@ -36,7 +36,7 @@ function UserProfilePage() {
     } //else if (user.role === isAuthenticated) {
         return(
             <div>
-                <h1>Welcome to your profile page</h1>
+                <h1 className="order-title">Welcome to your profile page</h1>
                 <div>
                 <UserCard
                 fullName={user.fullName} 

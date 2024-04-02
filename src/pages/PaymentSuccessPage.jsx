@@ -44,7 +44,7 @@ function PaymentSuccessPage() {
 
       orderNumber && 
         <div>
-      <h1>Payment Successful</h1>
+      <h1 className="order-title">Payment Successful</h1>
       <p style={{ color: 'green' }}>
         Congratulations! Your payment was successful for the order number - <Link to={`/orders/${currentOrderId}`}>{orderNumber}</Link>.
       </p>
@@ -59,6 +59,11 @@ function PaymentSuccessPage() {
         If you have any questions or concerns, please feel free to contact our
         customer support team.
       </p>
+      <div className='btns-flexcontainer'>
+        <Link to={`/products`}><button className='space-between-btns'>Still hungry? Continue shopping!</button></Link>
+        <Link to={`/orders/${currentOrderId}`}><button className='secondary'>Check your orders details!</button></Link>
+      </div>
+ 
     </div>
       }
     </>

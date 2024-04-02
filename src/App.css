@@ -18,7 +18,7 @@ body {
 
 h1.title {
   font-size: 3rem;
-  font-weight: 900;
+  font-weight: 700;
   padding: 1.5rem;
   color: white;
   text-wrap: wrap;
@@ -161,6 +161,12 @@ article {
   padding: 1rem;
 }
 
+.btns-flexcontainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .secondary {
   color: #6750A4 !important;
   background-color: white !important;
@@ -236,6 +242,22 @@ article {
   color: black !important;
   border-radius: 0% !important;
   border-bottom: solid 1px;
+  /* transition: background-color 0.5s ease-in-out; */
+}
+
+.back-button-arrow:hover {
+  cursor: pointer;
+  box-shadow: 4px 4px 12px 0px rgba(227, 228, 230, 1);
+  color: rgb(53, 53, 53) !important;
+  border-radius: 0% !important;
+  border-bottom: solid 2px;
+}
+
+.delete{
+  color: red !important;
+  background-color: white !important;
+  border: solid 1px red;
+  border-radius: 2rem;
 }
 
 .auth-form {
@@ -287,7 +309,7 @@ article {
 @keyframes flash {
   0% {
     background-color: #FFF2;
-    box-shadow: 32px 0 #FFF2, -32px 0 #6750A4;
+    box-shadow: 32px 0 #6750A4, -32px 0 #6750A4;
   }
   50% {
     background-color: #6750A4;
