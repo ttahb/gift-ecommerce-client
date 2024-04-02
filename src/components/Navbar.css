@@ -56,14 +56,15 @@ li {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(212, 105, 105);
+    background-color: #6750A4;
     z-index: 10;
 }
 
 .basket-amounth p {
     margin-top: 1.4rem;
     margin-right: 1.5rem;
-    color: black;
+    color: white;
+    font-size: small;
 }
 
 
