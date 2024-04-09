@@ -2,6 +2,8 @@ import { useState, useContext } from "react";
 import authService from "../services/auth.service";
 import { AuthContext } from "../context/auth.context";
 import { Link, useNavigate } from "react-router-dom";
+import { GoogleLogin } from '@react-oauth/google';
+import googleAuthService from "../services/google.auth.service";
 
 function LoginPage() {
 
@@ -31,6 +33,24 @@ function LoginPage() {
             })
     }
 
+    const handleGoogleLogin = (credentialResponse) => {
+ 
+            // console.log(credentialResponse.credential);
+            let googleToken = credentialResponse.credential
+
+            googleAuthService
+                .googleAuth(googleToken)
+                .then(res => {
+                    storeToken(res.data.authToken);
+                    authenticateUser();
+                    navigate("/products");
+                })
+                .catch((err) => {
+                    setErrorMsg(err.response.data.message)
+                })
+        
+    }
+
     return(
         <div className="auth-form">
             <form onSubmit={handleSubmit}>
@@ -42,6 +62,14 @@ function LoginPage() {
                 </label>
                 <button>Login</button>
             </form>
+            <div>
+            <GoogleLogin
+                onSuccess={handleGoogleLogin}
+                onError={() => {
+                    console.log('Login Failed');
+                }}
+            />;
+            </div>
             { erroroMsg && <p>{erroroMsg}</p> }
             <p>Not a user? <Link to={"/register"}>Register</Link></p>
         </div>
