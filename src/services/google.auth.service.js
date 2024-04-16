@@ -9,7 +9,6 @@ const errorHandler = (err) => {
 }
 
 const googleAuth = (file) => {
-
     return api.post("/auth/login-google", {token: file})
 }
 
