@@ -4,7 +4,6 @@ import { AuthContext } from "../context/auth.context";
 import { Link, useNavigate } from "react-router-dom";
 import { GoogleLogin } from '@react-oauth/google';
 import googleAuthService from "../services/google.auth.service";
-import './LoginPage.css'
 
 function LoginPage() {
 

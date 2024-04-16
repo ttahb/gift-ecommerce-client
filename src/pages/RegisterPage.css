@@ -1,0 +1,15 @@
+.activateBtn{
+    display: flex;
+}
+
+.nonActivateBtn{
+    display: none;
+}
+
+.activateBtnRegister{
+    display: block;
+}
+
+.register-sign {
+    padding-left: 0!important;
+}
