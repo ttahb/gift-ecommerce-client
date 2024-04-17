@@ -39,7 +39,7 @@ function LoginPage() {
             let googleToken = credentialResponse.credential
 
             googleAuthService
-                .googleAuth(googleToken)
+                .googleAuthLogin(googleToken)
                 .then(res => {
                     storeToken(res.data.authToken);
                     authenticateUser();

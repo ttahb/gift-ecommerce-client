@@ -3,7 +3,7 @@ import authService from "../services/auth.service";
 import { AuthContext } from "../context/auth.context";
 import { useNavigate, Link } from "react-router-dom";
 import { GoogleLogin } from '@react-oauth/google';
-//import googleAuthService from "../services/google.auth.service";
+import googleAuthService from "../services/google.auth.service";
 import "./RegisterPage.css"
 
 function RegisterPage() {
@@ -58,14 +58,23 @@ function RegisterPage() {
         setRegiterBtn(!regiterBtn)
     }
 
-    const handleGoogleLogin = () => {
-        // 1call google API - do the same TOKEN as in the loginPage
-        // 2.1backend call to decode the info and directly from there make the user in our DB...
-        // 2.2Send indication to the back end that this registration is done with google aka you do not need password
-        // 3mkae an account of the user with the details from google 
-        // 4return to create a JWT token 
-        // 5verify user - authneticate him
-        // 6send him to the products to shop... 
+    const handleGoogleLogin = (credentialResponse) => {
+            // console.log("from the register google btn res ==> ",credentialResponse)
+        const googleToken = credentialResponse.credential
+            // console.log("that'st he stored credentials form the credentialresponse",googleToken)
+
+        googleAuthService
+            .googleAuthRegister(googleToken)
+            .then(res => {
+                console.log(res)
+                storeToken(res.data.authToken);
+                authenticateUser();
+            })
+            .then(()=> navigate('/products'))
+            .catch(err => {
+                console.log(err)
+                setErrorMessage(err.response.data.message)});   
+
     }
 
     return (
