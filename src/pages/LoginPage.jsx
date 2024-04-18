@@ -4,6 +4,7 @@ import { AuthContext } from "../context/auth.context";
 import { Link, useNavigate } from "react-router-dom";
 import { GoogleLogin } from '@react-oauth/google';
 import googleAuthService from "../services/google.auth.service";
+import yahooAuthService from "../services/yahoo.auth.service";
 
 function LoginPage() {
 
@@ -51,6 +52,12 @@ function LoginPage() {
         
     }
 
+    const hangleYahooLogin = () => {
+
+            yahooAuthService
+                .yahooLogin()
+    }
+
     return(
         <div className="auth-form">
             <form onSubmit={handleSubmit}>
@@ -69,6 +76,9 @@ function LoginPage() {
                     console.log('Login Failed');
                 }}
             />
+            </div>
+            <div>
+                <button onClick={hangleYahooLogin}>Yahoo btn</button>
             </div>
             { erroroMsg && <p>{erroroMsg}</p> }
             <p>Not a user? <Link to={"/register"}>Register</Link></p>

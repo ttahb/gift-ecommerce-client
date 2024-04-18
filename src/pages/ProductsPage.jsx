@@ -4,7 +4,8 @@ import { useEffect, useState, useContext } from 'react';
 import SearchProducts from '../components/SearchProducts';
 import { AuthContext } from '../context/auth.context';
 import { Link } from 'react-router-dom';
-import "../pages/ProductsPage.css"
+import "../pages/ProductsPage.css";
+import InfiniteScroll from 'react-infinite-scroller';
 
 function ProductsPage() {
 
@@ -13,6 +14,8 @@ function ProductsPage() {
     const [ errorMsg, setErrorMsg ] = useState(undefined);
     const [ isLoading, setIsLoading ] = useState(true);
     const { user } = useContext(AuthContext);
+    const [ pageNum, setPageNum ] = useState(1)
+    const [ hasMore , setHasMore ] = useState(true)
 
     // console.log('this is the products', products)
   
@@ -43,19 +46,44 @@ function ProductsPage() {
         }
     }
 
-    useEffect(() => {
+    const loadFunc = () => {
+
         productsService
-            .getAllProducts()
+            .getAllProducts(pageNum)
             .then((res) => {
-                // console.log('data from the res ==> ',res)
-                setProducts(res.data);
-                setProductsData(res.data);
+                    // console.log('data from the res ==> ',res.data)
+                const pageOfProduct = res.data.products;
+                const isLastPage = res.data.isLastPage
+
+                setProducts(prevProducts => [...prevProducts, ...pageOfProduct]);
+                setProductsData(prevProductsData => [...prevProductsData, ...pageOfProduct]);
+                setPageNum(isLastPage ? pageNum : pageNum + 1)
+                if(isLastPage){
+                    setHasMore(false)
+                }
                 setIsLoading(false);
             })
             .catch((err) => {
                 setIsLoading(false);
                 setErrorMsg(err.response.data.message);
             })
+    }
+
+    useEffect(() => {
+
+        loadFunc();
+        // productsService
+        //     .getAllProducts()
+        //     .then((res) => {
+        //         // console.log('data from the res ==> ',res)
+        //         setProducts(res.data);
+        //         setProductsData(res.data);
+        //         setIsLoading(false);
+        //     })
+        //     .catch((err) => {
+        //         setIsLoading(false);
+        //         setErrorMsg(err.response.data.message);
+        //     })
     }, []);
 
     if(isLoading){
@@ -66,6 +94,7 @@ function ProductsPage() {
         </div>
         )
     }
+    console.log(products)
 
     return(
         <div className='products-container'>
@@ -73,11 +102,22 @@ function ProductsPage() {
             {user && user.role.toLowerCase() === 'admin' && <Link to={'/product/create'}><button>Create new Product</button></Link>}
                         
             <SearchProducts handleTags={handleTags} handleSearch={handleSearch}/>
-
-            <div className='products-display'>
-                {products.map(product => <ProductCard key={product._id} {...product}/> )}
-            </div>
-
+            
+                <div>
+                    <InfiniteScroll
+                        pageStart={1}
+                        loadMore={loadFunc}
+                        hasMore={hasMore}
+                        loader={<div> <span className="loader"></span><p>Loading ...</p></div>}
+                    >
+                        <div className='products-display'>
+                            {products.map(product => (
+                                <ProductCard key={product._id} {...product}/>
+                            ) )}
+                        </div>
+                    </InfiniteScroll>
+                </div>
+            
             {errorMsg && <p>{errorMsg}</p>}
 
         </div>

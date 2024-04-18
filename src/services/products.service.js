@@ -19,8 +19,10 @@ class ProductsService {
         })
     }
 
-    getAllProducts = () => {
-        return this.api.get('/api/products');
+
+
+    getAllProducts = (pageNum) => {
+        return this.api.get(`/api/products?_page=${pageNum}`);
     }
 
     getProduct = id => {
