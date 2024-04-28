@@ -17,7 +17,9 @@ function ProductsPage() {
     const [ pageNum, setPageNum ] = useState(1)
     const [ hasMore , setHasMore ] = useState(true)
 
-    // console.log('this is the products', products)
+    // const isMobile = window.screen
+    // console.log('isMobile ====> window screen ==>', isMobile)
+    // console.log(products)
   
     const handleTags = (str) => {
         const valueS = str;
@@ -70,20 +72,7 @@ function ProductsPage() {
     }
 
     useEffect(() => {
-
         loadFunc();
-        // productsService
-        //     .getAllProducts()
-        //     .then((res) => {
-        //         // console.log('data from the res ==> ',res)
-        //         setProducts(res.data);
-        //         setProductsData(res.data);
-        //         setIsLoading(false);
-        //     })
-        //     .catch((err) => {
-        //         setIsLoading(false);
-        //         setErrorMsg(err.response.data.message);
-        //     })
     }, []);
 
     if(isLoading){
@@ -94,7 +83,6 @@ function ProductsPage() {
         </div>
         )
     }
-    console.log(products)
 
     return(
         <div className='products-container'>
@@ -112,11 +100,12 @@ function ProductsPage() {
                     >
                         <div className='products-display'>
                             {products.map(product => (
-                                <ProductCard key={product._id} {...product}/>
+                                <ProductCard {...product} key={product._id} />
                             ) )}
                         </div>
                     </InfiniteScroll>
                 </div>
+                
             
             {errorMsg && <p>{errorMsg}</p>}
 

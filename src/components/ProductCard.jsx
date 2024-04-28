@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import Utils from '../utils/utils'
 
-function ProductCard( { image, productName, price, hearts, _id } ) {
+function ProductCard({ image, productName, price, hearts, _id }) {
 
     return(
         <Link to={`/product/${_id}`}>
             <div className=" product-card product-card-measurments">
                 <div className="card-image">
-                    <img src={image} alt="Image of the product"/>
+                    <img src={image} alt="Image not available"/>
                 </div>
                 <div className="product-card-info">
                     <p>{productName}</p>

@@ -18,7 +18,7 @@ function OrderDetailsPage() {
     const getOrder = async () => {
         try {
            const resp =  await orderService.getDetails(orderId)
-           console.log('order', resp.data);
+            // console.log('order', resp.data);
            setOrder(resp.data);
            setIsOrderDetailsLoading(false);
            setCurrentOrderDetails(orderId);
@@ -49,7 +49,7 @@ function OrderDetailsPage() {
             .patch(order._id, {status: "Cancelled"})
             .then((res) => {
                 setCancelOrder(true);
-                console.log(res.data)
+                // console.log(res.data)
             })
             .catch(err => console.log(err));
     }

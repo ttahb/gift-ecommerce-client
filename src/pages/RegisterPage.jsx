@@ -94,6 +94,7 @@ function RegisterPage() {
                             onChange={handleFullName} 
                             placeholder="John Doe"
                             required   
+                            className="input-filed"
                         />
                     </label>
                     <label>
@@ -105,6 +106,7 @@ function RegisterPage() {
                             onChange={handleEmail}
                             placeholder="e.g. john@domain.com"
                             required
+                            className="input-filed"
                         />
                     </label>
 
@@ -118,6 +120,7 @@ function RegisterPage() {
                             onChange={handlePassword}
                             placeholder="********"
                             required
+                            className="input-filed"
                         />
                     </label>
                     <label>
@@ -129,6 +132,7 @@ function RegisterPage() {
                             onChange={handleConfirmPassword}
                             placeholder="********"
                             required
+                            className="input-filed"
                         />
                     </label>
                     { errMsgPwd && <p style={{color:'red'}}>{errMsgPwd}</p>}
@@ -142,11 +146,12 @@ function RegisterPage() {
                             value={companyName}
                             onChange={handleCompanyName}
                             placeholder="XYZ Inc."
+                            className="input-filed"
                         />
                     </label>
                     <label>
                         <span>Company Size:</span>
-                        <select name="companySize" value={companySize} onChange={handleCompanySize}>
+                        <select name="companySize" className="input-filed" value={companySize} onChange={handleCompanySize}>
                             <option value="">--Please choose an option--</option>
                             <option value="0-100">0-100</option>
                             <option value="101-1000">101-1000</option>

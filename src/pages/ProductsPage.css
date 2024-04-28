@@ -10,6 +10,14 @@
     flex-wrap: wrap;
 }
 
+.nonActiveXbtn {
+    display: none;
+}
+
+.activeXbtn {
+    display: flex
+}
+
 .option-btn-search {
     margin: 1rem 0.2rem;
     transition: 0.3s ease-in-out;
@@ -37,7 +45,7 @@
 }
 
 .product-card-measurments {
-    height: 20rem;
+    height: 20.5rem;
     width: 15rem;
 }
 
@@ -49,6 +57,7 @@
 
 .card-image {
     align-self: center;
+    height: 13rem;
 }
 
 .card-image img {
@@ -57,9 +66,16 @@
 }
 
 .product-card-info {
-    margin-top: 0.5rem;
     color: black;
     font-size: x-large;
+}
+
+.product-card-info p:first-of-type {
+    height: 3.5rem;
+    width: 13rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0;
 }
 
 .product-card-info p:last-of-type {

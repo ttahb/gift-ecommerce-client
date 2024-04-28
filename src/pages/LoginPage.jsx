@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { GoogleLogin } from '@react-oauth/google';
 import googleAuthService from "../services/google.auth.service";
 import yahooAuthService from "../services/yahoo.auth.service";
+import "./LoginPage.css"
 
 function LoginPage() {
 
@@ -56,16 +57,19 @@ function LoginPage() {
 
             yahooAuthService
                 .yahooLogin()
+                .then((res) => {
+                    console.log(res)
+                })
     }
 
     return(
         <div className="auth-form">
             <form onSubmit={handleSubmit}>
                 <label>Email:
-                    <input type="text" name="email" value={email} onChange={handleEmail} />
+                    <input className="input-filed" type="text" name="email" value={email} onChange={handleEmail} />
                 </label>
                 <label>Password:
-                    <input type="password" name="password" value={password} onChange={handlePassword}/>
+                    <input className="input-filed" type="password" name="password" value={password} onChange={handlePassword}/>
                 </label>
                 <button>Login</button>
             </form>
