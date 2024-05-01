@@ -289,6 +289,16 @@ article {
   padding-left: 2rem;
 }
 
+/* google Login Register */
+
+.google-register{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0 2rem 0;
+}
+
 /* loader code */
 
 .loader {
@@ -303,7 +313,7 @@ article {
   background-color: #6750A4;
   box-shadow: 32px 0 #6750A4, -32px 0 #6750A4;
   position: relative;
-  animation: flash 0.5s ease-out infinite alternate;
+  animation: flash 1s ease-out infinite alternate;
 }
 
 @keyframes flash {
@@ -319,5 +329,4 @@ article {
     background-color: #6750A4;
     box-shadow: 32px 0 #FFF2, -32px 0 #FFF2;
   }
-}
-      
+}     

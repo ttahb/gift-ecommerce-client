@@ -10,7 +10,7 @@ const formatCentsToEuros = (centsAmount) => {
       style: 'currency',
       currency: 'EUR'
     });
-    console.log('formatted to', formatter.format(eurosAmount).replace('€', ''))
+    // console.log('formatted to', formatter.format(eurosAmount).replace('€', ''))
     return formatter.format(eurosAmount).replace('€', ''); // Remove the euro symbol
 }
 

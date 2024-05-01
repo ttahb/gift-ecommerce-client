@@ -12,7 +12,7 @@ const uploadImage = (file) => {
                     // console.log('that form the cliet file-upload - file ==>', file);
     return api.post("/api/upload", file)
       .then(res => {
-                    // console.log('that is from the cliet file-upload - res',res);
+                    console.log('that is from the cliet file-upload file-upload-services- res',res);
         return res.data
     })
       .catch(errorHandler);

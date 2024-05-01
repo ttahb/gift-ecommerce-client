@@ -10,7 +10,7 @@ function Navbar() {
   const { user, logOutUser, isLoggedIn } = useContext(AuthContext);
   const [showMenu, setShowMenu] = useState(false);
   const [ userId, setUserId ] = useState(null);
-  const { basketLength, setBasketContentLength } = useContext(CartContext);
+  const { basketLength, setBasketContentLength, clearBasket } = useContext(CartContext);
   const navigate = useNavigate()
   
 
@@ -19,6 +19,7 @@ function Navbar() {
   };
 
   const handleLogOut = () => {
+    clearBasket();
     logOutUser();
     navigate('/');
   }

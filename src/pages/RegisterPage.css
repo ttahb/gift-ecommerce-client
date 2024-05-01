@@ -1,0 +1,23 @@
+.activateBtn{
+    display: flex;
+}
+
+.nonActivateBtn{
+    display: none;
+}
+
+.activateBtnRegister{
+    display: block;
+}
+
+.register-sign {
+    padding-left: 0!important;
+}
+
+
+@media screen and (max-width: 750px) {
+  
+    .input-filed {
+      width: 100%!important;
+    }
+  }
