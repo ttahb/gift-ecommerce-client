@@ -1,7 +1,24 @@
+.google-btn {
+  height: 4rem;
+  border: solid 0.1rem white;
+  border-radius: 0.5rem;
+}
 
+.google-btn:hover {
+  cursor: pointer;
+  border-color: black;
+}
+
+.google-btn:active {
+  border: solid 0.1rem #1a0dab;
+}
 @media screen and (max-width: 750px) {
   
     .input-filed {
       width: 100%!important;
+    }
+
+    .google-btn {
+      height: 3rem;
     }
   }

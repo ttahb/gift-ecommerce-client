@@ -2,9 +2,9 @@ import { useState, useContext } from "react";
 import authService from "../services/auth.service";
 import { AuthContext } from "../context/auth.context";
 import { Link, useNavigate } from "react-router-dom";
-// import { GoogleLogin } from '@react-oauth/google';
 import googleAuthService from "../services/google.auth.service";
-import "./LoginPage.css"
+import "./LoginPage.css";
+import googleLoginBtn from '../../public/web_neutral_sq_ctn@4x.png'
 
 function LoginPage() {
 
@@ -67,8 +67,8 @@ function LoginPage() {
                 <button>Login</button>
             </form>
             <div className="google-register">
-
-                <button onClick={handleGoogleLogin}>Login with Google</button>
+                
+                    <img src={googleLoginBtn} alt="google button" onClick={handleGoogleLogin} className="google-btn" />
 
             </div>
             { erroroMsg && <p>{erroroMsg}</p> }
