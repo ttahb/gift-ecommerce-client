@@ -5,6 +5,7 @@ import "./Navbar.css";
 import Logo from "../../public/imalogotipo-pirineos-gourmet-negro.png"
 import shopingBasket from "../assets/shopping-basket.png"
 import { CartContext } from "../context/cart.context";
+import Cookies from "universal-cookie";
 
 function Navbar() {
   const { user, logOutUser, isLoggedIn } = useContext(AuthContext);
@@ -21,6 +22,8 @@ function Navbar() {
   const handleLogOut = () => {
     clearBasket();
     logOutUser();
+    const cookies = new Cookies();
+    const cookieToken = cookies.remove('JWToken');
     navigate('/');
   }
 

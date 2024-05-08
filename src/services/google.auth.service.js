@@ -8,12 +8,12 @@ const errorHandler = (err) => {
     throw err
 }
 
-const googleAuthLogin = (file) => {
-    return api.post("/auth/login-google", {token: file})
+const googleAuthLogin = () => {
+    return api.get("/auth/login-google")
 }
 
 const googleAuthRegister = (file) => {
-    return api.post("auth/register-google", {token: file})
+    return api.get("auth/register-google", {token: file})
 }
 
 export default {

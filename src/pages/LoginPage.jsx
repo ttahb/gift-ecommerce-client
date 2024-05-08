@@ -2,9 +2,8 @@ import { useState, useContext } from "react";
 import authService from "../services/auth.service";
 import { AuthContext } from "../context/auth.context";
 import { Link, useNavigate } from "react-router-dom";
-import { GoogleLogin } from '@react-oauth/google';
+// import { GoogleLogin } from '@react-oauth/google';
 import googleAuthService from "../services/google.auth.service";
-import yahooAuthService from "../services/yahoo.auth.service";
 import "./LoginPage.css"
 
 function LoginPage() {
@@ -35,31 +34,25 @@ function LoginPage() {
             })
     }
 
-    const handleGoogleLogin = (credentialResponse) => {
- 
-            // console.log(credentialResponse.credential);
-            let googleToken = credentialResponse.credential
+    const handleGoogleLogin = async () => {
 
-            googleAuthService
-                .googleAuthLogin(googleToken)
-                .then(res => {
-                    storeToken(res.data.authToken);
-                    authenticateUser();
-                    navigate("/products");
-                })
-                .catch((err) => {
-                    setErrorMsg(err.response.data.message)
-                })
-        
-    }
+        try{
+            const requestUrl = await googleAuthService.googleAuthLogin();
+            const url = requestUrl.data.authorizationUrl;
+            const screenWidth = window.screen.width;
+            const screenHeight = window.screen.height;
+            const popupWidth = 800;
+            const popupHeight = 500;
+            const left = (screenWidth - popupWidth) / 2;
+            const top = (screenHeight - popupHeight) / 2;
+            // console.log("left toalScreen1440 - ThePopupScreen800 = leftOverScreen640 / 2 = CenterMiddle320 ==> ",left)
+            // Open the popup window
+            window.open(url, 'Google-Login', `width=${popupWidth}, height=${popupHeight}, left=${left}, top=${top}`);
 
-    const hangleYahooLogin = () => {
+        }catch(err){
+            setErrorMsg(err.response.data.errorMsg);
+        }
 
-            yahooAuthService
-                .yahooLogin()
-                .then((res) => {
-                    console.log(res)
-                })
     }
 
     return(
@@ -74,15 +67,9 @@ function LoginPage() {
                 <button>Login</button>
             </form>
             <div className="google-register">
-            <GoogleLogin
-                onSuccess={handleGoogleLogin}
-                onError={() => {
-                    console.log('Login Failed');
-                }}
-            />
-            </div>
-            <div>
-                <button onClick={hangleYahooLogin}>Yahoo btn</button>
+
+                <button onClick={handleGoogleLogin}>Login with Google</button>
+
             </div>
             { erroroMsg && <p>{erroroMsg}</p> }
             <p>Not a user? <Link to={"/register"}>Register</Link></p>

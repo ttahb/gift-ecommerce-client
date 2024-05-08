@@ -22,6 +22,7 @@ import PaymentSuccessPage from './pages/PaymentSuccessPage';
 import IsAnon from './components/IsAnon';
 import IsPrivate from './components/IsPrivate';
 import ErrorPage from './pages/ErrorPage';
+import VerifyClient from './pages/VerifyClient';
 
 function App() {
 
@@ -47,6 +48,7 @@ function App() {
         <Route path='/address' element={<IsPrivate><AddressPage/></IsPrivate>}/>
         <Route path='/payments' element={<IsPrivate><PaymentsPage/></IsPrivate>} />
         <Route path='/payments/:currentOrderId/success' element={<IsPrivate><PaymentSuccessPage/></IsPrivate>} />
+        <Route path='/verify-client' element={<VerifyClient />} />
 
         <Route path="*" element={ <ErrorPage /> } />
       </Routes> 

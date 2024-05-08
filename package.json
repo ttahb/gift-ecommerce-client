@@ -21,7 +21,8 @@
     "react-dom": "^18.2.0",
     "react-infinite-scroller": "^1.2.6",
     "react-router-dom": "^6.22.3",
-    "stripe": "^14.24.0"
+    "stripe": "^14.24.0",
+    "universal-cookie": "^7.1.4"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",
