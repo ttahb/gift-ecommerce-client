@@ -34,21 +34,26 @@ function LoginPage() {
             })
     }
 
-    const handleGoogleLogin = async () => {
+    const handleGoogleLogin = async (num) => {
 
         try{
-            const requestUrl = await googleAuthService.googleAuthLogin();
+            const requestUrl = await googleAuthService.googleAuthLogin(num);
             const url = requestUrl.data.authorizationUrl;
-            const screenWidth = window.screen.width;
-            const screenHeight = window.screen.height;
-            const popupWidth = 800;
-            const popupHeight = 500;
-            const left = (screenWidth - popupWidth) / 2;
-            const top = (screenHeight - popupHeight) / 2;
-            // console.log("left toalScreen1440 - ThePopupScreen800 = leftOverScreen640 / 2 = CenterMiddle320 ==> ",left)
-            // Open the popup window
-            window.open(url, 'Google-Login', `width=${popupWidth}, height=${popupHeight}, left=${left}, top=${top}`);
 
+
+            if(requestUrl.data.procces === 'successful' ){
+                const screenWidth = window.screen.width;
+                const screenHeight = window.screen.height;
+                const popupWidth = 800;
+                const popupHeight = 500;
+                const left = (screenWidth - popupWidth) / 2;
+                const top = (screenHeight - popupHeight) / 2;
+                // console.log("left toalScreen1440 - ThePopupScreen800 = leftOverScreen640 / 2 = CenterMiddle320 ==> ",left)
+                // Open the popup window
+                window.open(url, 'Google-Login', `width=${popupWidth}, height=${popupHeight}, left=${left}, top=${top}`);
+            } else {
+                setErrorMsg('Something went wrong')
+            }
         }catch(err){
             setErrorMsg(err.response.data.errorMsg);
         }
@@ -68,7 +73,7 @@ function LoginPage() {
             </form>
             <div className="google-register">
                 
-                    <img src={googleLoginBtn} alt="google button" onClick={handleGoogleLogin} className="google-btn" />
+                    <img src={googleLoginBtn} alt="google button" onClick={ () => handleGoogleLogin(1)} className="google-btn" />
 
             </div>
             { erroroMsg && <p>{erroroMsg}</p> }

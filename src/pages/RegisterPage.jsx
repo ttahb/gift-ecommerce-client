@@ -2,9 +2,9 @@ import { useContext, useState } from "react"
 import authService from "../services/auth.service";
 import { AuthContext } from "../context/auth.context";
 import { useNavigate, Link } from "react-router-dom";
-import { GoogleLogin } from '@react-oauth/google';
 import googleAuthService from "../services/google.auth.service";
 import "./RegisterPage.css"
+import googleLoginBtn from '../../public/web_neutral_sq_ctn@4x.png'
 
 function RegisterPage() {
 
@@ -58,22 +58,29 @@ function RegisterPage() {
         setRegiterBtn(!regiterBtn)
     }
 
-    const handleGoogleLogin = (credentialResponse) => {
-            // console.log("from the register google btn res ==> ",credentialResponse)
-        const googleToken = credentialResponse.credential
-            // console.log("that'st he stored credentials form the credentialresponse",googleToken)
+    const handleGoogleLogin = async (num) => {
 
-        googleAuthService
-            .googleAuthRegister(googleToken)
-            .then(res => {
-                console.log(res)
-                storeToken(res.data.authToken);
-                authenticateUser();
-            })
-            .then(()=> navigate('/products'))
-            .catch(err => {
-                console.log(err)
-                setErrorMessage(err.response.data.message)});   
+        try{
+            const requestUrl = await googleAuthService.googleAuthLogin(num);
+            const url = requestUrl.data.authorizationUrl;
+
+
+            if(requestUrl.data.procces === 'successful' ){
+                const screenWidth = window.screen.width;
+                const screenHeight = window.screen.height;
+                const popupWidth = 800;
+                const popupHeight = 500;
+                const left = (screenWidth - popupWidth) / 2;
+                const top = (screenHeight - popupHeight) / 2;
+                // console.log("left toalScreen1440 - ThePopupScreen800 = leftOverScreen640 / 2 = CenterMiddle320 ==> ",left)
+                // Open the popup window
+                window.open(url, 'Google-Login', `width=${popupWidth}, height=${popupHeight}, left=${left}, top=${top}`);
+            } else {
+                errorMessage('Something went wrong')
+            }
+        }catch(err){
+            errorMessage(err.response.data.errorMsg);
+        }
 
     }
 
@@ -164,12 +171,11 @@ function RegisterPage() {
             </div>
             <div className={`google-register ${ regiterBtn ? " activateBtn" : " nonActivateBtn" }`} >
                 <p className="register-sign">Register with Google</p>
-                <GoogleLogin
-                    onSuccess={handleGoogleLogin}
-                    onError={() => {
-                        console.log('Login Failed');
-                    }}
-                />
+                <div className="google-register">
+                
+                    <img src={googleLoginBtn} alt="google button" onClick={ () => handleGoogleLogin(0)} className="google-btn" />
+
+                </div>
             </div>
             { errorMessage && <p style={{color:'red'}}>{errorMessage}</p>}
             <p>Already a user: <Link to={"/login"}>Login</Link></p>

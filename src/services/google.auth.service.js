@@ -8,8 +8,9 @@ const errorHandler = (err) => {
     throw err
 }
 
-const googleAuthLogin = () => {
-    return api.get("/auth/login-google")
+const googleAuthLogin = (num) => {
+    console.log(num)
+    return api.post("/auth/login-google", {numb: num})
 }
 
 const googleAuthRegister = (file) => {
