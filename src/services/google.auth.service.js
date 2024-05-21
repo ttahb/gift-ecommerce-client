@@ -5,20 +5,15 @@ const api = axios.create({
 });
 
 const errorHandler = (err) => {
-    throw err
+    throw err;
 }
 
 const googleAuthLogin = (num) => {
     console.log(num)
-    return api.post("/auth/login-google", {numb: num})
-}
-
-const googleAuthRegister = (file) => {
-    return api.get("auth/register-google", {token: file})
+    return api.post("/auth-google/login", {numb: num});
 }
 
 export default {
     googleAuthLogin,
-    errorHandler,
-    googleAuthRegister
+    errorHandler
 }

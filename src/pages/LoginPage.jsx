@@ -4,7 +4,7 @@ import { AuthContext } from "../context/auth.context";
 import { Link, useNavigate } from "react-router-dom";
 import googleAuthService from "../services/google.auth.service";
 import "./LoginPage.css";
-import googleLoginBtn from '../../public/web_neutral_sq_ctn@4x.png'
+import googleLoginBtn from '../../public/web_neutral_sq_ctn@4x.png';
 
 function LoginPage() {
 
@@ -52,7 +52,7 @@ function LoginPage() {
                 // Open the popup window
                 window.open(url, 'Google-Login', `width=${popupWidth}, height=${popupHeight}, left=${left}, top=${top}`);
             } else {
-                setErrorMsg('Something went wrong')
+                setErrorMsg('Something went wrong');
             }
         }catch(err){
             setErrorMsg(err.response.data.errorMsg);
